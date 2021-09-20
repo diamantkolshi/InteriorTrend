@@ -18,8 +18,10 @@ ActiveRecord::Schema.define(version: 2021_09_20_200308) do
   create_table "cities", force: :cascade do |t|
     t.string "name", null: false
     t.boolean "active", default: true
+    t.bigint "nationality_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["nationality_id"], name: "index_cities_on_nationality_id"
   end
 
   create_table "nationalities", force: :cascade do |t|
