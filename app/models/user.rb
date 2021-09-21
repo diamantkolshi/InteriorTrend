@@ -9,4 +9,5 @@ class User < ApplicationRecord
   belongs_to :role
   belongs_to :nationality
   belongs_to :city
+  has_many :projects
 end
