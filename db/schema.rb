@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_21_205514) do
+ActiveRecord::Schema.define(version: 2021_09_21_210145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,27 @@ ActiveRecord::Schema.define(version: 2021_09_21_205514) do
     t.boolean "active", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "ingredients", force: :cascade do |t|
+    t.bigint "post_id"
+    t.bigint "form_id"
+    t.bigint "style_id"
+    t.bigint "category_id"
+    t.string "name"
+    t.float "price"
+    t.string "position_name"
+    t.decimal "position_x"
+    t.decimal "position_y"
+    t.decimal "width"
+    t.decimal "height"
+    t.decimal "size"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_ingredients_on_category_id"
+    t.index ["form_id"], name: "index_ingredients_on_form_id"
+    t.index ["post_id"], name: "index_ingredients_on_post_id"
+    t.index ["style_id"], name: "index_ingredients_on_style_id"
   end
 
   create_table "materials", force: :cascade do |t|
