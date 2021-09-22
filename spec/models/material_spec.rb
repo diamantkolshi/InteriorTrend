@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Material, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "Associations" do
+  end
+
+  describe "Validations" do
+  end
 end
