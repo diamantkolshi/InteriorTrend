@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_21_210145) do
+ActiveRecord::Schema.define(version: 2021_09_22_212247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,24 @@ ActiveRecord::Schema.define(version: 2021_09_21_210145) do
     t.boolean "active", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "ingredient_colors", force: :cascade do |t|
+    t.bigint "ingredient_id"
+    t.bigint "color_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["color_id"], name: "index_ingredient_colors_on_color_id"
+    t.index ["ingredient_id"], name: "index_ingredient_colors_on_ingredient_id"
+  end
+
+  create_table "ingredient_materials", force: :cascade do |t|
+    t.bigint "ingredient_id"
+    t.bigint "material_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ingredient_id"], name: "index_ingredient_materials_on_ingredient_id"
+    t.index ["material_id"], name: "index_ingredient_materials_on_material_id"
   end
 
   create_table "ingredients", force: :cascade do |t|

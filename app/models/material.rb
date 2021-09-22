@@ -1,3 +1,4 @@
 class Material < ApplicationRecord
-  has_many :ingredients
+  has_many :ingredient_materials
+  has_many :ingredients, through: :ingredient_materials
 end
