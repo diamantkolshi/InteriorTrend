@@ -1,0 +1,5 @@
+color:
+  id: 1
+  name: 'red'
+  image_url: 'www.google.com'
+  active: true

@@ -1,0 +1,5 @@
+prishtina:
+  id: 1
+  name: 'Prshtina'
+  nationality_id: 1
+  active: true
