@@ -1,5 +1,17 @@
-color:
+red:
   id: 1
   name: 'red'
+  image_url: 'www.google.com'
+  active: true
+
+blue:
+  id: 2
+  name: 'blue'
+  image_url: 'www.google.com'
+  active: true
+
+yellow:
+  id: 3
+  name: 'yellow'
   image_url: 'www.google.com'
   active: true
