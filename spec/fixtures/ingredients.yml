@@ -118,7 +118,7 @@ project3_post_ingredient3:
   height: 100
   size: 41.1
 
-project4_post_ingredient3:
+project4_post_ingredient4:
   id: 9
   post_id: 3
   form_id: 2
