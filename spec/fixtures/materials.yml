@@ -1,0 +1,39 @@
+paper:
+  id: 1
+  name: 'paper'
+  active: true
+
+wood:
+  id: 2
+  name: 'Wood'
+  active: true
+
+stone:
+  id: 3
+  name: 'Stone'
+  active: true
+
+brick:
+  id: 4
+  name: 'Brick'
+  active: true
+
+metal:
+  id: 5
+  name: 'Metal'
+  active: true
+
+fur:
+  id: 6
+  name: 'Fur'
+  active: true
+
+plastic:
+  id: 7
+  name: 'Plastic'
+  active: true
+
+glass:
+  id: 8
+  name: 'Glass'
+  active: true

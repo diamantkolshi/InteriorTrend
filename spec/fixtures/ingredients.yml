@@ -1,0 +1,134 @@
+project1_post_ingredient1:
+  id: 1
+  post_id: 1
+  form_id: 1
+  style_id: 1
+  category_id: 6
+  name: "name 1"
+  price: 23.4
+  position_name: "position_name"
+  position_x: 0.34
+  position_y: 1.2
+  width: 100
+  height: 100
+  size: 45.6
+
+project1_post_ingredient2:
+  id: 2
+  post_id: 1
+  form_id: 2
+  style_id: 3
+  category_id: 6
+  name: "name 2"
+  price: 10.6
+  position_name: "position_name"
+  position_x: 0.34
+  position_y: 1.2
+  width: 100
+  height: 100
+  size: 23.6
+
+project1_post_ingredient3:
+  id: 3
+  post_id: 1
+  form_id: 3
+  style_id: 3
+  category_id: 12
+  name: "name 3"
+  price: 40.99
+  position_name: "position_name"
+  position_x: 0.34
+  position_y: 1.2
+  width: 100
+  height: 100
+  size: 41.1
+
+project2_post_ingredient1:
+  id: 4
+  post_id: 2
+  form_id: 2
+  style_id: 1
+  category_id: 12
+  name: "name 4"
+  price: 5.5
+  position_name: "position_name"
+  position_x: 0.34
+  position_y: 1.2
+  width: 100
+  height: 100
+  size: 15.5
+
+project2_post_ingredient2:
+  id: 5
+  post_id: 2
+  form_id: 3
+  style_id: 1
+  category_id: 8
+  name: "name 5"
+  price: 100.11
+  position_name: "position_name"
+  position_x: 0.34
+  position_y: 1.2
+  width: 100
+  height: 100
+  size: 20.0
+
+project3_post_ingredient1:
+  id: 6
+  post_id: 3
+  form_id: 1
+  style_id: 1
+  category_id: 9
+  name: "name 6"
+  price: 223.4
+  position_name: "position_name"
+  position_x: 0.34
+  position_y: 1.2
+  width: 100
+  height: 100
+  size: 100.6
+
+project3_post_ingredient2:
+  id: 7
+  post_id: 3
+  form_id: 2
+  style_id: 1
+  category_id: 17
+  name: "name 7"
+  price: 96.6
+  position_name: "position_name"
+  position_x: 0.34
+  position_y: 1.2
+  width: 100
+  height: 100
+  size: 50.5
+
+project3_post_ingredient3:
+  id: 8
+  post_id: 3
+  form_id: 1
+  style_id: 3
+  category_id: 18
+  name: "name 8"
+  price: 40.99
+  position_name: "position_name"
+  position_x: 0.34
+  position_y: 1.2
+  width: 100
+  height: 100
+  size: 41.1
+
+project4_post_ingredient3:
+  id: 9
+  post_id: 3
+  form_id: 2
+  style_id: 2
+  category_id: 17
+  name: "name 9"
+  price: 52.99
+  position_name: "position_name"
+  position_x: 0.34
+  position_y: 1.2
+  width: 100
+  height: 100
+  size: 39.1

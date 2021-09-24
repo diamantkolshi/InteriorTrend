@@ -15,3 +15,15 @@ yellow:
   name: 'yellow'
   image_url: 'www.google.com'
   active: true
+
+green:
+  id: 4
+  name: 'green'
+  image_url: 'www.google.com'
+  active: true
+
+white:
+  id: 5
+  name: 'white'
+  image_url: 'www.google.com'
+  active: true
