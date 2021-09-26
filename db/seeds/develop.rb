@@ -95,7 +95,7 @@ end
 
 
 USERS = [ {email: "admin@mail.com", password: "password", password_confirmation: "password", name: "Admin", surname: "Admin", role_id: 1, nationality_id: 1, city_id: 1, street: "street 1", phone_number: "+12312415123", website: "www.google.com"},
-          {email: "knapp@mail.com", password: "password", password_confirmation: "password", name: "Knapp", surname: "Knapp", role_id: 2, nationality_id: 1, city_id: 1, street: "street 1", phone_number: "+12312415123", website: "www.google.com"} ]
+          {email: "knapp@mail.com", password: "password", password_confirmation: "password", name: "Knapp", surname: "Knapp", role_id: 3, nationality_id: 1, city_id: 1, street: "street 1", phone_number: "+12312415123", website: "www.google.com"} ]
 puts "----- CREATE USERS -----"
 USERS.each do |user|
   User.create!(user)

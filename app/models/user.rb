@@ -7,7 +7,7 @@ class User < ApplicationRecord
   include AttrJson::Record
 
   belongs_to :role
-  belongs_to :nationality
+  belongs_to :nationality, optional: true
   belongs_to :city
   has_many :projects
 end
