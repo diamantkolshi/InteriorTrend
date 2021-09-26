@@ -27,6 +27,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
 gem 'inertia_rails'
+gem 'attr_json'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -35,7 +36,9 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
+  gem 'shoulda-matchers'
   gem 'rubocop'
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -50,7 +53,6 @@ group :development do
 end
 
 group :test do
-  gem 'shoulda-matchers'
   gem 'simplecov'
 end
 
