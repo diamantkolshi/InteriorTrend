@@ -34,7 +34,7 @@ jobs:
       - run: mkdir -p $CIRCLE_TEST_REPORTS/cucumber
       - run: mkdir -p $CIRCLE_ARTIFACTS/I18n/TRME
       - run: echo "deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
-      - run: wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+      - run: wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add gpg -
 
       # Download and cache dependencies
       - restore_cache:
