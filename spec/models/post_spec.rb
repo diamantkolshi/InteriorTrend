@@ -11,7 +11,13 @@ RSpec.describe Post, type: :model do
 
   describe 'Filters' do
     describe '#posts_by_categories' do
-      it 'fetch post by ingredients category (DISTINCT)' do
+      it 'return empty for filter with parent category' do
+        posts_result = Post.filter_by_categories([1,2,3])
+
+        expect(posts_result.length).to eq 0
+      end
+
+      it 'fetch post by ingredients subcategories (DISTINCT)' do
         posts_result = Post.filter_by_categories([6,7])
 
         expect(posts_result.length).to eq 1
@@ -21,14 +27,14 @@ RSpec.describe Post, type: :model do
         end
       end
 
-      it 'fetch posts with the diff categories (DISTINCT)' do
+      it 'fetch posts with the diff subcategories (DISTINCT)' do
         posts_result = Post.filter_by_categories([6,7,12])
 
         expect(posts_result.length).to eq 2
         expect(posts_result).to eq [Post.first, Post.second]
       end
 
-      it 'fetch all posts with the diff categories (DISTINCT)' do
+      it 'fetch all posts with the diff subcategories (DISTINCT)' do
         posts_result = Post.filter_by_categories([6,7,12,13,14,16,18,19])
 
         expect(posts_result.length).to eq Post.all.length
