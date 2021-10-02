@@ -10,7 +10,7 @@ RSpec.describe Post, type: :model do
   end
 
   describe 'Filters' do
-    describe '#posts_by_categories' do
+    describe '#filter_by_categories' do
       it 'return empty for filter with parent category' do
         posts_result = Post.filter_by_categories([1,2,3])
 
