@@ -74,5 +74,69 @@ RSpec.describe Project, type: :model do
         expect(projects_result).to eq Project.all.to_a
       end
     end
+
+    describe '#filter_by_post_forms' do
+      it 'return posts with with form' do
+        posts_result = Project.filter_by_post_forms([1])
+
+        expect(posts_result.length).to eq 2
+        expect(posts_result).to eq [Project.first, Project.third]
+      end
+
+      it 'return all posts with diff format, no dublicate (disctinct)' do
+        posts_result = Project.filter_by_post_forms([1,2,3])
+
+        expect(posts_result.length).to eq Project.all.length
+        expect(posts_result).to eq Project.all.to_a
+      end
+    end
+
+    describe '#filter_by_post_styles' do
+      it 'return posts with with form' do
+        posts_result = Project.filter_by_post_styles([2])
+
+        expect(posts_result.length).to eq 1
+        expect(posts_result).to eq [Project.third]
+      end
+
+      it 'return all posts with diff format, no dublicate (disctinct)' do
+        posts_result = Project.filter_by_post_styles([1,2,3])
+
+        expect(posts_result.length).to eq Project.all.length
+        expect(posts_result).to eq Project.all.to_a
+      end
+    end
+
+    describe '#filter_by_post_colors' do
+      it 'return posts with with color' do
+        posts_result = Project.filter_by_post_colors([1])
+
+        expect(posts_result.length).to eq 2
+        expect(posts_result).to eq [Project.first, Project.third]
+      end
+
+      it 'return all posts with diff colors, no dublicate (disctinct)' do
+        posts_result = Project.filter_by_post_colors(Color.all.pluck(:id))
+
+        expect(posts_result.length).to eq Project.all.length
+        expect(posts_result).to eq Project.all.to_a
+      end
+    end
+
+    describe '#filter_by_post_materials' do
+      it 'return posts with with material' do
+        posts_result = Project.filter_by_post_materials([1])
+
+        expect(posts_result.length).to eq 2
+        expect(posts_result).to eq [Project.first, Project.third]
+      end
+
+      it 'return all posts with diff materials, no dublicate (disctinct)' do
+        posts_result = Project.filter_by_post_materials(Material.all.pluck(:id))
+
+        expect(posts_result.length).to eq Project.all.length
+        expect(posts_result).to eq Project.all.to_a
+      end
+    end
   end
 end

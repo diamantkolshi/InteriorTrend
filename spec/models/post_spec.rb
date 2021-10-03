@@ -42,4 +42,68 @@ RSpec.describe Post, type: :model do
       end
     end
   end
+
+  describe '#filter_by_forms' do
+    it 'return posts with with form' do
+      posts_result = Post.filter_by_forms([1])
+
+      expect(posts_result.length).to eq 2
+      expect(posts_result).to eq [Post.first, Post.third]
+    end
+
+    it 'return all posts with diff formats, no dublicate (disctinct)' do
+      posts_result = Post.filter_by_forms([1,2,3])
+
+      expect(posts_result.length).to eq Post.all.length
+      expect(posts_result).to eq Post.all.to_a
+    end
+  end
+
+  describe '#filter_by_styles' do
+    it 'return posts with with style' do
+      posts_result = Post.filter_by_styles([2])
+
+      expect(posts_result.length).to eq 1
+      expect(posts_result).to eq [Post.third]
+    end
+
+    it 'return all posts with diff styles, no dublicate (disctinct)' do
+      posts_result = Post.filter_by_styles([1,2,3])
+
+      expect(posts_result.length).to eq Post.all.length
+      expect(posts_result).to eq Post.all.to_a
+    end
+  end
+
+  describe '#filter_by_colors' do
+    it 'return posts with with color' do
+      posts_result = Post.filter_by_colors([1])
+
+      expect(posts_result.length).to eq 2
+      expect(posts_result).to eq [Post.first, Post.third]
+    end
+
+    it 'return all posts with diff colors, no dublicate (disctinct)' do
+      posts_result = Post.filter_by_colors(Color.all.pluck(:id))
+
+      expect(posts_result.length).to eq Post.all.length
+      expect(posts_result).to eq Post.all.to_a
+    end
+  end
+
+  describe '#filter_by_materials' do
+    it 'return posts with with material' do
+      posts_result = Post.filter_by_materials([1])
+
+      expect(posts_result.length).to eq 2
+      expect(posts_result).to eq [Post.first, Post.third]
+    end
+
+    it 'return all posts with diff materials, no dublicate (disctinct)' do
+      posts_result = Post.filter_by_materials(Material.all.pluck(:id))
+
+      expect(posts_result.length).to eq Post.all.length
+      expect(posts_result).to eq Post.all.to_a
+    end
+  end
 end
