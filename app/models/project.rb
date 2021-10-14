@@ -5,6 +5,8 @@ class Project < ApplicationRecord
   belongs_to :city
   has_many :posts
 
+  validates_presence_of :title, :description
+
   has_many :distinct_project_posts, -> {
     self.where_by_scope(:distinct_posts)
   }, class_name: 'Post', foreign_key: 'project_id'

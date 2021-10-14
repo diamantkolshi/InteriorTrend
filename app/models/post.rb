@@ -2,6 +2,8 @@ class Post < ApplicationRecord
   belongs_to :project
   has_many :ingredients
 
+  validates_presence_of :title
+
   scope :distinct_posts, -> (params = nil) {
     select("DISTINCT ON (id) #{self.table_name}.*")
   }

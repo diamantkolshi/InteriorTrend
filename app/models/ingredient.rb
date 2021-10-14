@@ -7,4 +7,6 @@ class Ingredient < ApplicationRecord
   has_many :colors, through: :ingredient_colors
   has_many :ingredient_materials
   has_many :materials, through: :ingredient_materials
+
+  validates_presence_of :name, :position_x, :position_y
 end
