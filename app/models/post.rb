@@ -30,4 +30,9 @@ class Post < ApplicationRecord
       .includes(ingredients: [:materials])
       .where(materials: { id: materials_ids })
   }
+
+  def distinct_categories
+    categories = self.ingredients.map { |c| c.category }
+    categories.uniq
+  end
 end

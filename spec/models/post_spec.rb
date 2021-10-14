@@ -106,4 +106,14 @@ RSpec.describe Post, type: :model do
       expect(posts_result).to eq Post.all.to_a
     end
   end
+
+  describe '#distinct_categories' do
+    it "return all categories from ingradients without dublicate" do
+      post = Post.first
+      expect(post.ingredients.length).to eq 3
+      expect(post.distinct_categories.class).to eq Array
+      expect(post.distinct_categories.length).to eq 2
+      expect(post.distinct_categories).to eq [Category.find(6), Category.find(12)]
+    end
+  end
 end
