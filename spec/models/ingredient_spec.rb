@@ -13,5 +13,8 @@ RSpec.describe Ingredient, type: :model do
   end
 
   describe "Validations" do
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:position_x) }
+    it { should validate_presence_of(:position_y) }
   end
 end
