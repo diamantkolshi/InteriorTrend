@@ -1,0 +1,26 @@
+admin:
+  id: 1
+  email: "admin@mail.com"
+  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
+  name: "Admin"
+  surname: "Admin"
+  role_id: 1
+  nationality_id: 1
+  city_id: 1
+  street: "street 1"
+  phone_number: "+12312415123"
+  website: "www.google.com"
+
+knapp:
+  id: 2
+  email: "knapp@mail.com"
+  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
+  name: "Knapp"
+  surname: "Knapp"
+  company_name: "Knapp"
+  role_id: 2
+  nationality_id: 1
+  city_id: 1
+  street: "street 1"
+  phone_number: "+12312415123"
+  website: "www.google.com"

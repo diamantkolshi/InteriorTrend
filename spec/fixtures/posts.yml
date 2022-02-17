@@ -1,0 +1,20 @@
+project1_post:
+  id: 1
+  project_id: 1
+  title: "Project 1 Post"
+  description: "Project 1 Post description"
+  image_url: https://www.thespruce.com/thmb/_UEIkgsgGTE2oFyljQc829q8pCg=/960x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/GettyImages-1161177015-f1de4ba58a6c4f50969d9119d80405a6.jpg
+
+project2_post:
+  id: 2
+  project_id: 2
+  title: "Project 2 Post"
+  description: "Project 2 Post description"
+  image_url: https://www.decoraid.com/wp-content/uploads/2021/04/Interior-of-modern-hallway-with-mirror-scaled-958x575.jpeg
+
+project3_post:
+  id: 3
+  project_id: 3
+  title: "Project 3 Post"
+  description: "Project 3 Post description"
+  image_url: https://www.decoraid.com/wp-content/uploads/2018/06/foyer-interior-design-first-impression.jpg

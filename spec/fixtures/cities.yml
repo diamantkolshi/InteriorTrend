@@ -1,0 +1,23 @@
+prishtina:
+  id: 1
+  name: 'Prishtina'
+  nationality_id: 1
+  active: true
+
+prizeren:
+  id: 2
+  name: 'Prizeren'
+  nationality_id: 1
+  active: true
+
+drenica:
+  id: 3
+  name: 'Drenica'
+  nationality_id: 1
+  active: true
+
+gilan:
+  id: 4
+  name: 'Gilan'
+  nationality_id: 1
+  active: true

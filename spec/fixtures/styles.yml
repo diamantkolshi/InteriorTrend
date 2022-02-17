@@ -1,0 +1,17 @@
+classic:
+  id: 1
+  name: 'Classic'
+  image_url: 'www.google.com'
+  active: true
+
+modern:
+  id: 2
+  name: 'Modern'
+  image_url: 'www.google.com'
+  active: true
+
+ethnic:
+  id: 3
+  name: 'Ethnic'
+  image_url: 'www.google.com'
+  active: true

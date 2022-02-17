@@ -1,0 +1,29 @@
+project1:
+  id: 1
+  user_id: 2
+  city_id: 1
+  title: "Project 1"
+  description: "Project 1 description"
+  street: "Street 1"
+  location: "Location 1"
+  views: 20
+
+project2:
+  id: 2
+  user_id: 2
+  city_id: 2
+  title: "Project 2"
+  description: "Project 2 description"
+  street: "Street 2"
+  location: "Location 2"
+  views: 40
+
+project3:
+  id: 3
+  user_id: 2
+  city_id: 1
+  title: "Project 3"
+  description: "Project 3 description"
+  street: "Street 3"
+  location: "Location 3"
+  views: 120
