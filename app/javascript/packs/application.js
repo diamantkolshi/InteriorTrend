@@ -4,6 +4,8 @@
 // that code so it'll be compiled.
 
 import Rails from "@rails/ujs"
+import $ from 'jquery';
+import '../src/app.scss';
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 

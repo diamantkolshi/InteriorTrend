@@ -29,6 +29,7 @@ gem 'devise'
 gem 'inertia_rails'
 gem 'attr_json'
 gem 'pg_search'
+gem 'haml'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

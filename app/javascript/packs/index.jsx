@@ -1,7 +1,13 @@
+import "../src/app.scss";
+
 import { InertiaApp } from "@inertiajs/inertia-react";
 import React from "react";
 import { render } from "react-dom";
+import $ from 'jquery';
+import 'popper.js'
+import 'bootstrap';
 import Axios from "axios";
+import * as moment from 'moment';
 import { InertiaProgress } from "@inertiajs/progress";
 import Layout from '../components/Layout'
 

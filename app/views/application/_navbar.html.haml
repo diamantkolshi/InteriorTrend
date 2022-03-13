@@ -1,0 +1,49 @@
+%nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow
+  %a.navbar-brand
+    -# %img{src: asset_path(Webpacker.manifest.lookup("media/images/logo@2x.png")), width: 128, alt: 'logo'}
+  %ul.navbar-nav.mr-auto
+    %li.nav-item.mx-1
+      Patienten
+    %li.nav-item.mx-1
+      %div.nav-link
+        %script
+          {{#id}}
+          .form-row
+            .col-2.text-right
+            .col-10
+              {{surname}}, {{firstname}}
+              {{#deactivated}}
+              %span.badge.badge-warning deaktiviert
+              {{/deactivated}}
+              .small {{email}}
+          {{/id}}
+          {{#no_results}}
+          .px-3
+            Keine Ergebnisse für
+            %b "{{no_results}}"
+          {{/no_results}}
+        %input.form-control.bg-light.border-0.small
+  %ul.navbar-nav.ml-auto
+    .nav-item.no-arrow.dropdown
+      %a.nav-link.dropdown-toggle
+        %span.mr-2.d-none.d-lg-inline.text-gray-600 Administration
+      .dropdown-menu
+    %ul.navbar-nav.mr-auto
+      %li.nav-item.mx-1
+        .mr-2= "asds"
+        Support
+    %ul.navbar-nav.ml-auto
+      .topbar-divider.d-none.d-sm-block
+      .nav-item.no-arrow.dropdown
+        %a.nav-link.dropdown-toggle{href: "javascript: void 0;", data: {"toggle": "dropdown"}}
+          .mr-2= "fas(:user)"
+          %span.d-none.d-lg-inline.text-gray-600.small "current_user.name" ("current_user.role.text")
+        .dropdown-menu.dropdown-menu-right
+          .dropdown-item-text.text-muted
+            = "current_user.email"
+          .dropdown-divider
+          = link_to "Passwort ändern", "#"
+          .dropdown-divider
+          = link_to "#" do
+            %i.fas.fa-sign-out-alt
+            Abmelden
