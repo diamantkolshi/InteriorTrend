@@ -9,5 +9,7 @@ import '../src/app.scss';
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
+require.context('../images', true)
+
 Rails.start()
 ActiveStorage.start()

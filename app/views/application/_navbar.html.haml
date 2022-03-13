@@ -1,49 +1,44 @@
 %nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow
   %a.navbar-brand
-    -# %img{src: asset_path(Webpacker.manifest.lookup("media/images/logo@2x.png")), width: 128, alt: 'logo'}
+    %img{src: asset_path(Webpacker.manifest.lookup("media/images/logo@2x.png")), width: 128, alt: 'logo'}
   %ul.navbar-nav.mr-auto
     %li.nav-item.mx-1
-      Patienten
+      = link_to "/#", class: "nav-link" do
+        Patienten
     %li.nav-item.mx-1
       %div.nav-link
         %script
-          {{#id}}
-          .form-row
-            .col-2.text-right
-            .col-10
-              {{surname}}, {{firstname}}
-              {{#deactivated}}
-              %span.badge.badge-warning deaktiviert
-              {{/deactivated}}
-              .small {{email}}
-          {{/id}}
-          {{#no_results}}
-          .px-3
-            Keine Ergebnisse für
-            %b "{{no_results}}"
-          {{/no_results}}
         %input.form-control.bg-light.border-0.small
   %ul.navbar-nav.ml-auto
     .nav-item.no-arrow.dropdown
-      %a.nav-link.dropdown-toggle
+      %a.nav-link.dropdown-toggle{href: "javascript: void 0;", data: {"toggle": "dropdown"}}
         %span.mr-2.d-none.d-lg-inline.text-gray-600 Administration
       .dropdown-menu
+        = link_to "/#", class: "dropdown-item" do
+          Products
+        = link_to "/#", class: "dropdown-item" do
+          Users
+        = link_to "/#", class: "dropdown-item" do
+          Comments
+        = link_to "/#", class: "dropdown-item" do
+          Sales
     %ul.navbar-nav.mr-auto
       %li.nav-item.mx-1
-        .mr-2= "asds"
-        Support
+        = link_to "#", class: "nav-link", target: "_blank" do
+          %i.fas.fa-info.mr-2
+          Support
     %ul.navbar-nav.ml-auto
       .topbar-divider.d-none.d-sm-block
       .nav-item.no-arrow.dropdown
         %a.nav-link.dropdown-toggle{href: "javascript: void 0;", data: {"toggle": "dropdown"}}
-          .mr-2= "fas(:user)"
-          %span.d-none.d-lg-inline.text-gray-600.small "current_user.name" ("current_user.role.text")
+          %i.fas.fa-user.mr-2
+          %span.d-none.d-lg-inline.text-gray-600.small Diamant Kolshi
         .dropdown-menu.dropdown-menu-right
           .dropdown-item-text.text-muted
             = "current_user.email"
           .dropdown-divider
-          = link_to "Passwort ändern", "#"
+          = link_to "Passwort ändern", "#", class: "dropdown-item"
           .dropdown-divider
-          = link_to "#" do
-            %i.fas.fa-sign-out-alt
+          = link_to "#", class: "dropdown-item" do
+            %i.fas.fa-sign-out-alt.mr-2
             Abmelden
