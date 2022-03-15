@@ -1,6 +1,12 @@
 # Role.destroy_all
 # Nationality.destroy_all
 # City.destroy_all
+# User.destroy_all
+# Material.destroy_all
+# Form.destroy_all
+# Color.destroy_all
+# Project.destroy_all
+# Category.destroy_all
 
 ROLES = ["admin", "user", "company"]
 puts "----- CREATE ROLES -----"
@@ -100,5 +106,18 @@ puts "----- CREATE USERS -----"
 USERS.each do |user|
   User.create!(user)
   puts "+ create new user: #{user[:email]}"
+end
+puts "--------------------------------------"
+
+PROJECTS = [ {user: User.first, city: City.first, title: "White Zinc ", description: "For your next M&A, Real Estate, Raising Capital,", street: "street 1", location: "location 1", views: 22 },
+              {user: User.first, city: City.second, title: "Green Platinum", description: "IPO transaction, use Imprima’s Project Name Generator to create a random and catchy project name", street: "street 2", location: "location 1", views: 10 },
+              {user: User.first, city: City.second, title: "Airedale Terrier", description: "Our Project Name Generator allows you to select from common everyday items such as Animals", street: "street 3", location: "location 1", views: 41 },
+              {user: User.first, city: City.first, title: "Siberian Husky", description: "It’s not the words themselves that create a catchy", street: "street 4", location: "location 1", views: 25 },
+              {user: User.first, city: City.second, title: "White Bronze Greyhound", description: "This is your chance to make your project", street: "street 5", location: "location 1", views: 30 }]
+
+puts "----- CREATE Projects -----"
+PROJECTS.each do |project|
+  Project.create!(project)
+  puts "+ create new project: #{project[:title]}"
 end
 puts "--------------------------------------"
