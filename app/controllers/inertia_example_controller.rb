@@ -1,5 +1,9 @@
 class InertiaExampleController < ApplicationController
-  def index
-    render inertia: 'InertiaExample', props: { name: 'World', index: true }
+  def example_one
+    render inertia: 'StyleExampleOne', props: { name: 'World', index: true }
+  end
+
+  def example_two
+    render inertia: 'StyleExampleTwo', props: { name: 'World', index: true }
   end
 end

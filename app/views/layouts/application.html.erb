@@ -4,13 +4,42 @@
     <title>InertiaTodo</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    
-    <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= javascript_pack_tag 'application' %>
-    <%= javascript_pack_tag 'index' %>
+
+    <%= stylesheet_pack_tag 'index', "data-turbo-track": "reload" %>
+    <%= javascript_pack_tag 'index', "data-turbo-track": "reload" %>
   </head>
 
   <body>
-    <%= yield %>
+    <div id="content" data-controller="auto-refresh">
+    <div id="content-wrapper">
+      <div>
+        <%= render partial: 'navbar' %>
+        <div class="container-fluid">
+          <div data-turbo-cache="false" data-permanent="true">
+            <% if flash[:success] %>
+              <div class="alert alert-success">
+                <%= flash[:success] %>
+              </div>
+            <% end %>
+            <% if flash[:notice] %>
+              <div class="alert alert-success">
+                <%= flash[:notice] %>
+              </div>
+            <% end %>
+            <% if flash[:alert] %>
+              <div class="alert alert-danger">
+                <%= flash[:alert] %>
+              </div>
+            <% end %>
+          </div>
+          <% if content_for?(:inner_layout) %>
+            <%= content_for(:inner_layout) %>
+          <% else %>
+            <%= yield %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
   </body>
 </html>

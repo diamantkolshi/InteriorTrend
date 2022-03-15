@@ -1,0 +1,39 @@
+%nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow
+  %a.navbar-brand
+    %img{src: asset_path(Webpacker.manifest.lookup("media/images/logo@2x.png")), width: 128, alt: 'logo'}
+  %ul.navbar-nav.mr-auto
+    %li.nav-item.mx-1
+      = link_to "/#", class: "nav-link" do
+        Patienten
+    %li.nav-item.mx-1
+      %div.nav-link
+        %script
+        %input.form-control.bg-light.border-0.small
+  %ul.navbar-nav.ml-auto
+    .nav-item.no-arrow.dropdown
+      %a.nav-link.dropdown-toggle{href: "javascript: void 0;", data: {"toggle": "dropdown"}}
+        %span.mr-2.d-none.d-lg-inline.text-gray-600 Administration
+      .dropdown-menu
+        = link_to "/#", class: "dropdown-item" do
+          Products
+        = link_to "/#", class: "dropdown-item" do
+          Users
+        = link_to "/#", class: "dropdown-item" do
+          Comments
+        = link_to "/#", class: "dropdown-item" do
+          Sales
+    %ul.navbar-nav.ml-auto
+      .topbar-divider.d-none.d-sm-block
+      .nav-item.no-arrow.dropdown
+        %a.nav-link.dropdown-toggle{href: "javascript: void 0;", data: {"toggle": "dropdown"}}
+          %i.fas.fa-user.mr-2
+          %span.d-none.d-lg-inline.text-gray-600.small Diamant Kolshi
+        .dropdown-menu.dropdown-menu-right
+          .dropdown-item-text.text-muted
+            = "current_user.email"
+          .dropdown-divider
+          = link_to "Passwort ändern", "#", class: "dropdown-item"
+          .dropdown-divider
+          = link_to "#", class: "dropdown-item" do
+            %i.fas.fa-sign-out-alt.mr-2
+            Abmelden

@@ -1,0 +1,306 @@
+$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
+
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+
+@import '~bootstrap/scss/bootstrap-reboot';
+
+@font-face {
+  font-family: "Gilroy";
+  font-weight: normal;
+  src: url("../fonts/Gilroy-Light.ttf");
+}
+
+@font-face {
+  font-family: "Gilroy";
+  font-weight: bold;
+  src: url("../fonts/Gilroy-ExtraBold.ttf");
+}
+
+
+body {
+  font-family: "Gilroy", sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+// Change password form page
+.body-color {
+  background-color: #f4f8ff
+}
+
+.view-card {
+  max-width: 400px;
+  overflow: hidden;
+  padding: 20px;
+  margin: auto;
+}
+
+.title-text {
+  margin-top: 27px;
+  font-weight: bold;
+  font-size: 17px;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: #3d9090;
+}
+
+.description-text {
+  margin-top: 20px;
+  font-size: 15px;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.21;
+  letter-spacing: normal;
+  color: #000000;
+}
+
+.input-group {
+  width: 350px;
+  margin-top: 25px;
+  background-color: white;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+
+.label-input {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: bold;
+  text-transform: uppercase;
+  line-height: 1.83;
+  letter-spacing: normal;
+  color: #8ea3c2;
+  margin-bottom: 2px;
+}
+
+.input-form {
+  width: 100%;
+  padding-left: 6%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f4f8ff;
+}
+
+.line {
+  border-bottom: solid 2px #f4f8ff;
+}
+
+.validation-notices {
+  padding-left: 5%;
+  padding-bottom: 2px;
+  padding-top: 2px;
+
+  border-bottom: solid 2px #f4f8ff;
+}
+
+.validation-text {
+  margin: 2px 2px 1px 5px;
+  transform: rotate(360deg);
+  font-size: 12px;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #000000;
+}
+
+.error-color {
+  color: #e45867
+}
+
+.success-color {
+  color: #71c3c3
+}
+
+.input {
+  position: relative;
+
+  .error-line, .error-icon {
+    visibility: hidden;
+  }
+
+  &.invalid {
+    .error-line, .error-icon {
+      visibility: visible;
+    }
+  }
+}
+
+.input-field {
+  display: block;
+  width: 100%;
+  border: 0;
+  outline: none;
+  font-size: 17px;
+  font-weight: bold;
+  margin: 0 0 8px;
+  padding: 0 20px 0 0;
+}
+
+.error-icon {
+  position: absolute;
+  right: 10px;
+  top: 0;
+}
+
+.error-line {
+  font-size: 13px;
+  font-stretch: normal;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 1.69;
+  letter-spacing: normal;
+  color: #e45867;
+}
+
+.submit-button {
+  width: 349px;
+  height: 50px;
+  border-radius: 100px;
+  background-color: #5348a7;
+  color: white;
+  padding: 14px 20px;
+  border: none;
+  cursor: pointer;
+  margin: 40px 0 8px;
+  font-weight: bold;
+
+  &:disabled {
+    opacity: 0.6;
+  }
+}
+
+.button-success-continue {
+  margin-top: 10px;
+}
+
+// succes change password page
+
+.success-title-text {
+  margin: 21px 50px 2px 0;
+  font-family: "Gilroy", sans-serif;
+  font-size: 20px;
+  font-stretch: normal;
+  font-style: normal;
+  font-weight: bold;
+  letter-spacing: normal;
+  color: #3d9090;
+}
+
+.success-description-text {
+  margin: 2px 50px 20px 0;
+  font-size: 16px;
+  font-stretch: normal;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: #3d9090;
+}
+
+.continue-text {
+  margin: 20px 75px 48px 0;
+  font-size: 14px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.21;
+  letter-spacing: normal;
+  color: #000000;
+}
+
+.parent {
+  background-color: #fff;
+  border-radius: 5px;
+  display: flex;
+  text-align: center;
+  padding-top: 1%;
+  padding-left: 38%;
+}
+
+.reset-password-section {
+  background-color: #fff;
+  width: 450px;
+  padding: 40px;
+  border-radius: 15px;
+}
+
+.label-text {
+  color: #858790 !important;
+}
+
+.password-field {
+  margin-bottom: 20px
+}
+
+.password-confirm-field {
+  margin-bottom: 20px
+}
+
+.password-min-label {
+  color: #858790 !important;
+}
+
+.error-box {
+  background-color: #fff;
+  border-radius: 5px;
+  display: flex;
+  text-align: center;
+  padding-top: 1%;
+  padding-left: 38%;
+}
+
+.error-section {
+  background-color: #f2f2f2;
+  width: 450px;
+  border-radius: 15px;
+}
+
+.password-requirements {
+  font-size: 13px;
+  line-height: 1.2;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  color: #000000;
+  list-style: none;
+  padding-left: 0;
+  padding-top: 10px;
+  margin-bottom: 0;
+  border-top: 1px solid #f4f8ff;
+
+  > li {
+    line-height: 1.3;
+    position: relative;
+
+    &:before {
+      @extend .fa;
+      @extend .fa-check;
+      font-size: 8px;
+      width: 10px;
+      visibility: hidden;
+    }
+  }
+
+  > li.valid {
+    color: #71c3c3;
+
+    &:before {
+      @extend .fa-check;
+      visibility: visible;
+    }
+  }
+
+  > li.invalid {
+    color: #e45867;
+
+    &:before {
+      @extend .fa-times;
+      visibility: visible;
+    }
+  }
+}
