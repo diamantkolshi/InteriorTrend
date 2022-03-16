@@ -1,12 +1,17 @@
 import React from 'react';
 import { Inertia } from "@inertiajs/inertia";
 
-const TableNav = ({name}) => {
+const TableNav = ({rows}) => {
+
+  const truncate = (str, n) => {
+		return str?.length > n ? str.substr(0, n - 1) + "..." : str;
+	};
+
   return (
-    <div class="col-md-12 col-xl-9">
+    <div className="col-md-12 col-xl-9">
       <div className="card">
         <div className="card-header">
-          <h6 className="card-header-title">Patienten</h6>
+          <h6 className="card-header-title">Projects</h6>
         </div>
         <div className="card-body">
 
@@ -22,51 +27,58 @@ const TableNav = ({name}) => {
             <table className="table">
               <thead>
                 <tr>
-                  <th>
-                    A
+                  <th style={{width: '20px'}}>
+                    Title
+                  </th>
+                  <th style={{width: '25px'}}>
+                    Description
                   </th>
                   <th>
-                    B
+                    City
                   </th>
                   <th>
-                    C
+                    Street
                   </th>
                   <th>
-                    D
+                    Location
                   </th>
                   <th>
-                    E
+                    Views
                   </th>
                   <th>
-                    F
+                    #
                   </th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>
-                    A value
-                  </td>
-                  <td>
-                    B value
-                  </td>
-                  <td>
-                    C value
-                  </td>
-                  <td>
-                    D value
-                  </td>
-                  <td>
-                    E value
-                  </td>
-                  <td>
-                    F value
-                  </td>
-                </tr>
+                {rows.map((row) => (
+                  <tr>
+                    <td>
+                      {row.title}
+                    </td>
+                    <td>
+                      {truncate(row.description, 40)}
+                    </td>
+                    <td>
+                      {row.city.name}
+                    </td>
+                    <td>
+                      {row.street}
+                    </td>
+                    <td>
+                      {row.location}
+                    </td>
+                    <td>
+                      {row.views}
+                    </td>
+                    <td>
+                      #
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
-
         </div>
       </div>
     </div>

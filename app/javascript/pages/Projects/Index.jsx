@@ -6,17 +6,18 @@ import HeaderNav from '../../components/shared/HeaderNav'
 
 const StyleExampleOne = ({projects}) => {
   return (
-
     <>
-      {projects.map((project, i) => (
-        <p key={i}>
-          return {project.title}
-        </p>
-      ))}
-      <HeaderNav />
-
-      <div class="row">
-        <TableNav />
+      <div id="content-top-bar">
+        <nav>
+          <ol className="breadcrump breadcrumb-title">
+            <li className="breadcrumb-item">Projects</li>
+          </ol>
+        </nav>
+      </div>
+      <div className="row">
+        <TableNav
+          rows={ projects }
+        />
         <FilterNav />
       </div>
     </>

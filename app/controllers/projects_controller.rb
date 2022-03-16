@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
     projects = Project.all
 
     render inertia: 'Projects/Index', props: {
-      projects: projects.as_json(only: [:title])
+      projects: projects.as_json(only: [:title, :description, :street, :location, :views], methods: [:city])
     }
   end
 end
