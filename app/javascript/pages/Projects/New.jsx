@@ -10,7 +10,7 @@ const StyleExampleOne = ({projects}) => {
       <div id="content-top-bar">
         <nav>
           <ol className="breadcrump breadcrumb-title">
-            <li className="breadcrumb-item">Projects</li>
+            <li className="breadcrumb-item">New project</li>
           </ol>
         </nav>
         <div class="nav-buttons">
@@ -18,9 +18,8 @@ const StyleExampleOne = ({projects}) => {
       </div>
       <div className="row">
         <TableNav
-          title={ "Projects" }
-          rows={ projects }
-          action={ "/projects/new" }
+          title={"New project"}
+          rows={[]}
         />
         <FilterNav />
       </div>

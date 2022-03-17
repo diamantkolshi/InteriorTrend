@@ -6,4 +6,8 @@ class ProjectsController < ApplicationController
       projects: projects.as_json(only: [:title, :description, :street, :location, :views], methods: [:city])
     }
   end
+
+  def new
+    render inertia: 'Projects/New'
+  end
 end

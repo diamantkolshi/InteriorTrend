@@ -1,7 +1,8 @@
 import React from 'react';
 import { Inertia } from "@inertiajs/inertia";
+import { Link } from '@inertiajs/inertia-react'
 
-const TableNav = ({rows}) => {
+const TableNav = ({title, rows, action}) => {
 
   const truncate = (str, n) => {
 		return str?.length > n ? str.substr(0, n - 1) + "..." : str;
@@ -11,17 +12,19 @@ const TableNav = ({rows}) => {
     <div className="col-md-12 col-xl-9">
       <div className="card">
         <div className="card-header">
-          <h6 className="card-header-title">Projects</h6>
+          <h6 className="card-header-title">{title}</h6>
         </div>
         <div className="card-body">
 
           <div className="d-flex justify-content-between">
             <div>
               <span class="mr-1">
-                <a size="sm" icon="plus" color="primary" data-controller="modal-form" data-toggle="tooltip" class="btn btn-primary btn-sm " data-method="get" href="/patients/1/documents/new" data-remote="true" data-original-title="" title="">
-                  <i class="fas fa-plus fa-sm mr-1"></i>
-                  Create new project
-                </a>
+                { action &&
+                  <Link class="btn btn-primary btn-sm " href="/projects/new" method="get" as="button" type="button">
+                    <i class="fas fa-plus fa-sm mr-1"></i>
+                    Create new project
+                  </Link>
+                }
               </span>
             </div>
             <div className="d-flex justify-content-end align-items-center mb-2">
@@ -77,10 +80,10 @@ const TableNav = ({rows}) => {
                       {row.views}
                     </td>
                     <td class="text-left">
-                      <a size="sm" icon="edit" color="primary" data-controller="modal-form" data-toggle="tooltip" class="btn btn-primary btn-sm mr-2" data-method="get" href="/patients/1/medical_contacts/1/edit" data-remote="true" data-original-title="" title="">
+                      <a class="btn btn-primary btn-sm mr-2" data-method="get" href="/patients/1/medical_contacts/1/edit">
                         <i class="fas fa-edit fa-sm"></i>
                       </a>
-                      <a size="sm" icon="trash" color="danger" data-confirm="Sind Sie sicher?" data-toggle="tooltip" class="btn btn-danger btn-sm " data-remote="true" rel="nofollow" data-method="delete" href="/patients/1/medical_contacts/1" data-original-title="" title="">
+                      <a data-confirm="Sind Sie sicher?" class="btn btn-danger btn-sm" href="/patients/1/medical_contacts/1">
                         <i class="fas fa-trash fa-sm"></i>
                       </a>
                     </td>
