@@ -9,7 +9,7 @@ const StyleExampleOne = ({name}) => {
     <>
       <HeaderNav />
 
-      <div class="row">
+      <div className="row">
         <TableNav />
         <FilterNav />
       </div>

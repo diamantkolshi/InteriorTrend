@@ -18,10 +18,10 @@ const TableNav = ({title, rows, action}) => {
 
           <div className="d-flex justify-content-between">
             <div>
-              <span class="mr-1">
+              <span className="mr-1">
                 { action &&
-                  <Link class="btn btn-primary btn-sm " href="/projects/new" method="get" as="button" type="button">
-                    <i class="fas fa-plus fa-sm mr-1"></i>
+                  <Link className="btn btn-primary btn-sm " href="/projects/new" method="get" as="button" type="button">
+                    <i className="fas fa-plus fa-sm mr-1"></i>
                     Create new project
                   </Link>
                 }
@@ -60,7 +60,7 @@ const TableNav = ({title, rows, action}) => {
               </thead>
               <tbody>
                 {rows.map((row) => (
-                  <tr>
+                  <tr key={row.title}>
                     <td>
                       {row.title}
                     </td>
@@ -79,12 +79,12 @@ const TableNav = ({title, rows, action}) => {
                     <td>
                       {row.views}
                     </td>
-                    <td class="text-left">
-                      <a class="btn btn-primary btn-sm mr-2" data-method="get" href="/patients/1/medical_contacts/1/edit">
-                        <i class="fas fa-edit fa-sm"></i>
+                    <td className="text-left">
+                      <a className="btn btn-primary btn-sm mr-2" data-method="get" href="/patients/1/medical_contacts/1/edit">
+                        <i className="fas fa-edit fa-sm"></i>
                       </a>
-                      <a data-confirm="Sind Sie sicher?" class="btn btn-danger btn-sm" href="/patients/1/medical_contacts/1">
-                        <i class="fas fa-trash fa-sm"></i>
+                      <a className="btn btn-danger btn-sm">
+                        <i className="fas fa-trash fa-sm"></i>
                       </a>
                     </td>
                   </tr>

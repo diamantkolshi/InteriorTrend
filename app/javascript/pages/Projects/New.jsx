@@ -13,7 +13,7 @@ const StyleExampleOne = ({projects}) => {
             <li className="breadcrumb-item">New project</li>
           </ol>
         </nav>
-        <div class="nav-buttons">
+        <div className="nav-buttons">
         </div>
       </div>
       <div className="row">
