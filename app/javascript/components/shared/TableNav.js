@@ -8,6 +8,14 @@ const TableNav = ({title, rows, action}) => {
 		return str?.length > n ? str.substr(0, n - 1) + "..." : str;
 	};
 
+  const myFunction = () => {
+    if (confirm("Press a button!") == true) {
+       alert("You pressed OK!");
+     } else {
+       alert("You canceled!");
+     }
+  }
+
   return (
     <div className="col-md-12 col-xl-9">
       <div className="card">
@@ -83,7 +91,7 @@ const TableNav = ({title, rows, action}) => {
                       <a className="btn btn-primary btn-sm mr-2" data-method="get" href="/patients/1/medical_contacts/1/edit">
                         <i className="fas fa-edit fa-sm"></i>
                       </a>
-                      <a className="btn btn-danger btn-sm">
+                      <a className="btn btn-danger btn-sm" onClick={() => myFunction()}>
                         <i className="fas fa-trash fa-sm"></i>
                       </a>
                     </td>
