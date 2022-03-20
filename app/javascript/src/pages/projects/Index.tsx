@@ -28,6 +28,7 @@ const StyleExampleOne = ({projects, project}) => {
           />
         <FilterNav />
       </div>
+      <New isOpen={!!project} toggleModal={closeNewProjectModal} project={project} />
     </>
   )
 }
