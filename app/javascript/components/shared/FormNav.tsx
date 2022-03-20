@@ -12,11 +12,13 @@ const FormNav = ({name}) => {
         <input
           name="_method"
           type="hidden"
-          value="put"/>
+          value="put"
+          />
         <input
           name="authenticity_token"
           type="hidden"
-          value="tEH5MLSl7JZSXwmQ7Lm413qBKPyOlcp/nhJ9V1A/rfWpOCOkVYyLklfqZ8UEGh/LEbjJje9ECBwk5onpYp1ifA=="/>
+          value="tEH5MLSl7JZSXwmQ7Lm413qBKPyOlcp/nhJ9V1A/rfWpOCOkVYyLklfqZ8UEGh/LEbjJje9ECBwk5onpYp1ifA=="
+          />
         <div className="card mb-3">
           <div className="card-header"><div className="card-header-title">Stammdaten</div></div>
 
@@ -34,9 +36,9 @@ const FormNav = ({name}) => {
                         id="patient_id"
                         className=" form-control"
                         name="patient[id]"
-                        disabled="disabled"
                         type="text"
-                        value="1"/>
+                        value="1"
+                        />
                     </div>
                   </div>
 
@@ -48,9 +50,9 @@ const FormNav = ({name}) => {
                         id="patient_email"
                         className=" form-control"
                         name="patient[email]"
-                        disabled="disabled"
                         type="text"
-                        value="patient@procarement.com"/>
+                        value="patient@procarement.com"
+                        />
                     </div>
                   </div>
 
@@ -62,7 +64,8 @@ const FormNav = ({name}) => {
                         id="patient_company"
                         className=" form-control"
                         name="patient[company]"
-                        type="text"/>
+                        type="text"
+                        />
                     </div>
                   </div>
 
@@ -74,9 +77,7 @@ const FormNav = ({name}) => {
                         id="patient_category"
                         className=" custom-select"
                         name="patient[category]">
-                        <option
-                          selected="selected"
-                          value="patient">
+                        <option value="patient">
                           Patient
                         </option>
 
@@ -100,7 +101,8 @@ const FormNav = ({name}) => {
                         className=" form-control"
                         name="patient[firstname]"
                         type="text"
-                        value="Max"/>
+                        value="Max"
+                        />
                     </div>
                   </div>
 
@@ -113,7 +115,8 @@ const FormNav = ({name}) => {
                         className=" form-control"
                         name="patient[surname]"
                         type="text"
-                        value="Mustermann"/>
+                        value="Mustermann"
+                        />
                     </div>
                   </div>
                 </div>
@@ -126,7 +129,6 @@ const FormNav = ({name}) => {
                     className=" custom-select"
                     name="patient[gender]">
                     <option
-                      selected="selected"
                       value="male">
                       Männlich
                     </option>
@@ -149,7 +151,8 @@ const FormNav = ({name}) => {
                           name="patient[height]"
                           type="number"
                           step="1"
-                          value="170"/>
+                          value="170"
+                          />
                         <div className="input-group-append">
                           <div className="input-group-text">cm</div>
                         </div>
@@ -168,7 +171,8 @@ const FormNav = ({name}) => {
                           name="patient[weight]"
                           type="number"
                           step="0.1"
-                          value="80.0"/>
+                          value="80.0"
+                          />
                         <div className="input-group-append">
                           <div className="input-group-text">kg</div>
                         </div>
@@ -205,8 +209,7 @@ const FormNav = ({name}) => {
                       <option value="8">8</option>
 
                       <option
-                        value="9"
-                        selected="selected">
+                        value="9">
                         9
                       </option>
 
@@ -223,11 +226,11 @@ const FormNav = ({name}) => {
 
                         <select
                           id="patient_relationship_status"
-                          className=" custom-select"
+                          className="custom-select"
                           name="patient[relationship_status]">
-                          <option value>Unbekannt</option>
+                          <option value="inbaskadk">Unbekannt</option>
 
-                          <option value="in_relation">In einer Beziehung</option>
+                          <option value="inrelation">In einer Beziehung</option>
 
                           <option value="single">Alleinstehend</option>
 
@@ -248,9 +251,9 @@ const FormNav = ({name}) => {
                           id="patient_smoking_type"
                           className=" custom-select"
                           name="patient[smoking_type]">
-                          <option value>Unbekannt</option>
+                          <option value="Unbekannt">Unbekannt</option>
 
-                          <option value="none_smoker">Nein</option>
+                          <option value="none">Nein</option>
 
                           <option value="smoker">Ja</option>
                         </select>
@@ -274,7 +277,8 @@ const FormNav = ({name}) => {
                         id="patient_addresses_street"
                         className=" form-control"
                         name="patient[addresses][street]"
-                        type="text"/>
+                        type="text"
+                        />
                     </div>
 
                     <div className="form-group">
@@ -285,7 +289,7 @@ const FormNav = ({name}) => {
                         className=" form-control"
                         name="patient[addresses][street_2]"
                         type="text"
-                        value/>
+                        />
                     </div>
                   </div>
                 </div>
@@ -299,7 +303,8 @@ const FormNav = ({name}) => {
                         id="patient_addresses_zip_code"
                         className="form-control"
                         name="patient[addresses][zip_code]"
-                        type="text"/>
+                        type="text"
+                        />
                     </div>
                   </div>
 
@@ -311,7 +316,8 @@ const FormNav = ({name}) => {
                         id="patient_addresses_city"
                         className=" form-control"
                         name="patient[addresses][city]"
-                        type="text"/>
+                        type="text"
+                        />
                     </div>
                   </div>
                 </div>
@@ -334,13 +340,13 @@ const FormNav = ({name}) => {
                               id="patient_phone_numbers__number"
                               className=" form-control"
                               name="patient[phone_numbers][][number]"
-                              type="text"/>
+                              type="text"
+                              />
                             <select
                               id="patient_phone_numbers__type"
                               className="input-group-prepend col-4 custom-select"
                               name="patient[phone_numbers][][type]">
                               <option
-                                selected="selected"
                                 value="home">
                                 Zuhause
                               </option>
@@ -352,10 +358,10 @@ const FormNav = ({name}) => {
                           </div>
                         </div>
 
-                        <div className="col-2 ml-2 text-right"></div>
+                        <div className="col-2 ml-2 text-right" />
                       </div>
 
-                      <div className="invalid-feedback d-block"></div>
+                      <div className="invalid-feedback d-block" />
                     </div>
                   </div>
 
@@ -366,7 +372,7 @@ const FormNav = ({name}) => {
                     + Telefonnr. hinzufügen
                   </button>
 
-                  <template data-list-target="template"></template>
+                  <template data-list-target="template" />
                 </div>
               </div>
             </div>
@@ -383,7 +389,7 @@ const FormNav = ({name}) => {
                     className=" form-control"
                     name="patient[insurance_company]"
                     type="text"
-                    value/>
+                    />
                 </div>
 
                 <div className="form-group">
@@ -394,7 +400,7 @@ const FormNav = ({name}) => {
                     className=" form-control"
                     name="patient[insurance_number]"
                     type="text"
-                    value/>
+                    />
                 </div>
               </div>
             </div>
@@ -410,9 +416,8 @@ const FormNav = ({name}) => {
                     <select
                       id="patient_blood_group"
                       className=" custom-select"
-                      name="patient[blood_group]"
-                      disabled="disabled">
-                      <option value>Unbekannt</option>
+                      name="patient[blood_group]">
+                      <option value="Unbekannt">Unbekannt</option>
 
                       <option value="a+">A+</option>
 
@@ -441,8 +446,7 @@ const FormNav = ({name}) => {
                       id="patient_allergies"
                       className=" form-control"
                       name="patient[allergies]"
-                      disabled="disabled">
-                    </textarea>
+                      />
                   </div>
                 </div>
 
@@ -454,8 +458,7 @@ const FormNav = ({name}) => {
                       id="patient_implants"
                       className=" form-control"
                       name="patient[implants]"
-                      disabled="disabled">
-                    </textarea>
+                      />
                   </div>
                 </div>
               </div>
@@ -469,7 +472,8 @@ const FormNav = ({name}) => {
               name="commit"
               type="submit"
               value="Speichern"
-              data-disable-with="Speichern"/>
+              data-disable-with="Speichern"
+              />
           </div>
         </div>
       </form>

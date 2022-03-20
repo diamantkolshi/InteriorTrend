@@ -1,7 +1,7 @@
 import React from 'react';
 import { Inertia } from "@inertiajs/inertia";
 
-const FilterNav = ({name}) => {
+const FilterNav = () => {
   return (
     <div className="col-lg-3">
       <div className="card mb-4">

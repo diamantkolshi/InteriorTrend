@@ -1,13 +1,19 @@
-class ProjectsController < ApplicationController
+class ProjectsController < InertiaController
   def index
     projects = Project.all
 
-    render inertia: 'Projects/Index', props: {
-      projects: projects.as_json(only: [:title, :description, :street, :location, :views], methods: [:city])
+    inertia 'projects/Index', {
+      projects: projects.as_json(only: [:title, :description, :street, :location, :views], methods: [:city]),
+      project: nil
     }
   end
 
   def new
-    render inertia: 'Projects/New'
+    props = {
+      projects: Project.all.as_json(only: [:title, :description, :street, :location, :views], methods: [:city]),
+      project: Project.new.as_json
+    }
+
+    inertia 'projects/Index', props
   end
 end

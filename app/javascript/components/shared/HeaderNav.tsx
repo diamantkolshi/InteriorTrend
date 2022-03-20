@@ -11,11 +11,11 @@ const HeaderNav = ({name}) => {
       </nav>
       <div className="nav-buttons">
         <a className="btn btn-secondary" data-controller="modal-form" href="/patients/1/messages/new" data-remote="true">
-          <i className="fas fa-envelope "></i>
+          <i className="fas fa-envelope " />
           Nachricht schreiben
         </a>
         <a className="btn btn-secondary ml-2" data-controller="modal-form" href="/patients/1/measurements/new" data-remote="true">
-          <i className="fas fa-stethoscope "></i>
+          <i className="fas fa-stethoscope " />
           Messung anfordern
         </a>
       </div>

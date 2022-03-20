@@ -1,19 +1,25 @@
 import React from 'react';
 import { Inertia } from "@inertiajs/inertia";
-import { Link } from '@inertiajs/inertia-react'
+import {
+    Button,
+} from 'reactstrap';
 
 const TableNav = ({title, rows, action}) => {
 
   const truncate = (str, n) => {
-		return str?.length > n ? str.substr(0, n - 1) + "..." : str;
+		return str?.length > n ? `${str.substr(0, n - 1)  }...` : str;
 	};
 
   const myFunction = () => {
-    if (confirm("Press a button!") == true) {
+    if (window.confirm("Press a button!") === true) {
        alert("You pressed OK!");
      } else {
        alert("You canceled!");
      }
+  }
+
+  const addNew = () => {
+    Inertia.visit(`/projects/new`, {preserveScroll: true})
   }
 
   return (
@@ -28,15 +34,14 @@ const TableNav = ({title, rows, action}) => {
             <div>
               <span className="mr-1">
                 { action &&
-                  <Link className="btn btn-primary btn-sm " href="/projects/new" method="get" as="button" type="button">
-                    <i className="fas fa-plus fa-sm mr-1"></i>
-                    Create new project
-                  </Link>
+                  <Button color="primary" onClick={() => addNew()} className="mr-2">
+                      <i className="fas fa-plus fa-sm" />{' '}
+                      Patient importieren
+                  </Button>
                 }
               </span>
             </div>
-            <div className="d-flex justify-content-end align-items-center mb-2">
-            </div>
+            <div className="d-flex justify-content-end align-items-center mb-2" />
           </div>
 
           <div style={{overflowX: 'auto'}}>
@@ -88,12 +93,12 @@ const TableNav = ({title, rows, action}) => {
                       {row.views}
                     </td>
                     <td className="text-left">
-                      <a className="btn btn-primary btn-sm mr-2" data-method="get" href="/patients/1/medical_contacts/1/edit">
-                        <i className="fas fa-edit fa-sm"></i>
+                      <a className="btn btn-primary btn-sm mr-2" href="/#">
+                        <i className="fas fa-edit fa-sm" />
                       </a>
-                      <a className="btn btn-danger btn-sm" onClick={() => myFunction()}>
-                        <i className="fas fa-trash fa-sm"></i>
-                      </a>
+                      <Button color="danger" onClick={() => myFunction()} className="mr-2 btn-sm">
+                          <i className="fas fa-trash fa-sm" />
+                      </Button>
                     </td>
                   </tr>
                 ))}
