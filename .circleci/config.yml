@@ -61,7 +61,7 @@ jobs:
 
       # Database setup
       - run: bundle exec rake db:migrate # --trace
-      - run: bundle exec rake assets:precompile
+      # - run: bundle exec rake assets:precompile
 
       # run tests!
       # Change to rspec if you are using rspec
