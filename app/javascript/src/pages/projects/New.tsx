@@ -1,9 +1,6 @@
 import React from 'react';
 import { Inertia } from "@inertiajs/inertia";
-import {
-    Modal,
-    ModalHeader
-} from 'reactstrap';
+import { Modal, Button, Form, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 
 const New = ({project, isOpen, toggleModal}) => {
   return (
@@ -11,8 +8,7 @@ const New = ({project, isOpen, toggleModal}) => {
       <div className="modal-content">
         <form>
           <ModalHeader toggle={toggleModal}>New project</ModalHeader>
-
-          <div className="modal-body">
+          <ModalBody>
             <div className="form-group">
               <label>Dateien</label>
 
@@ -69,9 +65,9 @@ const New = ({project, isOpen, toggleModal}) => {
                 <option value="questionnaire">Fragebogen</option>
               </select>
             </div>
-          </div>
+          </ModalBody>
 
-          <div className="modal-footer">
+          <ModalFooter>
             <input
               className=" btn btn-primary"
               color="primary"
@@ -80,7 +76,7 @@ const New = ({project, isOpen, toggleModal}) => {
               value="Speichern"
               data-disable-with="Speichern"
               />
-          </div>
+          </ModalFooter>
         </form>
       </div>
     </Modal>
