@@ -16,4 +16,24 @@ class ProjectsController < InertiaController
 
     inertia 'projects/Index', props
   end
+
+  def create
+    project = Project.new
+    project.assign_attributes(permitted_params)
+
+    if project.save
+      flash[:message] = "Success"
+      redirect_to project_path(patient)
+    else
+      set_errors(:project, project.inertia_errors)
+      redirect_to new_project_path
+    end
+  end
+
+  private
+
+  def permitted_params
+    params.require(:project)
+          .permit(:title, :description)
+  end
 end

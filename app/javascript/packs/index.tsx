@@ -10,7 +10,7 @@ import { InertiaProgress } from "@inertiajs/progress";
 import Layout from '../components/Layout'
 import 'react-datepicker/dist/react-datepicker.css';
 
-Axios.defaults.xsrfHeaderName = "X-CSRF-TOKEN";
+Axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector("meta[name='csrf-token']").getAttribute("content");
 
 document.addEventListener("DOMContentLoaded", () => {
   InertiaProgress.init();
