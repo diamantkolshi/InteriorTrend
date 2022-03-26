@@ -12,7 +12,6 @@ import sq from 'date-fns/locale/sq';
 import { registerLocale, setDefaultLocale } from "react-datepicker";
 import * as moment from 'moment';
 import { InertiaProgress } from "@inertiajs/progress";
-import Layout from '../components/Layout'
 import 'react-datepicker/dist/react-datepicker.css';
 
 registerLocale('sq', sq);

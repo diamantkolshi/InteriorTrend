@@ -15,7 +15,7 @@ class ProjectsController < InertiaController
     project.assign_attributes(permitted_params)
 
     if project.save
-      flash[:success] = "Success created"
+      flash[:message] = "Projekti '#{project.title}' i krijua me sukses"
       redirect_to projects_path
     else
       set_errors(:project, project.inertia_errors)
@@ -29,7 +29,7 @@ class ProjectsController < InertiaController
 
   def destroy
     @project.destroy
-    flash[:success] = "Success deleted"
+    flash[:message] = "Projekti '#{@project.title}' eshte fshire me sukses"
     redirect_to projects_path
   end
 
@@ -48,7 +48,7 @@ class ProjectsController < InertiaController
     inertia root, {
       projects: Project.all.as_json(only: [:id, :title, :description, :created_at, :location, :views], methods: [:city]),
       project: patient,
-      cities: City.active.as_json(only: [:id, :name])
+      cities: City.active.as_json(only: [:id, :name]),
     }
   end
 end

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Inertia } from "@inertiajs/inertia";
 import TableNav from '../../../components/shared/TableNav'
 import FilterNav from '../../../components/shared/FilterNav'
@@ -8,6 +8,7 @@ import New from "./New"
 import {
     Button,
 } from 'reactstrap';
+import ProjectLayout from "../layouts/Layout";
 
 const ttable = withScope('helpers', 'project', 'index', 'table');
 const trows = withScope('helpers', 'project', 'index', 'rows');
@@ -37,7 +38,7 @@ const StyleExampleOne = ({projects, project, cities}) => {
   }
 
   return (
-    <>
+    <ProjectLayout>
       <div id="content-top-bar">
         <nav>
           <ol className="breadcrump breadcrumb-title">
@@ -135,7 +136,7 @@ const StyleExampleOne = ({projects, project, cities}) => {
         <FilterNav />
       </div>
       <New isOpen={!!project} toggleModal={closeNewProjectModal} project={project} cities={cities} />
-    </>
+    </ProjectLayout>
   )
 }
 
