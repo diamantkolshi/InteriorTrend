@@ -1,0 +1,21 @@
+---
+sq:
+  activerecord:
+    models:
+    attributes:
+      project:
+        title: Titulli
+        description: Pershkrimi
+        city: Qyteti
+        select_city: Zgjedh qytetin
+        location: Lokacioni
+        street: Rruga
+        project_info: Informatat gjenerale
+  errors:
+    format: "%{attribute} %{message}"
+  messages:
+      accepted: muss akzeptiert werden
+      blank: s’mund të jetë i zbrazët
+      confirmation: stimmt nicht mit %{attribute} überein
+      empty: muss ausgefüllt werden
+      equal_to: muss genau %{count} sein

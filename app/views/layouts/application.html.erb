@@ -10,6 +10,9 @@
   </head>
 
   <body>
+    <script>
+      window.i18n = <%= raw(@i18n.to_json) %>;
+    </script>
     <div id="content" data-controller="auto-refresh">
     <div id="content-wrapper">
       <div>

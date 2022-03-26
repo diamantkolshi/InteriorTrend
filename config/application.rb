@@ -22,7 +22,14 @@ Bundler.require(*Rails.groups)
 module InteriorTrend
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.1
+
+    config.load_defaults 6.0
+
+    config.i18n.default_locale = :sq
+    config.time_zone = 'Berlin'
+
+    config.autoload_paths += Dir[Rails.root.join("app", "models", "{*/}")]
+    config.autoload_paths += %W(#{config.root}/app/lib)
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -33,6 +40,24 @@ module InteriorTrend
     # config.eager_load_paths << Rails.root.join("extras")
 
     # Don't generate system test files.
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins 'localhost', '127.0.0.1',
+                /\.procarement\.com/,
+                /https?:\/\/devapp\.uber\.space/,
+                /https?:\/\/.+\.appflowapp\.com/,
+                /http:\/\/localhost(:\d+)?/,
+                /capacitor:\/\/localhost(:\d+)?/,
+                /ionic:\/\/localhost(:\d+)?/
+        # regular expressions can be used here
+
+        resource '/api/v1/*',
+                 :methods => [:get, :post, :put, :delete, :options],
+                 :headers => :any,
+                 :expose => %w(Access-Token Client uid)
+      end
+    end
     config.generators.system_tests = nil
   end
 end

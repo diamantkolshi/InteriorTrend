@@ -20,8 +20,8 @@ class InertiaController < ApplicationController
   end
 
   def inertia(page, props, url = nil)
-    # I18n.enforce_available_locales!(:de)
-    # @i18n = I18n.config.backend.translations[:de]
+    I18n.enforce_available_locales!(:sq)
+    @i18n = I18n.config.backend.translations[:sq]
     render inertia: page,
            url: url,
            props: props

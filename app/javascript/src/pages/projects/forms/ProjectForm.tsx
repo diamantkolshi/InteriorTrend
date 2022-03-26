@@ -9,7 +9,9 @@ import { useFormState } from 'react-use-form-state';
 import { Inertia } from "@inertiajs/inertia";
 import CFormGroup from "../../../shared/CFormGroup";
 import useErrors from "../../../shared/useErrors";
+import { withScope } from "../../../shared/i18n";
 
+const tp = withScope('activerecord', 'attributes', 'project');
 const Textarea = 'textarea';
 
 const ProjectForm = ({project, cities, onChange, newMode = false}) => {
@@ -35,13 +37,13 @@ const ProjectForm = ({project, cities, onChange, newMode = false}) => {
     <div>
       <Row>
         <Col md={3}>
-            <legend>Project info</legend>
+            <legend>{tp('project_info')}</legend>
         </Col>
         <Col md={9} xl={8}>
           <Row form>
             <Col>
               <CFormGroup tag={Input}
-                          label={'Title'}
+                          label={tp('title')}
                           error={errors.title}
                           placeholder=""
                           {...text('title')}
@@ -51,7 +53,7 @@ const ProjectForm = ({project, cities, onChange, newMode = false}) => {
           <Row form>
             <Col>
               <CFormGroup tag={Textarea}
-                          label={"Description"}
+                          label={tp('description')}
                           error={errors.description}
                           placeholder=""
                           {...text('description')}
@@ -59,11 +61,11 @@ const ProjectForm = ({project, cities, onChange, newMode = false}) => {
             </Col>
           </Row>
           <CFormGroup tag={CustomInput}
-                      label={"City"}
+                      label={tp('city')}
                       error={errors.city}
                       {...select('city_id')}
                       type="select">
-                <option value="">Choose city</option>
+                <option value="">{tp('select_city')}</option>
                 {
                   cities.map((city, i) => (
                       <option key={city.id} value={city.id}>{city.name}</option>
@@ -73,7 +75,7 @@ const ProjectForm = ({project, cities, onChange, newMode = false}) => {
           <Row form>
               <Col>
                 <CFormGroup tag={Input}
-                            label={'Street'}
+                            label={tp('street')}
                             error={errors.street}
                             placeholder=""
                             {...text('street')}
@@ -81,7 +83,7 @@ const ProjectForm = ({project, cities, onChange, newMode = false}) => {
               </Col>
               <Col>
                 <CFormGroup tag={Input}
-                            label={'Location'}
+                            label={tp('location')}
                             error={errors.location}
                             placeholder=""
                             {...text('location')}
