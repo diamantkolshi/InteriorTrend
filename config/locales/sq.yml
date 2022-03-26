@@ -19,3 +19,17 @@ sq:
       confirmation: stimmt nicht mit %{attribute} überein
       empty: muss ausgefüllt werden
       equal_to: muss genau %{count} sein
+  helpers:
+    project:
+      index:
+        table:
+          projects: Projektet
+          new_project: Projekt i ri
+        rows:
+          title: Titulli
+          description: Pershkrimi
+          city: Qyteti
+          location: Lokacioni
+          street: Rruga
+          views: Shikimet
+          created_at: Data e krijimit
