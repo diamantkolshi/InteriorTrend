@@ -9,7 +9,7 @@ const Layout = ({children}) => {
 
   useEffect(() => {
     if(message) {
-      toast.info(message)
+      toast.success(message)
     }
   }, message)
 

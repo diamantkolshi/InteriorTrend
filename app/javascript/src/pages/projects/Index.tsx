@@ -9,6 +9,7 @@ import {
     Button,
 } from 'reactstrap';
 import ProjectLayout from "../layouts/Layout";
+import * as moment from 'moment'
 
 const ttable = withScope('helpers', 'project', 'index', 'table');
 const trows = withScope('helpers', 'project', 'index', 'rows');
@@ -112,10 +113,10 @@ const StyleExampleOne = ({projects, project, cities}) => {
                           {project.location}
                         </td>
                         <td>
-                          {project.created_at}
+                          {moment(project.created_at).format('DD/MM/YYYY')}
                         </td>
                         <td>
-                          {project.views}
+                          {project.views || 'N/A'}
                         </td>
                         <td className="text-left">
                           <Button color="info" onClick={() => editProject(project)} className="mr-2 btn-sm">
