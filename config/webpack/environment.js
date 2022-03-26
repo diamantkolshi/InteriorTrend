@@ -5,6 +5,6 @@ const eslint = require('./loaders/eslint')
 
 environment.loaders.prepend('typescript', typescript)
 // environment.loaders.prepend('svg', svg);
-environment.loaders.append('eslint', eslint)
+// environment.loaders.append('eslint', eslint)
 
 module.exports = environment

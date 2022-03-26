@@ -12,8 +12,9 @@ import useErrors from "../../../shared/useErrors";
 
 const Textarea = 'textarea';
 
-const ProjectForm = ({project, onChange, newMode = false}) => {
+const ProjectForm = ({project, cities, onChange, newMode = false}) => {
   const [formConfig, {text, select, date, number}] = useFormState({
+    city_id: 1,
     ...project
   }, {
     withIds: true, // enable automatic creation of id and htmlFor props
@@ -30,10 +31,6 @@ const ProjectForm = ({project, onChange, newMode = false}) => {
     });
   }, [project])
 
-  function updateProject(key, value) {
-    onChange({...formConfig.values, [key]: value})
-  }
-
   return (
     <div>
       <Row>
@@ -47,7 +44,7 @@ const ProjectForm = ({project, onChange, newMode = false}) => {
                           label={'Title'}
                           error={errors.title}
                           placeholder=""
-                          {...text('surname')}
+                          {...text('title')}
                           />
             </Col>
           </Row>
@@ -60,6 +57,36 @@ const ProjectForm = ({project, onChange, newMode = false}) => {
                           {...text('description')}
                           />
             </Col>
+          </Row>
+          <CFormGroup tag={CustomInput}
+                      label={"City"}
+                      error={errors.city}
+                      {...select('city_id')}
+                      type="select">
+                <option value="">Choose city</option>
+                {
+                  cities.map((city, i) => (
+                      <option key={city.id} value={city.id}>{city.name}</option>
+                  ))
+                }
+          </CFormGroup>
+          <Row form>
+              <Col>
+                <CFormGroup tag={Input}
+                            label={'Street'}
+                            error={errors.street}
+                            placeholder=""
+                            {...text('street')}
+                            />
+              </Col>
+              <Col>
+                <CFormGroup tag={Input}
+                            label={'Location'}
+                            error={errors.location}
+                            placeholder=""
+                            {...text('location')}
+                            />
+              </Col>
           </Row>
         </Col>
       </Row>

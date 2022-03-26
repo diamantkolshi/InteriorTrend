@@ -4,4 +4,6 @@ class City < ApplicationRecord
   has_many :projects
 
   validates_presence_of :name
+
+  scope :active, -> { where(active: true) }
 end

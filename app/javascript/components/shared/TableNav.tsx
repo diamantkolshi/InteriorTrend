@@ -10,12 +10,11 @@ const TableNav = ({title, rows, action}) => {
 		return str?.length > n ? `${str.substr(0, n - 1)  }...` : str;
 	};
 
-  const myFunction = () => {
-    if (window.confirm("Press a button!") === true) {
-       alert("You pressed OK!");
-     } else {
-       alert("You canceled!");
-     }
+  const handleToDelete = (row) => {
+    const r = window.confirm("Are you sure?");
+    if (r === true) {
+        Inertia.delete(`/projects/${row.id}`, {}, {preserveScroll: true});
+    }
   }
 
   const addNew = () => {
@@ -36,7 +35,7 @@ const TableNav = ({title, rows, action}) => {
                 { action &&
                   <Button color="primary" onClick={() => addNew()} className="mr-2">
                       <i className="fas fa-plus fa-sm" />{' '}
-                      Patient importieren
+                      New project
                   </Button>
                 }
               </span>
@@ -72,8 +71,8 @@ const TableNav = ({title, rows, action}) => {
                 </tr>
               </thead>
               <tbody>
-                {rows.map((row) => (
-                  <tr key={row.title}>
+                {rows.map((row, i) => (
+                  <tr key={i}>
                     <td>
                       {row.title}
                     </td>
@@ -96,7 +95,7 @@ const TableNav = ({title, rows, action}) => {
                       <a className="btn btn-primary btn-sm mr-2" href="/#">
                         <i className="fas fa-edit fa-sm" />
                       </a>
-                      <Button color="danger" onClick={() => myFunction()} className="mr-2 btn-sm">
+                      <Button color="danger" onClick={() => handleToDelete(row)} className="mr-2 btn-sm">
                           <i className="fas fa-trash fa-sm" />
                       </Button>
                     </td>

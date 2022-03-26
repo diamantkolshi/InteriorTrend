@@ -5,16 +5,17 @@ import CardFormModal from "../../shared/CardFormModal";
 import useErrors from "../../shared/useErrors";
 import ProjectForm from "./forms/ProjectForm";
 
-const New = ({project, isOpen, toggleModal}) => {
+const New = ({project, isOpen, toggleModal, cities}) => {
   const [projectValues, setProjectValues] = useState(project);
 
   function handleSubmit() {
-    Inertia.post(`/projects`, {
+    Inertia.post('/projects', {
       project: projectValues
     }, {preserveState: true});
   }
 
   function handleChange(update) {
+    // debugger
     setProjectValues(update);
   }
 
@@ -24,6 +25,7 @@ const New = ({project, isOpen, toggleModal}) => {
         <CardFormModal onSubmit={handleSubmit} title="New project" errors={useErrors('project')} toggleModal={toggleModal}>
           <ProjectForm
             project={projectValues}
+            cities={cities}
             onChange={handleChange}
           />
         </CardFormModal>

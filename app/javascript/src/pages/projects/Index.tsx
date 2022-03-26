@@ -5,7 +5,7 @@ import FilterNav from '../../../components/shared/FilterNav'
 import HeaderNav from '../../../components/shared/HeaderNav'
 import New from "./New"
 
-const StyleExampleOne = ({projects, project}) => {
+const StyleExampleOne = ({projects, project, cities}) => {
   const closeNewProjectModal = () => {
     Inertia.visit(`/projects`, {preserveScroll: true})
   }
@@ -28,7 +28,7 @@ const StyleExampleOne = ({projects, project}) => {
           />
         <FilterNav />
       </div>
-      <New isOpen={!!project} toggleModal={closeNewProjectModal} project={project} />
+      <New isOpen={!!project} toggleModal={closeNewProjectModal} project={project} cities={cities} />
     </>
   )
 }

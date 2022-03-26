@@ -1,39 +1,50 @@
 class ProjectsController < InertiaController
-  def index
-    projects = Project.all
+  before_action :find_project!, only: [:destroy]
 
-    inertia 'projects/Index', {
-      projects: projects.as_json(only: [:title, :description, :street, :location, :views], methods: [:city]),
-      project: nil
-    }
+  def index
+    render_default
   end
 
   def new
-    props = {
-      projects: Project.all.as_json(only: [:title, :description, :street, :location, :views], methods: [:city]),
-      project: Project.new.as_json
-    }
-
-    inertia 'projects/Index', props
+    render_default Project.new.as_json
   end
 
   def create
-    project = Project.new
+    project = Project.new(user_id: 1)
+
     project.assign_attributes(permitted_params)
 
     if project.save
-      flash[:message] = "Success"
-      redirect_to project_path(patient)
+      flash[:success] = "Success created"
+      redirect_to projects_path
     else
       set_errors(:project, project.inertia_errors)
       redirect_to new_project_path
     end
   end
 
+  def destroy
+    @project.destroy
+    flash[:success] = "Success deleted"
+    redirect_to projects_path
+  end
+
   private
+
+  def find_project!
+    @project = Project.find_by!(id: params[:id])
+  end
 
   def permitted_params
     params.require(:project)
-          .permit(:title, :description)
+          .permit(:title, :description, :street, :location, :city_id)
+  end
+
+  def render_default(patient = nil)
+    inertia 'projects/Index', {
+      projects: Project.all.as_json(only: [:id, :title, :description, :street, :location, :views], methods: [:city]),
+      project: patient,
+      cities: City.active.as_json(only: [:id, :name])
+    }
   end
 end
