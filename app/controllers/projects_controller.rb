@@ -1,7 +1,10 @@
 class ProjectsController < InertiaController
   before_action :find_project!, only: [:destroy, :edit]
+  before_action :all_projects, only: [:index, :new, :edit]
 
   def index
+    @projects = @projects.where(city_id: params[:city]) if params[:city].present?
+
     render_default('projects/Index')
   end
 
@@ -39,6 +42,10 @@ class ProjectsController < InertiaController
     @project = Project.find_by!(id: params[:id])
   end
 
+  def all_projects
+    @projects = Project.all
+  end
+
   def permitted_params
     params.require(:project)
           .permit(:title, :description, :street, :location, :city_id)
@@ -46,9 +53,10 @@ class ProjectsController < InertiaController
 
   def render_default(root = 'projects/Index', patient = nil)
     inertia root, {
-      projects: Project.all.as_json(only: [:id, :title, :description, :created_at, :location, :views], methods: [:city]),
+      projects: @projects.as_json(only: [:id, :title, :description, :created_at, :location, :views], methods: [:city]),
       project: patient,
       cities: City.active.as_json(only: [:id, :name]),
+      params: params.as_json(only: [:city, :date])
     }
   end
 end

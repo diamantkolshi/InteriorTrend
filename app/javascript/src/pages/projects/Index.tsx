@@ -6,15 +6,20 @@ import HeaderNav from '../../../components/shared/HeaderNav'
 import { withScope } from "../../shared/i18n";
 import New from "./New"
 import {
-    Button,
+    Button, FormGroup, Input
 } from 'reactstrap';
 import ProjectLayout from "../layouts/Layout";
 import * as moment from 'moment'
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const ttable = withScope('helpers', 'project', 'index', 'table');
 const trows = withScope('helpers', 'project', 'index', 'rows');
 
-const StyleExampleOne = ({projects, project, cities}) => {
+const StyleExampleOne = ({projects, project, cities, params}) => {
+  const [startDate, setStartDate] = useState(new Date());
+  const [pathParams, setPathParams] = useState(params);
+
   const closeNewProjectModal = () => {
     Inertia.visit(`/projects`, {preserveScroll: true})
   }
@@ -31,11 +36,32 @@ const StyleExampleOne = ({projects, project, cities}) => {
   }
 
   const addNew = () => {
-    Inertia.visit(`/projects/new`, {preserveScroll: true})
+    const queryParams = createQueryParams(pathParams)
+    Inertia.visit(`/projects/new?${queryParams}`, {preserveScroll: true})
   }
 
   const editProject = (project) => {
     Inertia.visit(`/project/${project.id}/edit`, {preserveScroll: true})
+  }
+
+  const createQueryParams = params =>
+      Object.keys(params)
+            .map(k => `${k}=${encodeURI(params[k])}`)
+            .join('&');
+
+  const filterSelectChange = (e, type) => {
+    if(type == "select") {
+      let name = e.target.name
+      let value = e.target.value
+      pathParams[name] = value
+    } else if (type == "date") {
+      let date = moment(e).format('DD/MM/YYYY')
+      setStartDate(e)
+      pathParams['date'] = date
+    }
+
+    const queryParams = createQueryParams(pathParams)
+    Inertia.visit(`/projects?${queryParams}`, {preserveScroll: true})
   }
 
   return (
@@ -134,7 +160,47 @@ const StyleExampleOne = ({projects, project, cities}) => {
             </div>
           </div>
         </div>
-        <FilterNav />
+        <div className="col-lg-3">
+          <div className="card mb-4">
+            <form>
+              <div className="card">
+                <div className="card-header">
+                  <div className="card-header-title">Filter</div>
+                </div>
+                <div className="card-body">
+                  <FormGroup>
+                      {/* <Label for="query">Suche</Label> */}
+                      <Input
+                        type="text"
+                        id="query"
+                        placeholder="Kerko me titull ..."
+                        value={pathParams.search}
+                        disabled={true} />
+                  </FormGroup>
+                  <FormGroup>
+                    <label htmlFor="Datumsbereich">Data e krijimit</label>
+                    <DatePicker
+                      className="form-control"
+                      selected={startDate}
+                      onChange={(date) => filterSelectChange(date, "date")}
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                    <label htmlFor="Art">Qyeteti</label>
+                    <select className=" custom-select" name="city" value={pathParams.city} id="type" onChange={(e) => filterSelectChange(e, "select")}>
+                      <option value="">Te gjitha </option>
+                      {
+                        cities.map((city, i) => (
+                            <option key={city.id} value={city.id}>{city.name}</option>
+                        ))
+                      }
+                    </select>
+                  </FormGroup>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
       <New isOpen={!!project} toggleModal={closeNewProjectModal} project={project} cities={cities} />
     </ProjectLayout>
