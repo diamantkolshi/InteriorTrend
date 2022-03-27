@@ -33,3 +33,7 @@ sq:
           street: Rruga
           views: Shikimet
           created_at: Data e krijimit
+  controllers:
+    project:
+      created_successfully: Projekti eshte krijuar me sukses.
+      deleted_successfully: Projekti eshte fshire me sukses.

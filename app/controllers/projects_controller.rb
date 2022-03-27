@@ -15,7 +15,7 @@ class ProjectsController < InertiaController
     project.assign_attributes(permitted_params)
 
     if project.save
-      flash[:message] = "Projekti '#{project.title}' i krijua me sukses"
+      flash[:message] = t('controllers.project.created_successfully')
       redirect_to projects_path
     else
       set_errors(:project, project.inertia_errors)
@@ -29,7 +29,7 @@ class ProjectsController < InertiaController
 
   def destroy
     @project.destroy
-    flash[:message] = "Projekti '#{@project.title}' eshte fshire me sukses"
+    flash[:message] = t('controllers.project.deleted_successfully')
     redirect_to projects_path
   end
 
