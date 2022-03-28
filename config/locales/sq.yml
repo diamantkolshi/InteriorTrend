@@ -24,7 +24,7 @@ sq:
       index:
         table:
           projects: Projektet
-          new_project: Projekt i ri
+          new_project: Shto projekt
         rows:
           title: Titulli
           description: Pershkrimi
@@ -33,6 +33,17 @@ sq:
           street: Rruga
           views: Shikimet
           created_at: Data e krijimit
+      new:
+        table:
+          new_project: Projekt i ri
+    filters:
+      filters: Filterat
+      search: Kerkimi
+      search_placeholder: Kerko me titull ...
+      from_created_at: Nga data e krijimit
+      city: Qyeteti
+      all: Te gjitha
+      clear_filters: Pastro Filterat
   controllers:
     project:
       created_successfully: Projekti eshte krijuar me sukses.

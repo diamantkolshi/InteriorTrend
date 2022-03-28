@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Inertia } from "@inertiajs/inertia";
-import TableNav from '../../../components/shared/TableNav'
-import FilterNav from '../../../components/shared/FilterNav'
-import HeaderNav from '../../../components/shared/HeaderNav'
 import { withScope } from "../../shared/i18n";
 import New from "./New"
 import {
@@ -15,6 +12,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const ttable = withScope('helpers', 'project', 'index', 'table');
 const trows = withScope('helpers', 'project', 'index', 'rows');
+const tfilter = withScope('helpers', 'filters');
 
 const StyleExampleOne = ({projects, project, cities, params, firstCreatedAt}) => {
   const [startDate, setStartDate] = useState(new Date(firstCreatedAt));
@@ -158,7 +156,6 @@ const StyleExampleOne = ({projects, project, cities, params, firstCreatedAt}) =>
                       ))
                       :
                       <tr>
-                        asdasd
                       </tr>
                     }
                   </tbody>
@@ -172,36 +169,35 @@ const StyleExampleOne = ({projects, project, cities, params, firstCreatedAt}) =>
             <form>
               <div className="card">
                 <div className="card-header">
-                  <div className="card-header-title">Filter</div>
+                  <div className="card-header-title">{tfilter('filters')}</div>
                 </div>
                 <div className="card-body">
                   <FormGroup>
-                    <Label for="query">Kerkimi</Label>
+                    <Label for="query">{tfilter('search')}</Label>
                     <Input
                       type="text"
                       id="query"
                       name="search"
-                      placeholder="Kerko me titull ..."
+                      placeholder={tfilter('search_placeholder')}
                       value={pathParams.search}
                       onChange={(e) => filterSelectChange(e, "select")}
                     />
                   </FormGroup>
                   <FormGroup>
-                    <label htmlFor="Datumsbereich">Nga data e krijimit</label>
+                    <label htmlFor="Datumsbereich">{tfilter('from_created_at')}</label>
                     <DatePicker
                       id="valid_from"
                       className="d-block"
                       selected={startDate}
                       onChange={(date) => filterSelectChange(date, "date")}
-                      timeInputLabel="Uhrzeit:"
                       dateFormat="dd.MM.yyyy"
                       customInput={<Input type="text" autoComplete="off" />}
                     />
                   </FormGroup>
                   <FormGroup>
-                    <label htmlFor="Art">Qyeteti</label>
+                    <label htmlFor="Art">{tfilter('city')}</label>
                     <select className=" custom-select" name="city" value={pathParams.city} id="type" onChange={(e) => filterSelectChange(e, "select")}>
-                      <option value="">Te gjitha </option>
+                      <option value="">{tfilter('all')}</option>
                       {
                         cities.map((city, i) => (
                             <option key={city.id} value={city.id}>{city.name}</option>
@@ -209,8 +205,9 @@ const StyleExampleOne = ({projects, project, cities, params, firstCreatedAt}) =>
                       }
                     </select>
                   </FormGroup>
+                  <hr />
                   <FormGroup>
-                    <a className="btn btn-info btn-block btn-sm" onClick={() => closeNewProjectModal()}>Pastro Filterat</a>
+                    <a className="btn btn-info btn-block btn-sm" onClick={() => closeNewProjectModal()}>{tfilter('clear_filters')}</a>
                   </FormGroup>
                 </div>
               </div>

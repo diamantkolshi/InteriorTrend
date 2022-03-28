@@ -4,6 +4,9 @@ import { Modal, Button, Form, ModalBody, ModalFooter, ModalHeader } from "reacts
 import CardFormModal from "../../shared/CardFormModal";
 import useErrors from "../../shared/useErrors";
 import ProjectForm from "./forms/ProjectForm";
+import { withScope } from "../../shared/i18n";
+
+const ttable = withScope('helpers', 'project', 'new', 'table');
 
 const New = ({project, isOpen, toggleModal, cities}) => {
   const [projectValues, setProjectValues] = useState(project);
@@ -15,14 +18,13 @@ const New = ({project, isOpen, toggleModal, cities}) => {
   }
 
   function handleChange(update) {
-    // debugger
     setProjectValues(update);
   }
 
   return (
     <div>
       <Modal isOpen={isOpen} size="lg" toggle={() => toggleModal()}>
-        <CardFormModal onSubmit={handleSubmit} title="New project" errors={useErrors('project')} toggleModal={toggleModal}>
+        <CardFormModal onSubmit={handleSubmit} title={ttable('new_project')} errors={useErrors('project')} toggleModal={toggleModal}>
           <ProjectForm
             project={projectValues}
             cities={cities}
