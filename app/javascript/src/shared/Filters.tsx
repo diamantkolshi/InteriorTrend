@@ -6,14 +6,14 @@ import {
 
 const tfilter = withScope('helpers', 'filters');
 
-const Filters = ({children, title, clearFilters}) => {
+const Filters = ({children, clearFilters}) => {
   return (
     <div className="col-lg-3">
       <div className="card mb-4">
         <form>
           <div className="card">
             <div className="card-header">
-              <div className="card-header-title">{title}</div>
+              <div className="card-header-title">{tfilter('filters')}</div>
             </div>
             <div className="card-body">
               {children}

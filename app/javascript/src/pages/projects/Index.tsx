@@ -165,9 +165,7 @@ const StyleExampleOne = ({projects, project, cities, params, firstCreatedAt}) =>
             </div>
           </div>
         </div>
-        <Filters
-          title={tfilter('filters')}
-          clearFilters={() => closeNewProjectModal()}>
+        <Filters clearFilters={() => closeNewProjectModal()}>
           <FormGroup>
             <Label for="query">{tfilter('search')}</Label>
             <Input
