@@ -1,5 +1,11 @@
 ---
 sq:
+  header:
+    search_for: Kerko per ...
+    projects: Projektet
+    profile: Profili
+    settings: Konfigurimet
+    sign_out: Dalje
   activerecord:
     models:
     attributes:

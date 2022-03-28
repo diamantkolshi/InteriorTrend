@@ -13,19 +13,6 @@
     <script>
       window.i18n = <%= raw(@i18n.to_json) %>;
     </script>
-    <div id="content" data-controller="auto-refresh">
-    <div id="content-wrapper">
-      <div>
-        <%= render partial: 'navbar' %>
-        <div class="container-fluid">
-          <% if content_for?(:inner_layout) %>
-            <%= content_for(:inner_layout) %>
-          <% else %>
-            <%= yield %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
+    <%= yield %>
   </body>
 </html>

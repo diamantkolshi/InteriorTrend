@@ -64,15 +64,7 @@ const StyleExampleOne = ({projects, project, cities, params, firstCreatedAt}) =>
   }
 
   return (
-    <ProjectLayout>
-      <div id="content-top-bar">
-        <nav>
-          <ol className="breadcrump breadcrumb-title">
-            <li className="breadcrumb-item">{ttable('projects')}</li>
-          </ol>
-        </nav>
-        <div className="nav-buttons" />
-      </div>
+    <ProjectLayout title={ttable('projects')}>
       <div className="row">
         <div className="col-md-12 col-xl-9">
           <div className="card">
