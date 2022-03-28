@@ -6,7 +6,7 @@ import HeaderNav from '../../../components/shared/HeaderNav'
 import { withScope } from "../../shared/i18n";
 import New from "./New"
 import {
-    Button, FormGroup, Input
+    Button, FormGroup, Input, Label
 } from 'reactstrap';
 import ProjectLayout from "../layouts/Layout";
 import * as moment from 'moment'
@@ -16,8 +16,8 @@ import "react-datepicker/dist/react-datepicker.css";
 const ttable = withScope('helpers', 'project', 'index', 'table');
 const trows = withScope('helpers', 'project', 'index', 'rows');
 
-const StyleExampleOne = ({projects, project, cities, params}) => {
-  const [startDate, setStartDate] = useState(new Date());
+const StyleExampleOne = ({projects, project, cities, params, firstCreatedAt}) => {
+  const [startDate, setStartDate] = useState(new Date(firstCreatedAt));
   const [pathParams, setPathParams] = useState(params);
 
   const closeNewProjectModal = () => {
@@ -61,7 +61,7 @@ const StyleExampleOne = ({projects, project, cities, params}) => {
     }
 
     const queryParams = createQueryParams(pathParams)
-    Inertia.visit(`/projects?${queryParams}`, {preserveScroll: true})
+    Inertia.visit(`/projects?${queryParams}`, {preserveState: true})
   }
 
   return (
@@ -124,36 +124,43 @@ const StyleExampleOne = ({projects, project, cities, params}) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {projects.map((project, i) => (
-                      <tr key={i}>
-                        <td>
-                          {project.title}
-                        </td>
-                        <td>
-                          {truncate(project.description, 40)}
-                        </td>
-                        <td>
-                          {project.city.name}
-                        </td>
-                        <td>
-                          {project.location}
-                        </td>
-                        <td>
-                          {moment(project.created_at).format('DD/MM/YYYY')}
-                        </td>
-                        <td>
-                          {project.views || 'N/A'}
-                        </td>
-                        <td className="text-left">
-                          <Button color="info" onClick={() => editProject(project)} className="mr-2 btn-sm">
-                              <i className="fas fa-edit fa-sm" />
-                          </Button>
-                          <Button color="danger" onClick={() => handleToDelete(project)} className="btn-sm">
-                              <i className="fas fa-trash fa-sm" />
-                          </Button>
-                        </td>
+                    {projects
+                      ?
+                      projects.map((project, i) => (
+                        <tr key={i}>
+                          <td>
+                            {project.title}
+                          </td>
+                          <td>
+                            {truncate(project.description, 40)}
+                          </td>
+                          <td>
+                            {project.city.name}
+                          </td>
+                          <td>
+                            {project.location}
+                          </td>
+                          <td>
+                            {moment(project.created_at).format('DD/MM/YYYY')}
+                          </td>
+                          <td>
+                            {project.views || 'N/A'}
+                          </td>
+                          <td className="text-left">
+                            <Button color="info" onClick={() => editProject(project)} className="mr-2 btn-sm">
+                                <i className="fas fa-edit fa-sm" />
+                            </Button>
+                            <Button color="danger" onClick={() => handleToDelete(project)} className="btn-sm">
+                                <i className="fas fa-trash fa-sm" />
+                            </Button>
+                          </td>
+                        </tr>
+                      ))
+                      :
+                      <tr>
+                        asdasd
                       </tr>
-                    ))}
+                    }
                   </tbody>
                 </table>
               </div>
@@ -169,20 +176,26 @@ const StyleExampleOne = ({projects, project, cities, params}) => {
                 </div>
                 <div className="card-body">
                   <FormGroup>
-                      {/* <Label for="query">Suche</Label> */}
-                      <Input
-                        type="text"
-                        id="query"
-                        placeholder="Kerko me titull ..."
-                        value={pathParams.search}
-                        disabled={true} />
+                    <Label for="query">Kerkimi</Label>
+                    <Input
+                      type="text"
+                      id="query"
+                      name="search"
+                      placeholder="Kerko me titull ..."
+                      value={pathParams.search}
+                      onChange={(e) => filterSelectChange(e, "select")}
+                    />
                   </FormGroup>
                   <FormGroup>
-                    <label htmlFor="Datumsbereich">Data e krijimit</label>
+                    <label htmlFor="Datumsbereich">Nga data e krijimit</label>
                     <DatePicker
-                      className="form-control"
+                      id="valid_from"
+                      className="d-block"
                       selected={startDate}
                       onChange={(date) => filterSelectChange(date, "date")}
+                      timeInputLabel="Uhrzeit:"
+                      dateFormat="dd.MM.yyyy"
+                      customInput={<Input type="text" autoComplete="off" />}
                     />
                   </FormGroup>
                   <FormGroup>
@@ -195,6 +208,9 @@ const StyleExampleOne = ({projects, project, cities, params}) => {
                         ))
                       }
                     </select>
+                  </FormGroup>
+                  <FormGroup>
+                    <a className="btn btn-info btn-block btn-sm" onClick={() => closeNewProjectModal()}>Pastro Filterat</a>
                   </FormGroup>
                 </div>
               </div>

@@ -3,7 +3,9 @@ class ProjectsController < InertiaController
   before_action :all_projects, only: [:index, :new, :edit]
 
   def index
-    @projects = @projects.where(city_id: params[:city]) if params[:city].present?
+    @projects = @projects.filter_with_city(params[:city]) if params[:city].present?
+    @projects = @projects.search(params[:search]) if params[:search].present?
+    @projects = @projects.filter_from_created(params[:date]) if params[:date].present?
 
     render_default('projects/Index')
   end
@@ -56,7 +58,13 @@ class ProjectsController < InertiaController
       projects: @projects.as_json(only: [:id, :title, :description, :created_at, :location, :views], methods: [:city]),
       project: patient,
       cities: City.active.as_json(only: [:id, :name]),
-      params: params.as_json(only: [:city, :date])
+      params: params.as_json(only: [:search, :city, :date]),
+      firstCreatedAt: first_created_at_params
     }
+  end
+
+  def first_created_at_params
+    return params[:date].to_date if params[:date].present?
+    @projects&.first ? @projects.order(:created_at)&.first.created_at : DateTime.now
   end
 end
