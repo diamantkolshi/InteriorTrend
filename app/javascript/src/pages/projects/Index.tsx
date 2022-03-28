@@ -9,6 +9,7 @@ import ProjectLayout from "../layouts/Layout";
 import * as moment from 'moment'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Filters from "../../shared/Filters";
 
 const ttable = withScope('helpers', 'project', 'index', 'table');
 const trows = withScope('helpers', 'project', 'index', 'rows');
@@ -164,56 +165,43 @@ const StyleExampleOne = ({projects, project, cities, params, firstCreatedAt}) =>
             </div>
           </div>
         </div>
-        <div className="col-lg-3">
-          <div className="card mb-4">
-            <form>
-              <div className="card">
-                <div className="card-header">
-                  <div className="card-header-title">{tfilter('filters')}</div>
-                </div>
-                <div className="card-body">
-                  <FormGroup>
-                    <Label for="query">{tfilter('search')}</Label>
-                    <Input
-                      type="text"
-                      id="query"
-                      name="search"
-                      placeholder={tfilter('search_placeholder')}
-                      value={pathParams.search}
-                      onChange={(e) => filterSelectChange(e, "select")}
-                    />
-                  </FormGroup>
-                  <FormGroup>
-                    <label htmlFor="Datumsbereich">{tfilter('from_created_at')}</label>
-                    <DatePicker
-                      id="valid_from"
-                      className="d-block"
-                      selected={startDate}
-                      onChange={(date) => filterSelectChange(date, "date")}
-                      dateFormat="dd.MM.yyyy"
-                      customInput={<Input type="text" autoComplete="off" />}
-                    />
-                  </FormGroup>
-                  <FormGroup>
-                    <label htmlFor="Art">{tfilter('city')}</label>
-                    <select className=" custom-select" name="city" value={pathParams.city} id="type" onChange={(e) => filterSelectChange(e, "select")}>
-                      <option value="">{tfilter('all')}</option>
-                      {
-                        cities.map((city, i) => (
-                            <option key={city.id} value={city.id}>{city.name}</option>
-                        ))
-                      }
-                    </select>
-                  </FormGroup>
-                  <hr />
-                  <FormGroup>
-                    <a className="btn btn-info btn-block btn-sm" onClick={() => closeNewProjectModal()}>{tfilter('clear_filters')}</a>
-                  </FormGroup>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
+        <Filters
+          title={tfilter('filters')}
+          clearFilters={() => closeNewProjectModal()}>
+          <FormGroup>
+            <Label for="query">{tfilter('search')}</Label>
+            <Input
+              type="text"
+              id="query"
+              name="search"
+              placeholder={tfilter('search_placeholder')}
+              value={pathParams.search}
+              onChange={(e) => filterSelectChange(e, "select")}
+            />
+          </FormGroup>
+          <FormGroup>
+            <label htmlFor="Datumsbereich">{tfilter('from_created_at')}</label>
+            <DatePicker
+              id="valid_from"
+              className="d-block"
+              selected={startDate}
+              onChange={(date) => filterSelectChange(date, "date")}
+              dateFormat="dd.MM.yyyy"
+              customInput={<Input type="text" autoComplete="off" />}
+            />
+          </FormGroup>
+          <FormGroup>
+            <label htmlFor="Art">{tfilter('city')}</label>
+            <select className=" custom-select" name="city" value={pathParams.city} id="type" onChange={(e) => filterSelectChange(e, "select")}>
+              <option value="">{tfilter('all')}</option>
+              {
+                cities.map((city, i) => (
+                    <option key={city.id} value={city.id}>{city.name}</option>
+                ))
+              }
+            </select>
+          </FormGroup>
+        </Filters>
       </div>
       <New isOpen={!!project} toggleModal={closeNewProjectModal} project={project} cities={cities} />
     </ProjectLayout>
