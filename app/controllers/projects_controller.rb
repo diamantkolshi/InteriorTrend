@@ -11,7 +11,8 @@ class ProjectsController < InertiaController
   end
 
   def new
-    render_default('projects/Index', Project.new.as_json)
+    @project = Project.new
+    render_default('projects/Index', @project.as_json)
   end
 
   def create
