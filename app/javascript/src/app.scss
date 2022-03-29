@@ -5,14 +5,14 @@ $yiq-contrasted-threshold: 200;
 $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 
 @import "~startbootstrap-sb-admin-2/scss/sb-admin-2";
-@import "~daterangepicker/daterangepicker";
+// @import "~daterangepicker/daterangepicker";
 
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import '~@fortawesome/fontawesome-free/scss/brands';
 
-@import '~viewerjs/dist/viewer';
+// @import '~viewerjs/dist/viewer';
 
 .table-filter {
   $transition-duration: 300ms;

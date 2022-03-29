@@ -1,21 +1,21 @@
 import React from 'react';
 import { Inertia } from "@inertiajs/inertia";
-import HeaderNav from '../components/shared/HeaderNav'
-import ManuNav from '../components/shared/ManuNav'
-import FormNav from '../components/shared/FormNav'
+import HeaderNav from '../../components/shared/HeaderNav'
+import ManuNav from '../../components/shared/ManuNav'
+import FormNav from '../../components/shared/FormNav'
 
-const StyleExampleOne = ({name}) => {
+const StyleExampleOne = () => {
   return (
     <>
-      <HeaderNav />
+      <HeaderNav name="sadas" />
 
       <div className="row justify-content-between">
-        <ManuNav />
+        <ManuNav name="sadas" />
 
         <div className="col-lg-9 col-xl-10">
           <div className="row">
 
-            <FormNav />
+            <FormNav name="sadas" />
 
             <div className="col-md-5 col-xl-3">
               <div className="card">

@@ -1,0 +1,56 @@
+---
+sq:
+  header:
+    search_for: Kerko per ...
+    projects: Projektet
+    profile: Profili
+    settings: Konfigurimet
+    sign_out: Dalje
+  activerecord:
+    models:
+    attributes:
+      project:
+        title: Titulli
+        description: Pershkrimi
+        city: Qyteti
+        select_city: Zgjedh qytetin
+        location: Lokacioni
+        street: Rruga
+        project_info: Informatat gjenerale
+  errors:
+    format: "%{attribute} %{message}"
+  messages:
+      accepted: muss akzeptiert werden
+      blank: s’mund të jetë i zbrazët
+      confirmation: stimmt nicht mit %{attribute} überein
+      empty: muss ausgefüllt werden
+      equal_to: muss genau %{count} sein
+  helpers:
+    project:
+      index:
+        table:
+          projects: Projektet
+          new_project: Shto projekt
+        rows:
+          title: Titulli
+          description: Pershkrimi
+          city: Qyteti
+          location: Lokacioni
+          street: Rruga
+          views: Shikimet
+          created_at: Data e krijimit
+      new:
+        table:
+          new_project: Projekt i ri
+    filters:
+      filters: Filterat
+      search: Kerkimi
+      search_placeholder: Kerko me titull ...
+      from_created_at: Nga data e krijimit
+      city: Qyeteti
+      all: Te gjitha
+      clear_filters: Pastro Filterat
+  controllers:
+    project:
+      created_successfully: Projekti eshte krijuar me sukses.
+      deleted_successfully: Projekti eshte fshire me sukses.

@@ -1,5 +1,6 @@
 class Project < ApplicationRecord
   include PgSearch::Model
+  include InertiaErrors
 
   belongs_to :user
   belongs_to :city
@@ -42,4 +43,7 @@ class Project < ApplicationRecord
     posts: [:title, :description],
     city: [:name]
   }
+
+  scope :filter_with_city, -> (city) { where(city: city) }
+  scope :filter_from_created, -> (created_at) { where(created_at: created_at...DateTime.now) }
 end
