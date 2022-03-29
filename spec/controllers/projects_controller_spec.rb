@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe ProjectsController, type: :controller do
   before(:each) do
-    sign_in User.find_by(email: "admin@mail.com")
+    @user = users(:admin)
+    @user.projects << projects(:project1)
+    sign_in @user
     @current_user = subject.current_user
   end
 
@@ -23,8 +25,7 @@ RSpec.describe ProjectsController, type: :controller do
     it 'return projects by search filters' do
       get :index, params: { search: 'Project 3' }
 
-      expect(assigns(:projects).length).to eq(1)
-      expect(assigns(:projects).first.title).to eq('Project 1')
+      expect(assigns(:projects)).to eq(@current_user.projects.search("Project 3"))
     end
 
     it 'return none projects with wrong date filters' do
