@@ -24,6 +24,7 @@ const Layout: React.FC<{
     breadcrumps?: {name: string; href: string}[];
 }> = ({children, title, actions, breadcrumps = []}) => {
   const { message } = usePage()
+  const logo = require('../../../images/logo.png');
 
   useEffect(() => {
     if(message) {
@@ -50,7 +51,7 @@ const Layout: React.FC<{
           />
         <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
           <NavbarBrand>
-            {/* <img src="https://procarement.com/images/logo@2x.png" width="128" alt="logo" /> */}
+            <img src={logo} width="128" alt="logo" />
           </NavbarBrand>
 
           <form className="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
