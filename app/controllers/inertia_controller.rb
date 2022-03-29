@@ -1,6 +1,5 @@
 class InertiaController < ApplicationController
-  # include FormOptions
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
 
   inertia_share do
     ret = {}
@@ -10,11 +9,9 @@ class InertiaController < ApplicationController
     if flash[:message]
       ret['message'] = flash[:message]
     end
-    # if user_signed_in?
-    ret['user'] = {id: 1, email: "diamantkolshi@gmail.com"}
-    # end
-
-    # ret['form_options'] = form_options
+    if user_signed_in?
+      ret['user'] = {id: current_user.id, email: current_user.email}
+    end
 
     ret
   end

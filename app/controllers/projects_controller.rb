@@ -11,12 +11,12 @@ class ProjectsController < InertiaController
   end
 
   def new
-    @project = Project.new
+    @project = @current_user.projects.new
     render_default('projects/Index', @project.as_json)
   end
 
   def create
-    project = Project.new(user_id: 1)
+    project = current_user.projects.new
 
     project.assign_attributes(permitted_params)
 
@@ -46,7 +46,7 @@ class ProjectsController < InertiaController
   end
 
   def all_projects
-    @projects = Project.all
+    @projects = current_user.projects.all
   end
 
   def permitted_params

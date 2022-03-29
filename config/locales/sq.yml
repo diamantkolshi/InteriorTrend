@@ -1,5 +1,11 @@
 ---
 sq:
+  login: Kyqu
+  email: Email adresa
+  passowrd: Fjalëkalimi
+  remember_me: Me kujto mua
+  sign_up: Regjistrohuni
+  forgot_password: Keni harruar fjalëkalimin?
   header:
     search_for: Kerko per ...
     projects: Projektet

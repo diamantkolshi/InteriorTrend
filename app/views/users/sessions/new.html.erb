@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row vh-100 align-items-center justify-content-center">
+    <div class="col-xl-10 col-lg-12 col-md-9">
+      <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row">
+            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+            <div class="col-lg-6">
+              <div class="p-5">
+                <div class="text-center">
+                  <h1 class="h4 text-gray-900 mb-4">Interior Design</h1>
+                </div>
+                <% if alert %>
+                  <p class="alert alert-danger"><%= alert %></p>
+                <% end %>
+                <% if notice %>
+                  <p class="alert alert-success"><%= notice %></p>
+                <% end %>
+                <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                  <div class="form-group">
+                    <%= f.label t(:email) %><br/>
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label t(:passowrd) %><br/>
+                    <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
+                  </div>
+                  <% if devise_mapping.rememberable? %>
+                    <div class="form-group form-check">
+                      <%= f.check_box :remember_me, class: 'form-check-input' %>
+                      <%= f.label t(:remember_me), class: 'form-check-label' %>
+                    </div>
+                  <% end %>
+                  <div class="actions">
+                    <%= f.submit t(:login), class: 'btn btn-primary btn-block' %>
+                  </div>
+                <% end %>
+                <hr>
+                <div class="text-center small">
+                  <%= render "users/shared/links" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

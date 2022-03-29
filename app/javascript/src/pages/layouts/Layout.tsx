@@ -35,11 +35,11 @@ const Layout: React.FC<{
   const {user} = usePage();
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  // const handleLogout = () => {
-  //     Axios.delete('/users/sign_out', {maxRedirects: 0}).finally(() => {
-  //         window.location.href = '/users/sign_in';
-  //     });
-  // };
+  const handleLogout = () => {
+    Axios.delete('/users/sign_out', {maxRedirects: 0}).finally(() => {
+      window.location.href = '/users/sign_in';
+    });
+  };
   const toggle = () => setDropdownOpen(prevState => !prevState);
 
   return (
@@ -114,7 +114,7 @@ const Layout: React.FC<{
                     <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400" />
                     {theader('settings')}
                   </DropdownItem>
-                  <DropdownItem>
+                  <DropdownItem onClick={handleLogout}>
                     <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" />
                     {theader('sign_out')}
                   </DropdownItem>
