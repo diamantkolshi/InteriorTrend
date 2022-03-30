@@ -30,6 +30,12 @@ jobs:
 
     steps:
       - checkout
+      - run:
+          name: Force Bundler Version
+          command: |
+            echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
+            source $BASH_ENV
+            gem install bundler
       - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
       - run: mkdir -p $CIRCLE_TEST_REPORTS/cucumber
       - run: mkdir -p $CIRCLE_ARTIFACTS/I18n/TRME
