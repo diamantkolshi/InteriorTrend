@@ -14,7 +14,7 @@ jobs:
       RACK_ENV: test
     docker:
       # specify the version you desire here
-      - image: circleci/ruby:2.6.5-node-browsers
+      - image: circleci/ruby:2.6.6-node-browsers
         environment:
           PGHOST: localhost
           PGUSER: diamantk
