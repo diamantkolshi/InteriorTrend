@@ -3,7 +3,7 @@ FactoryBot.define do
     email { "email@mail.com" }
     encrypted_password { User.new.send(:password_digest, 'password') }
     name { "Name" }
-    surname { Surname }
+    surname { "Surname" }
     role_id { 1 }
     nationality_id { 1 }
     city_id { 1 }

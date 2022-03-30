@@ -1,25 +1,31 @@
 require 'rails_helper'
 
 RSpec.describe ProjectsController, type: :controller do
+  before(:each) do
+    @user = users(:knapp)
+    @user.projects << projects(:project1)
+    sign_in @user
+    @current_user = subject.current_user
+  end
+
   describe '#index' do
     it 'return all projects' do
       get :index
 
-      expect(assigns(:projects)).to eq(Project.all)
+      expect(assigns(:projects)).to eq(@current_user.projects.all)
     end
 
     it 'return projects by city filters' do
       get :index, params: { city: City.first.id }
 
-      city_projects = Project.where(city_id: City.first.id)
+      city_projects = @current_user.projects.where(city_id: City.first.id)
       expect(assigns(:projects)).to eq(city_projects)
     end
 
     it 'return projects by search filters' do
-      get :index, params: { search: 'Project 1' }
+      get :index, params: { search: 'Project 3' }
 
-      expect(assigns(:projects).length).to eq(1)
-      expect(assigns(:projects).first.title).to eq('Project 1')
+      expect(assigns(:projects)).to eq(@current_user.projects.search("Project 3"))
     end
 
     it 'return none projects with wrong date filters' do
@@ -32,7 +38,7 @@ RSpec.describe ProjectsController, type: :controller do
       date = DateTime.now - 1.month
       get :index, params: { date: date }
 
-      expect(assigns(:projects).length).to eq(Project.all.length)
+      expect(assigns(:projects).length).to eq(@current_user.projects.all.length)
     end
   end
 
@@ -40,7 +46,7 @@ RSpec.describe ProjectsController, type: :controller do
     it 'build new project obj' do
       get :new
 
-      expect(assigns(:project).as_json).to eq(Project.new.as_json)
+      expect(assigns(:project).as_json).to eq(@current_user.projects.new.as_json)
     end
   end
 
@@ -55,9 +61,9 @@ RSpec.describe ProjectsController, type: :controller do
 
   describe '#edit' do
     it 'set specific project' do
-      get :edit, params: { id: Project.first.id }
+      get :edit, params: { id: @current_user.projects.first.id }
 
-      expect(assigns(:project)).to eq(Project.first)
+      expect(assigns(:project)).to eq(@current_user.projects.first)
     end
   end
 
