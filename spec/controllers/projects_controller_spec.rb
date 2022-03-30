@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ProjectsController, type: :controller do
   before(:each) do
-    @user = users(:admin)
+    @user = users(:knapp)
     @user.projects << projects(:project1)
     sign_in @user
     @current_user = subject.current_user
