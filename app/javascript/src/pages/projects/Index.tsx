@@ -40,7 +40,7 @@ const StyleExampleOne = ({projects, project, cities, params, firstCreatedAt}) =>
   }
 
   const editProject = (project) => {
-    Inertia.visit(`/project/${project.id}/edit`, {preserveScroll: true})
+    Inertia.visit(`/projects/${project.id}/edit`, {preserveScroll: true})
   }
 
   const createQueryParams = params =>

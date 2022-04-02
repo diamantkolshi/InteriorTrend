@@ -48,6 +48,8 @@ sq:
       new:
         table:
           new_project: Projekt i ri
+    post:
+      new_post: Postim i ri
     filters:
       filters: Filterat
       search: Kerkimi

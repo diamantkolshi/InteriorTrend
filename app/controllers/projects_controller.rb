@@ -1,6 +1,6 @@
 class ProjectsController < InertiaController
-  before_action :find_project!, only: [:destroy, :edit]
-  before_action :all_projects, only: [:index, :new, :edit]
+  before_action :find_project!, only: [:destroy, :edit, :update]
+  before_action :all_projects, only: [:index, :new]
 
   def index
     @projects = @projects.filter_with_city(params[:city]) if params[:city].present?
@@ -29,6 +29,18 @@ class ProjectsController < InertiaController
     end
   end
 
+  def update
+    @project.assign_attributes(permitted_params)
+
+    if @project.save
+      flash[:message] = t('controllers.project.created_successfully')
+      redirect_to edit_project_path(@project)
+    else
+      set_errors(:project, @project.inertia_errors)
+      redirect_to edit_project_path(@project)
+    end
+  end
+
   def edit
     render_default('projects/Edit', @project)
   end
@@ -54,10 +66,10 @@ class ProjectsController < InertiaController
           .permit(:title, :description, :street, :location, :city_id)
   end
 
-  def render_default(root = 'projects/Index', patient = nil)
+  def render_default(root = 'projects/Index', project = nil)
     inertia root, {
       projects: @projects.as_json(only: [:id, :title, :description, :created_at, :location, :views], methods: [:city]),
-      project: patient,
+      project: project,
       cities: City.active.as_json(only: [:id, :name]),
       params: params.as_json(only: [:search, :city, :date]),
       firstCreatedAt: first_created_at_params

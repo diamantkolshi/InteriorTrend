@@ -1,17 +1,24 @@
 import React, { useState } from 'react';
 import { Inertia } from "@inertiajs/inertia";
-import { Modal, Button, Form, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
+import {
+    Col,
+    CustomInput,
+    Input,
+    Row
+} from 'reactstrap';
 import CardFormModal from "../../shared/CardFormModal";
 import useErrors from "../../shared/useErrors";
+import CardForm from "../../shared/CardForm";
 import ProjectForm from "./forms/ProjectForm";
+import ProjectLayout from "./Layout";
 
-const New = ({project, isOpen, toggleModal, cities}) => {
+const Edit = ({project, cities}) => {
   const [projectValues, setProjectValues] = useState(project);
 
   function handleSubmit() {
-    Inertia.put('/projects', {
+    Inertia.put(`/projects/${project.id}`, {
       project: projectValues
-    }, {preserveState: true});
+    }, {preserveScroll: true, preserveState: true});
   }
 
   function handleChange(update) {
@@ -19,18 +26,20 @@ const New = ({project, isOpen, toggleModal, cities}) => {
   }
 
   return (
-    <div>
-      <Modal isOpen={isOpen} size="lg" toggle={() => toggleModal()}>
-        <CardFormModal onSubmit={handleSubmit} title="New project" errors={useErrors('project')} toggleModal={toggleModal}>
-          <ProjectForm
-            project={projectValues}
-            cities={cities}
-            onChange={handleChange}
-          />
-        </CardFormModal>
-      </Modal>
-    </div>
+    <ProjectLayout project={project}>
+      <Row>
+        <Col xl={10}>
+          <CardForm onSubmit={handleSubmit} title="Edit project" errors={useErrors('patient')}>
+            <ProjectForm
+              project={projectValues}
+              cities={cities}
+              onChange={handleChange}
+            />
+          </CardForm>
+        </Col>
+      </Row>
+    </ProjectLayout>
   )
 }
 
-export default New;
+export default Edit;

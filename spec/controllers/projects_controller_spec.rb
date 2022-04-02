@@ -67,6 +67,16 @@ RSpec.describe ProjectsController, type: :controller do
     end
   end
 
+  describe '#update' do
+    it 'update project item' do
+      project = @current_user.projects.last
+      params = { id: project.id, project: { title: 'Edit project', description: project.description, street: project.street, city_id: project.city.id}}
+
+      expect { put :update, params: params }.to change(Project, :count).by(0)
+      expect(Project.last.title).to eq(params[:project][:title])
+    end
+  end
+
   describe '#destroy' do
     it 'destroy project' do
       expect { delete :destroy, params: {id: Project.last.id} }.to change(Project, :count).by(-1)

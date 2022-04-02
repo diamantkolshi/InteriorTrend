@@ -17,5 +17,5 @@ export const l = (key) => {
 };
 
 export const formatNumber = (number, options = {}) => {
-    return new Intl.NumberFormat('sq-SQ', options).format(number)
+    return new Intl.NumberFormat('de-DE', options).format(number)
 }
