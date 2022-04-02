@@ -29,7 +29,7 @@ const Edit = ({project, cities}) => {
     <ProjectLayout project={project}>
       <Row>
         <Col xl={10}>
-          <CardForm onSubmit={handleSubmit} title="Edit project" errors={useErrors('patient')}>
+          <CardForm onSubmit={handleSubmit} title="Edit project" errors={useErrors('project')}>
             <ProjectForm
               project={projectValues}
               cities={cities}

@@ -25,8 +25,8 @@ const ProjectLayout: React.FC<{ project: any; }> = ({project, children}) => {
     };
     return (
         <Layout
-          title={isNew ? 'Neu' : `${project.title}`} breadcrumps={breadcrumps}
-          actions={!isNew && <div>
+          title={`${project.title}`} breadcrumps={breadcrumps}
+          actions={<div>
             <Button color="secondary" type="button" onClick={() => toggleModal('message')}>
               <i className="fas fa-plus fa-sm" />{' '}
               {t('helpers', 'post', 'new_post')}
