@@ -2,16 +2,18 @@ import React, { useState } from 'react';
 import { Badge, Button, Col, ListGroup, ListGroupItem, Row } from "reactstrap";
 import { InertiaLink } from "@inertiajs/inertia-react";
 import Layout from "../layouts/Layout";
-import { t } from "../../shared/i18n";
+import { t, withScope } from "../../shared/i18n";
+
+const tlist = withScope('helpers', 'list_group');
 
 const navItems = [
     {
         path: '/edit',
-        label: 'Informatat gjenerale',
+        label: tlist('general_information'),
     },
     {
         path: '/posts',
-        label: 'Postimet',
+        label: tlist('posts'),
     }
 ];
 

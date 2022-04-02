@@ -37,6 +37,7 @@ sq:
         table:
           projects: Projektet
           new_project: Shto projekt
+          edit_project: Modofiko projektin
         rows:
           title: Titulli
           description: Pershkrimi
@@ -50,6 +51,9 @@ sq:
           new_project: Projekt i ri
     post:
       new_post: Postim i ri
+    list_group:
+      general_information: Informata gjenerale
+      posts: Postimet
     filters:
       filters: Filterat
       search: Kerkimi
