@@ -42,7 +42,11 @@ class ProjectsController < InertiaController
   end
 
   def edit
-    render_default('projects/Edit', @project)
+    inertia 'projects/Edit', {
+      project: @project,
+      cities: City.active.as_json(only: [:id, :name]),
+      posts: @project.posts.as_json(only: [:id, :title])
+    }
   end
 
   def destroy

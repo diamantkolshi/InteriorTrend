@@ -11,8 +11,11 @@ import useErrors from "../../shared/useErrors";
 import CardForm from "../../shared/CardForm";
 import ProjectForm from "./forms/ProjectForm";
 import ProjectLayout from "./Layout";
+import { withScope } from "../../shared/i18n";
 
-const Edit = ({project, cities}) => {
+const ttable = withScope('helpers', 'project', 'index', 'table');
+
+const Edit = ({project, cities, posts}) => {
   const [projectValues, setProjectValues] = useState(project);
 
   function handleSubmit() {
@@ -26,10 +29,10 @@ const Edit = ({project, cities}) => {
   }
 
   return (
-    <ProjectLayout project={project}>
+    <ProjectLayout project={project} posts={posts}>
       <Row>
-        <Col xl={10}>
-          <CardForm onSubmit={handleSubmit} title="Edit project" errors={useErrors('project')}>
+        <Col xl={9}>
+          <CardForm onSubmit={handleSubmit} title={ttable('edit_project')} errors={useErrors('project')}>
             <ProjectForm
               project={projectValues}
               cities={cities}
