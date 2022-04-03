@@ -51,6 +51,16 @@ sq:
           new_project: Projekt i ri
     post:
       new_post: Postim i ri
+      index:
+        table:
+          posts: Postimet
+          new_post: Shto postim
+          edit_post: Modofiko postim
+        rows:
+          title: Titulli
+          description: Pershkrimi
+          image: Imazhi
+          created_at: Data e krijimit
     list_group:
       general_information: Informata gjenerale
       posts: Postimet

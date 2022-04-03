@@ -5,22 +5,22 @@ import New from "./New"
 import {
     Button, FormGroup, Input, Label
 } from 'reactstrap';
-import ProjectLayout from "../layouts/Layout";
 import * as moment from 'moment'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Filters from "../../shared/Filters";
+import ProjectLayout from "./Layout";
 
-const ttable = withScope('helpers', 'project', 'index', 'table');
-const trows = withScope('helpers', 'project', 'index', 'rows');
+const ttable = withScope('helpers', 'post', 'index', 'table');
+const trows = withScope('helpers', 'post', 'index', 'rows');
 const tfilter = withScope('helpers', 'filters');
 
-const Index = ({projects, project, cities, params, firstCreatedAt}) => {
+const Posts = ({project, posts, params, firstCreatedAt}) => {
   const [startDate, setStartDate] = useState(new Date(firstCreatedAt));
   const [pathParams, setPathParams] = useState(params);
 
   const closeNewProjectModal = () => {
-    Inertia.visit(`/projects`, {preserveScroll: true})
+    Inertia.visit(`posts`, {preserveScroll: true})
   }
 
   const truncate = (str, n) => {
@@ -30,17 +30,12 @@ const Index = ({projects, project, cities, params, firstCreatedAt}) => {
   const handleToDelete = (row) => {
     const r = window.confirm("Are you sure?");
     if (r === true) {
-        Inertia.delete(`/projects/${row.id}`, {}, {preserveScroll: true});
+        Inertia.delete(`posts/${row.id}`, {}, {preserveScroll: true});
     }
   }
 
-  const addNew = () => {
-    const queryParams = createQueryParams(pathParams)
-    Inertia.visit(`/projects/new?${queryParams}`, {preserveScroll: true})
-  }
-
   const editProject = (project) => {
-    Inertia.visit(`/projects/${project.id}/edit`, {preserveScroll: true})
+    Inertia.visit(`posts/${project.id}/edit`, {preserveScroll: true})
   }
 
   const createQueryParams = params =>
@@ -60,33 +55,18 @@ const Index = ({projects, project, cities, params, firstCreatedAt}) => {
     }
 
     const queryParams = createQueryParams(pathParams)
-    Inertia.visit(`/projects?${queryParams}`, {preserveState: true})
+    Inertia.visit(`posts?${queryParams}`, {preserveState: true})
   }
 
   return (
-    <ProjectLayout title={ttable('projects')}>
+    <ProjectLayout project={project}>
       <div className="row">
         <div className="col-md-12 col-xl-9">
           <div className="card">
             <div className="card-header">
-              <h6 className="card-header-title">{ttable('projects')}</h6>
+              <h6 className="card-header-title">{ttable('posts')}</h6>
             </div>
             <div className="card-body">
-
-              <div className="d-flex justify-content-between">
-                <div>
-                  <span className="mr-1">
-                    {
-                      <Button color="primary" onClick={() => addNew()} className="mr-2">
-                          <i className="fas fa-plus fa-sm" />{' '}
-                          {ttable('new_project')}
-                      </Button>
-                    }
-                  </span>
-                </div>
-                <div className="d-flex justify-content-end align-items-center mb-2" />
-              </div>
-
               <div style={{overflowX: 'auto'}}>
                 <table className="table">
                   <thead>
@@ -98,16 +78,10 @@ const Index = ({projects, project, cities, params, firstCreatedAt}) => {
                         {trows('description')}
                       </th>
                       <th>
-                        {trows('city')}
-                      </th>
-                      <th>
-                        {trows('location')}
+                        {trows('image')}
                       </th>
                       <th>
                         {trows('created_at')}
-                      </th>
-                      <th>
-                        {trows('views')}
                       </th>
                       <th>
                         #
@@ -115,35 +89,24 @@ const Index = ({projects, project, cities, params, firstCreatedAt}) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {projects
+                    {posts
                       ?
-                      projects.map((project, i) => (
+                      posts.map((post, i) => (
                         <tr key={i}>
                           <td>
-                            {project.title}
+                            {post.title}
                           </td>
                           <td>
-                            {truncate(project.description, 40)}
+                            {truncate(post.description, 40)}
                           </td>
                           <td>
-                            {project.city.name}
+                            #
                           </td>
                           <td>
-                            {project.location}
+                            {moment(post.created_at).format('DD/MM/YYYY')}
                           </td>
                           <td>
-                            {moment(project.created_at).format('DD/MM/YYYY')}
-                          </td>
-                          <td>
-                            {project.views || 'N/A'}
-                          </td>
-                          <td className="text-left">
-                            <Button color="info" onClick={() => editProject(project)} className="mr-2 btn-sm">
-                                <i className="fas fa-edit fa-sm" />
-                            </Button>
-                            <Button color="danger" onClick={() => handleToDelete(project)} className="btn-sm">
-                                <i className="fas fa-trash fa-sm" />
-                            </Button>
+                            #
                           </td>
                         </tr>
                       ))
@@ -180,22 +143,10 @@ const Index = ({projects, project, cities, params, firstCreatedAt}) => {
               customInput={<Input type="text" autoComplete="off" />}
             />
           </FormGroup>
-          <FormGroup>
-            <label htmlFor="Art">{tfilter('city')}</label>
-            <select className=" custom-select" name="city" value={pathParams.city} id="type" onChange={(e) => filterSelectChange(e, "select")}>
-              <option value="">{tfilter('all')}</option>
-              {
-                cities.map((city, i) => (
-                    <option key={city.id} value={city.id}>{city.name}</option>
-                ))
-              }
-            </select>
-          </FormGroup>
         </Filters>
       </div>
-      <New isOpen={!!project} toggleModal={closeNewProjectModal} project={project} cities={cities} />
     </ProjectLayout>
   )
 }
 
-export default Index;
+export default Posts;

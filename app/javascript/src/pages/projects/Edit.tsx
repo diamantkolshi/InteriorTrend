@@ -31,7 +31,7 @@ const Edit = ({project, cities}) => {
   return (
     <ProjectLayout project={project}>
       <Row>
-        <Col xl={10}>
+        <Col xl={9}>
           <CardForm onSubmit={handleSubmit} title={ttable('edit_project')} errors={useErrors('project')}>
             <ProjectForm
               project={projectValues}

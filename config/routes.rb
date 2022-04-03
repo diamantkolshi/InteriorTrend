@@ -7,5 +7,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   root to: "projects#index"
-  resources :projects
+  resources :projects do
+    resources :posts, controller: 'projects/posts', only: [:index, :new, :create, :edit, :update, :destroy]
+  end
 end
