@@ -59,7 +59,7 @@ const Posts = ({project, posts, params, firstCreatedAt}) => {
   }
 
   return (
-    <ProjectLayout project={project}>
+    <ProjectLayout project={project} posts={posts}>
       <div className="row">
         <div className="col-md-12 col-xl-9">
           <div className="card">

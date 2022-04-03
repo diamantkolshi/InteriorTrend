@@ -32,6 +32,6 @@ class Projects::PostsController < Projects::BaseController
   def first_created_at_params
     posts = @project&.posts
     return params[:date].to_date if params[:date].present?
-    posts.blank? ? @projects.order(:created_at)&.first.created_at : DateTime.now
+    posts.blank? ? DateTime.now : posts.order(:created_at)&.first.created_at
   end
 end

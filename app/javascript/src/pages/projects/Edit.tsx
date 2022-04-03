@@ -15,7 +15,7 @@ import { withScope } from "../../shared/i18n";
 
 const ttable = withScope('helpers', 'project', 'index', 'table');
 
-const Edit = ({project, cities}) => {
+const Edit = ({project, cities, posts}) => {
   const [projectValues, setProjectValues] = useState(project);
 
   function handleSubmit() {
@@ -29,7 +29,7 @@ const Edit = ({project, cities}) => {
   }
 
   return (
-    <ProjectLayout project={project}>
+    <ProjectLayout project={project} posts={posts}>
       <Row>
         <Col xl={9}>
           <CardForm onSubmit={handleSubmit} title={ttable('edit_project')} errors={useErrors('project')}>
