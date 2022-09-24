@@ -13,6 +13,11 @@ class Projects::PostsController < Projects::BaseController
   end
 
   def new
+    @posts = @project.posts
+    inertia('projects/posts/New', {
+      project: @project.as_json,
+      posts: @posts.as_json(only: [:id, :title, :description, :image, :created_at])
+    })
   end
 
   def create
