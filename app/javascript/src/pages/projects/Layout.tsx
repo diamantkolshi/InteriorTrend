@@ -42,7 +42,7 @@ const ProjectLayout: React.FC<{ project: any; posts: any;}> = ({project, posts, 
                     <ListGroupItem key={path} tag={InertiaLink}
                        preserveState={isNew}
                        href={`/projects/${project.id || 'new'}${path}`}
-                       active={((currentPath === `/projects/${project.id || 'new'}` && path === '') || (path !== '' && currentPath.indexOf(path) > -1))}>
+                       active={((currentPath === `/projects/${project.id}${path}`))}>
                       {label}
                     </ListGroupItem>))
                   }
