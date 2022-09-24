@@ -13,10 +13,12 @@ class Projects::PostsController < Projects::BaseController
   end
 
   def new
-    @posts = @project.posts
+    @post = @project.posts.new
+    @posts = @project.posts.where.not(id: nil)
     inertia('projects/posts/New', {
       project: @project.as_json,
-      posts: @posts.as_json(only: [:id, :title, :description, :image, :created_at])
+      posts: @posts.as_json(only: [:id, :title, :description, :image, :created_at]),
+      post: @post.as_json(only: [:id, :title, :description, :image, :created_at]),
     })
   end
 

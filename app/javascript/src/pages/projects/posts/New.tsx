@@ -15,7 +15,7 @@ import PostForm from "../forms/PostForm";
 
 const ttable = withScope('helpers', 'project', 'index', 'table');
 
-const New = ({project, posts}) => {
+const New = ({project, posts, post}) => {
   const [postValue, setProjectValues] = useState(project);
 
   function handleSubmit() {
