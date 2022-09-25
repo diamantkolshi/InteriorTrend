@@ -3,14 +3,17 @@ class Projects::IngredientsController < Projects::BaseController
 
   def new
     @posts = @project.posts.where.not(id: nil)
-    @ingredient = @post.ingredients.new
+    @ingredient = @post.ingredients
 
     inertia('projects/posts/Edit', {
       project: @project.as_json,
       posts: @posts.as_json(only: [:id, :title, :description, :image, :created_at]),
       post: @post.as_json(only: [:id, :title, :description, :image_url, :created_at]),
-      ingredient: @ingredient
+      ingredient: @ingredient.as_json(include: [:colors, :materials])
     })
+  end
+
+  def create 
   end
 
   def edit 
@@ -21,8 +24,11 @@ class Projects::IngredientsController < Projects::BaseController
       project: @project.as_json,
       posts: @posts.as_json(only: [:id, :title, :description, :image, :created_at]),
       post: @post.as_json(only: [:id, :title, :description, :image_url, :created_at]),
-      ingredient: @ingredient
+      ingredient: @ingredient.as_json(include: [:colors, :materials])
     })
+  end
+  
+  def update 
   end
 
   private

@@ -23,6 +23,12 @@ sq:
         location: Lokacioni
         street: Rruga
         project_info: Informatat gjenerale
+      ingredient: 
+        name: Emri
+        price: Çmimi
+        style_id: Stili
+        form_id: Forma
+        category_id: Kategoria
   errors:
     format: "%{attribute} %{message}"
   messages:

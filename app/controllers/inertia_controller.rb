@@ -1,4 +1,5 @@
 class InertiaController < ApplicationController
+  include FormOptions
   before_action :authenticate_user!
 
   inertia_share do
@@ -12,6 +13,8 @@ class InertiaController < ApplicationController
     if user_signed_in?
       ret['user'] = {id: current_user.id, email: current_user.email}
     end
+
+    ret['form_options'] = form_options
 
     ret
   end
