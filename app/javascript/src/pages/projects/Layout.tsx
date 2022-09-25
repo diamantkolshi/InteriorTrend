@@ -50,10 +50,10 @@ const ProjectLayout: React.FC<{ project: any; posts: any;}> = ({project, posts, 
                   {posts.map((post) => (
                     <ListGroupItem key={`posts/${post.id}`}
                        tag={InertiaLink}
-                       href={`/projects/${project.id}/posts/${post.id}`}
-                       active={((currentPath === `/projects/${project.id}posts/${post.id}`))}
+                       href={`/projects/${project.id}/posts/${post.id}/edit`}
+                       active={((currentPath === `/projects/${project.id}/posts/${post.id}/edit`))}
                        style={{paddingLeft: 35, fontSize: 14}}>
-                      {post.title}
+                      <i className="fas fa-house-user fa-sm" /> {post.title}
                     </ListGroupItem>))
                   }
 

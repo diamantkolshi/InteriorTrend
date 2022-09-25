@@ -26,9 +26,18 @@ class Projects::PostsController < Projects::BaseController
   end
 
   def edit
+    @post = @project.posts.find(params[:id])
+    @posts = @project.posts.where.not(id: nil)
+
+    inertia('projects/posts/Edit', {
+      project: @project.as_json,
+      posts: @posts.as_json(only: [:id, :title, :description, :image, :created_at]),
+      post: @post.as_json(only: [:id, :title, :description, :image_url, :created_at]),
+      ingredient: nil
+    })
   end
 
-  def update
+  def update  
   end
 
   def destroy

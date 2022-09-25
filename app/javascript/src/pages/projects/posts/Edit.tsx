@@ -16,20 +16,17 @@ import Ingredient from "./Ingredient"
 
 const ttable = withScope('helpers', 'project', 'index', 'table');
 
-const New = ({project, posts, post, ingredient}) => {
+const Edit = ({project, posts, post, ingredient}) => {
   const [ingredients, setIngredients] = useState([]);
   const [ingredientModal, setIngredientModal] = useState(false);
 
   const closeIngredientModal = () => {
-    setIngredientModal(false)
-    // Inertia.visit(`/projects/new`, {preserveScroll: true})
+    Inertia.visit(`/projects/${project.id}/posts/${post.id}/edit`, {preserveScroll: true})
   }
 
   const openIngredientModal = () => {
-    setIngredientModal(true)
-    // Inertia.visit(`/projects/new`, {preserveScroll: true})
+    Inertia.visit(`/projects/${project.id}/posts/${post.id}/ingredients/new`, {preserveScroll: true})
   }
-
 
   function handleSubmit() {
   }
@@ -41,18 +38,18 @@ const New = ({project, posts, post, ingredient}) => {
     <ProjectLayout project={project} posts={posts}> 
       <Row>
         <Col xl={12}>
-          <CardForm onSubmit={handleSubmit} title={"Shto postim te ri"} errors={useErrors('project')}>
+          <CardForm onSubmit={handleSubmit} title={"Edito postimin"} errors={useErrors('project')}>
             <PostForm
-              post={{}}
+              post={post}
               onChange={handleChange}
               openModal={openIngredientModal}
             />
           </CardForm>
         </Col>
       </Row> 
-      <Ingredient ingredient={ingredient} isOpen={ingredientModal} toggleModal={closeIngredientModal} />
+      <Ingredient ingredient={ingredient} isOpen={!!ingredient} toggleModal={closeIngredientModal} />
     </ProjectLayout>
   )
 }
 
-export default New;
+export default Edit;

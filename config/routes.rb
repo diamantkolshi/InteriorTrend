@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   root to: "projects#index"
   resources :projects do
-    resources :posts, controller: 'projects/posts', only: [:index, :new, :create, :edit, :update, :destroy]
+    resources :posts, controller: 'projects/posts', only: [:index, :new, :create, :edit, :update, :destroy] do 
+      resources :ingredients, controller: 'projects/ingredients', only: [:new, :edit] 
+    end
   end
 end
