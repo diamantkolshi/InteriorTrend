@@ -48,7 +48,7 @@ const IngredientForm = ({ingredient, onChange, newMode = false}) => {
   return (
     <div>
       <Row form>
-        <Col md={7}>
+        <Col md={8}>
           <CFormGroup tag={Input}
                       label={tp('name')}
                       error={errors.name}
@@ -58,16 +58,19 @@ const IngredientForm = ({ingredient, onChange, newMode = false}) => {
                       onChange={handleChange}
                       />
         </Col>
-        <Col> 
+        <Col md={3}> 
           <CFormGroup tag={Input}
                       label={tp('price')}
                       error={errors.price}
-                      {...{type: "input", id: 'price'}}
+                      {...{type: "number", id: 'price'}}
                       value={ingredient && ingredient['price']}
                       placeholder=""
                       onChange={handleChange}
                       />
         </Col>
+        <Col md={1} style={{marginTop: 38}}>
+          EUR
+        </Col> 
       </Row>
       <Row form>
         <Col md={4}>

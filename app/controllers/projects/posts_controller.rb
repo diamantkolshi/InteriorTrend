@@ -23,6 +23,9 @@ class Projects::PostsController < Projects::BaseController
   end
 
   def create
+    
+    binding.pry
+    
   end
 
   def edit    
@@ -46,6 +49,10 @@ class Projects::PostsController < Projects::BaseController
   end
 
   private
+
+  def post_permit_params 
+    params.require(:post).permit(:title, :description, :image)
+  end
 
   def first_created_at_params
     posts = @project&.posts

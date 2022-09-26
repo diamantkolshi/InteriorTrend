@@ -29,6 +29,10 @@ sq:
         style_id: Stili
         form_id: Forma
         category_id: Kategoria
+      post: 
+        title: Titulli
+        description: Pershkrimi
+        image: Imazhi
   errors:
     format: "%{attribute} %{message}"
   messages:
