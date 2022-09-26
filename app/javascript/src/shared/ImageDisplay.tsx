@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const ImageDislay = ({imageUrl, ingredients, openModal}) => {
+const ImageDislay = ({imageUrl, ingredients, openModal, openEditModal}) => {
   const [displayPoint, setDisplayPoint] = useState('none');
   const [pointX, setPointX] = useState(null);
   const [pointY, setPointY] = useState(null);
@@ -29,11 +29,15 @@ const ImageDislay = ({imageUrl, ingredients, openModal}) => {
 
   function displayExistIngredient() {
     return (
-      ingredients.map(({position_x, position_y}) => displayPointIcon('block', position_x, position_y))
+      ingredients.map(({id, position_x, position_y}) => displayPointIcon('block', position_x, position_y, id))
     )
   }
 
-  function displayPointIcon(isShow, x, y) {
+  function openIngredientModal(ingredientId) {
+    openEditModal(ingredientId)
+  }
+
+  function displayPointIcon(isShow, x, y, id=null) {
     return (
       <i className="fas fa-tag" 
         style={{
@@ -43,9 +47,11 @@ const ImageDislay = ({imageUrl, ingredients, openModal}) => {
           left: `${x}%`,
           color: 'red',
           fontSize: 22,
-          animation: 'orgin 5s linear infinite'
+          animation: 'orgin 5s linear infinite',
+          cursor: 'pointer'
         }}
-      />
+        onClick={() => openIngredientModal(id)}
+        />
     )
   }
 

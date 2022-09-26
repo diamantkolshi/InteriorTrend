@@ -16,7 +16,7 @@ import Ingredient from "./Ingredient"
 
 const ttable = withScope('helpers', 'project', 'index', 'table');
 
-const Edit = ({project, posts, post, ingredients, ingredient}) => {
+const Edit = ({project, posts, post, ingredients, ingredient, type}) => {
   const closeIngredientModal = () => {
     Inertia.visit(`/projects/${project.id}/posts/${post.id}/edit`, {preserveScroll: true})
   }
@@ -25,9 +25,13 @@ const Edit = ({project, posts, post, ingredients, ingredient}) => {
     Inertia.visit(`/projects/${project.id}/posts/${post.id}/ingredients/new`, 
       { 
         data: { position_x: pointX, position_y: pointY, width, height }, 
-        preserveState: true
+        preserveScroll: true
       }
     );
+  }
+
+  const openEditIngredientModal = (ingredientId) => {
+    Inertia.visit(`/projects/${project.id}/posts/${post.id}/ingredients/${ingredientId}/edit`, {preserveScroll: true})
   }
 
   function handleSubmit() {
@@ -46,6 +50,7 @@ const Edit = ({project, posts, post, ingredients, ingredient}) => {
               ingredients={ingredients}
               onChange={handleChange}
               openModal={openIngredientModal}
+              openEditModal={openEditIngredientModal}
             />
           </CardForm>
         </Col>
@@ -56,6 +61,7 @@ const Edit = ({project, posts, post, ingredients, ingredient}) => {
         toggleModal={closeIngredientModal}
         projectId={project.id}
         postId={post.id} 
+        type={type || ''}
       />
     </ProjectLayout>
   )

@@ -8,7 +8,7 @@ import IngredientForm from "../forms/IngredientForm";
 
 const ttable = withScope('helpers', 'project', 'new', 'table');
 
-const Ingredient = ({ingredient, isOpen, toggleModal, projectId, postId}) => {
+const Ingredient = ({ingredient, isOpen, toggleModal, projectId, postId, type}) => {
   const [ingredientValues, setIngredientValues] = useState(ingredient);
 
   useEffect(() => {
@@ -16,9 +16,15 @@ const Ingredient = ({ingredient, isOpen, toggleModal, projectId, postId}) => {
   }, [ingredient])
 
   function handleSubmit() {
-    Inertia.post(`/projects/${projectId}/posts/${postId}/ingredients`, {
-      ingredient: ingredientValues
-    }, {preserveState: true});
+    if(type === "create") {
+      Inertia.post(`/projects/${projectId}/posts/${postId}/ingredients`, {
+        ingredient: ingredientValues
+      }, {preserveState: true});
+    } else if(type === "edit") {
+      Inertia.put(`/projects/${projectId}/posts/${postId}/ingredients/${ingredient.id}`, {
+        ingredient: ingredientValues
+      }, {preserveState: true});
+    }
   }
 
   function handleChange(update) {
@@ -28,7 +34,7 @@ const Ingredient = ({ingredient, isOpen, toggleModal, projectId, postId}) => {
   return ( 
     <div>
       <Modal isOpen={isOpen} size="lg" toggle={() => toggleModal()} backdrop={'static'}>
-        <CardFormModal onSubmit={handleSubmit} title={"Shto perberes te ri"}  errors={useErrors('ingredient')} toggleModal={toggleModal}>
+        <CardFormModal onSubmit={handleSubmit} title={type == 'create' ? "Shto perberes te ri" : "Edito perberesin"}  errors={useErrors('ingredient')} toggleModal={toggleModal}>
           <IngredientForm
             ingredient={ingredientValues}
             onChange={handleChange}

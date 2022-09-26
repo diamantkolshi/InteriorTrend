@@ -13,7 +13,8 @@ class Projects::IngredientsController < Projects::BaseController
       posts: @posts.as_json(only: [:id, :title, :description, :image, :created_at]),
       post: @post.as_json(only: [:id, :title, :description, :image_url, :created_at]),
       ingredients: @ingredients.as_json,
-      ingredient: @ingredient.as_json(include: [:colors, :materials])
+      ingredient: @ingredient.as_json(include: [:colors, :materials]),
+      type: 'create'
     })
   end
 
@@ -24,7 +25,7 @@ class Projects::IngredientsController < Projects::BaseController
 
     if ingredient.save
       flash[:message] = t('controllers.ingredient.created_successfully')
-      redirect_to projects_path
+      redirect_to edit_project_post_path(@project, @post)
     else      
       set_errors(:ingredient, ingredient.inertia_errors)
       redirect_to new_project_post_ingredient_path(@project, @post)
@@ -41,11 +42,25 @@ class Projects::IngredientsController < Projects::BaseController
       posts: @posts.as_json(only: [:id, :title, :description, :image, :created_at]),
       post: @post.as_json(only: [:id, :title, :description, :image_url, :created_at]),
       ingredients: @ingredients.as_json,
-      ingredient: @ingredient.as_json(include: [:colors, :materials])
+      ingredient: @ingredient.as_json(include: [:colors, :materials]),
+      type: 'edit'
     })
   end
   
   def update 
+    @ingredient = @post.ingredients.find(params[:id])
+    @ingredient.assign_attributes(ingredient_params)
+
+    if @project.save
+      flash[:message] = t('controllers.ingredient.update_successfully')
+      redirect_to edit_project_post_path(@project, @post)
+    else
+      set_errors(:project, @project.inertia_errors)
+      redirect_to new_project_post_ingredient_path(@project, @post)
+    end
+    
+    binding.pry
+    
   end
 
   private
