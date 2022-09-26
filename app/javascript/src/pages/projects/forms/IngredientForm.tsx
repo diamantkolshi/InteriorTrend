@@ -17,15 +17,6 @@ const Textarea = 'textarea';
 
 const IngredientForm = ({ingredient, onChange, newMode = false}) => {
   const {form_options} = usePage();
-  
-  const [formConfig, {text, select, date, number}] = useFormState({
-    ...ingredient
-  }, {
-    withIds: true, // enable automatic creation of id and htmlFor props
-    onChange: (e, stateValues, nextStateValues) => {
-      onChange(nextStateValues);
-    }
-  });
 
   function handleChange(e) {
     const {name, value} = e.currentTarget;
@@ -33,20 +24,17 @@ const IngredientForm = ({ingredient, onChange, newMode = false}) => {
     onChange({...ingredient, [name]: value})
   }
 
-  const errors = useErrors('project');
+  const errors = useErrors('ingredient');
 
-  useEffect(() => {
-    Object.keys(ingredient).forEach((key) => {
-        formConfig.setField(key, ingredient[key]);
-    });
-  }, [ingredient])
+  function displayDropdownField(field, placeholder, options) {  
 
-  function displayDropdownField(field, placeholder, options) {
     return (
       <CFormGroup tag={CustomInput}
                   label={tp(field)}
                   error={errors && errors[field]}
-                  {...{type: "select", id: field}}>
+                  {...{type: "select", id: field}}
+                  value={ingredient && ingredient[field] || ''}
+                  onChange={handleChange}>
           <option value="">{placeholder}</option>
           {
             options.map((option, i) => (
@@ -59,25 +47,29 @@ const IngredientForm = ({ingredient, onChange, newMode = false}) => {
 
   return (
     <div>
-      <Row>
+      <Row form>
         <Col md={7}>
           <CFormGroup tag={Input}
                       label={tp('name')}
                       error={errors.name}
+                      {...{type: "input", id: 'name'}}
+                      value={ingredient && ingredient['name']}
                       placeholder=""
-                      {...text('name')}
+                      onChange={handleChange}
                       />
         </Col>
         <Col> 
           <CFormGroup tag={Input}
                       label={tp('price')}
                       error={errors.price}
+                      {...{type: "input", id: 'price'}}
+                      value={ingredient && ingredient['price']}
                       placeholder=""
-                      {...text('price')}
+                      onChange={handleChange}
                       />
         </Col>
       </Row>
-      <Row>
+      <Row form>
         <Col md={4}>
           {displayDropdownField('style_id', 'Zgjidhni stilin', form_options.styles)}
         </Col>

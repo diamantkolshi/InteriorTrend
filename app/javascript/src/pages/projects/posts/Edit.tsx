@@ -24,8 +24,13 @@ const Edit = ({project, posts, post, ingredient}) => {
     Inertia.visit(`/projects/${project.id}/posts/${post.id}/edit`, {preserveScroll: true})
   }
 
-  const openIngredientModal = () => {
-    Inertia.visit(`/projects/${project.id}/posts/${post.id}/ingredients/new`, {preserveScroll: true})
+  const openIngredientModal = ({pointX, pointY, width, height}) => {
+    Inertia.visit(`/projects/${project.id}/posts/${post.id}/ingredients/new`, 
+      { 
+        data: { position_x: pointX, position_y: pointY, width, height }, 
+        preserveState: true
+      }
+    );
   }
 
   function handleSubmit() {
@@ -47,7 +52,13 @@ const Edit = ({project, posts, post, ingredient}) => {
           </CardForm>
         </Col>
       </Row> 
-      <Ingredient ingredient={ingredient} isOpen={!!ingredient} toggleModal={closeIngredientModal} />
+      <Ingredient   
+        ingredient={ingredient} 
+        isOpen={!!ingredient} 
+        toggleModal={closeIngredientModal}
+        projectId={project.id}
+        postId={post.id} 
+      />
     </ProjectLayout>
   )
 }

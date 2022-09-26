@@ -9,11 +9,18 @@ const ImageDislay = ({imageUrl, openModal}) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - (rect.left + 4);
     const y = e.clientY - (rect.top + 4);
-
+    
     const percentX = (x/rect.width) * 100
     const percentY = (y/rect.height) * 100
-    
-    openModal()
+
+    openModal(
+      {
+        pointX: percentX.toFixed(2), 
+        pointY: percentY.toFixed(2), 
+        width: rect.width.toFixed(2), 
+        height: rect.height.toFixed(2)
+      }
+    )
     
     setPointX(percentX);
     setPointY(percentY)

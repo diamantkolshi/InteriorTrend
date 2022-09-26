@@ -39,18 +39,6 @@ const New = ({project, posts, post, ingredient}) => {
 
   return (
     <ProjectLayout project={project} posts={posts}> 
-      <Row>
-        <Col xl={12}>
-          <CardForm onSubmit={handleSubmit} title={"Shto postim te ri"} errors={useErrors('project')}>
-            <PostForm
-              post={{}}
-              onChange={handleChange}
-              openModal={openIngredientModal}
-            />
-          </CardForm>
-        </Col>
-      </Row> 
-      <Ingredient ingredient={ingredient} isOpen={ingredientModal} toggleModal={closeIngredientModal} />
     </ProjectLayout>
   )
 }

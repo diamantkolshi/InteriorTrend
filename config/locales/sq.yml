@@ -82,3 +82,6 @@ sq:
     project:
       created_successfully: Projekti eshte krijuar me sukses.
       deleted_successfully: Projekti eshte fshire me sukses.
+    ingredient:
+      created_successfully: Detajet jane krijuar me sukses.
+
