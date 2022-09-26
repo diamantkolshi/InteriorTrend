@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const ImageDislay = ({imageUrl, openModal}) => {
+const ImageDislay = ({imageUrl, ingredients, openModal}) => {
   const [displayPoint, setDisplayPoint] = useState('none');
   const [pointX, setPointX] = useState(null);
   const [pointY, setPointY] = useState(null);
@@ -27,20 +27,33 @@ const ImageDislay = ({imageUrl, openModal}) => {
     setDisplayPoint('block');
   }
 
-  return (
-    <>
-      <img onClick={handleClick} src={imageUrl} alt="Alt text" style={{margin: 0, width: '100%', height:"100%"}} />
+  function displayExistIngredient() {
+    return (
+      ingredients.map(({position_x, position_y}) => displayPointIcon('block', position_x, position_y))
+    )
+  }
+
+  function displayPointIcon(isShow, x, y) {
+    return (
       <i className="fas fa-tag" 
         style={{
-          display: displayPoint,
+          display: `${isShow}`,
           position: 'absolute', 
-          top: pointY + '%',
-          left: pointX + '%',
+          top: `${y}%`,
+          left: `${x}%`,
           color: 'red',
           fontSize: 22,
           animation: 'orgin 5s linear infinite'
         }}
       />
+    )
+  }
+
+  return (
+    <>
+      <img onClick={handleClick} src={imageUrl} alt="Alt text" style={{margin: 0, width: '100%', height:"100%"}} />
+      {displayExistIngredient()}
+      {displayPointIcon(displayPoint, pointX, pointY)}
     </>
   )
 };

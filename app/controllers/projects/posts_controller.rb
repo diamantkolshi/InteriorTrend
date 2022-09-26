@@ -25,14 +25,16 @@ class Projects::PostsController < Projects::BaseController
   def create
   end
 
-  def edit
+  def edit    
     @post = @project.posts.find(params[:id])
     @posts = @project.posts.where.not(id: nil)
+    @ingredients = @post.ingredients
 
     inertia('projects/posts/Edit', {
       project: @project.as_json,
       posts: @posts.as_json(only: [:id, :title, :description, :image, :created_at]),
       post: @post.as_json(only: [:id, :title, :description, :image_url, :created_at]),
+      ingredients: @ingredients.as_json,
       ingredient: nil
     })
   end

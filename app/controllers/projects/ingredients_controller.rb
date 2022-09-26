@@ -3,6 +3,7 @@ class Projects::IngredientsController < Projects::BaseController
 
   def new
     @posts = @project.posts.where.not(id: nil)
+    @ingredients = @post.ingredients
     @ingredient = @post.ingredients.new 
 
     @ingredient.assign_attributes(point_params)
@@ -11,6 +12,7 @@ class Projects::IngredientsController < Projects::BaseController
       project: @project.as_json,
       posts: @posts.as_json(only: [:id, :title, :description, :image, :created_at]),
       post: @post.as_json(only: [:id, :title, :description, :image_url, :created_at]),
+      ingredients: @ingredients.as_json,
       ingredient: @ingredient.as_json(include: [:colors, :materials])
     })
   end
@@ -23,20 +25,22 @@ class Projects::IngredientsController < Projects::BaseController
     if ingredient.save
       flash[:message] = t('controllers.ingredient.created_successfully')
       redirect_to projects_path
-    else
+    else      
       set_errors(:ingredient, ingredient.inertia_errors)
       redirect_to new_project_post_ingredient_path(@project, @post)
     end
   end
 
   def edit 
+    @ingredients = @post.ingredients
     @posts = @project.posts.where.not(id: nil)
-    @ingredient = @post.ingredients.find(params[:id])
+    @ingredient = @ingredients.find(params[:id])
 
     inertia('projects/posts/Edit', {
       project: @project.as_json,
       posts: @posts.as_json(only: [:id, :title, :description, :image, :created_at]),
       post: @post.as_json(only: [:id, :title, :description, :image_url, :created_at]),
+      ingredients: @ingredients.as_json,
       ingredient: @ingredient.as_json(include: [:colors, :materials])
     })
   end

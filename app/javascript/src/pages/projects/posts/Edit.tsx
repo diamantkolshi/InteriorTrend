@@ -16,10 +16,7 @@ import Ingredient from "./Ingredient"
 
 const ttable = withScope('helpers', 'project', 'index', 'table');
 
-const Edit = ({project, posts, post, ingredient}) => {
-  const [ingredients, setIngredients] = useState([]);
-  const [ingredientModal, setIngredientModal] = useState(false);
-
+const Edit = ({project, posts, post, ingredients, ingredient}) => {
   const closeIngredientModal = () => {
     Inertia.visit(`/projects/${project.id}/posts/${post.id}/edit`, {preserveScroll: true})
   }
@@ -46,6 +43,7 @@ const Edit = ({project, posts, post, ingredient}) => {
           <CardForm onSubmit={handleSubmit} title={"Edito postimin"} errors={useErrors('project')}>
             <PostForm
               post={post}
+              ingredients={ingredients}
               onChange={handleChange}
               openModal={openIngredientModal}
             />

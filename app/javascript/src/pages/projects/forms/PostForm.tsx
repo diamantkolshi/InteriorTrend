@@ -14,7 +14,7 @@ import { withScope } from "../../../shared/i18n";
 const tp = withScope('activerecord', 'attributes', 'project');
 const Textarea = 'textarea';
 
-const PostForm = ({post, onChange, openModal, newMode = false}) => {
+const PostForm = ({post, ingredients, onChange, openModal, newMode = false}) => {
   const [formConfig, {text, select, date, number}] = useFormState({
     ...post
   }, {
@@ -69,6 +69,7 @@ const PostForm = ({post, onChange, openModal, newMode = false}) => {
         <Col md={9} xl={8} style={{padding: 0, position: 'relative'}}>
           <ImageDisplay 
             imageUrl={post.image_url} 
+            ingredients={ingredients}
             openModal={openModal}
           />
         </Col>
