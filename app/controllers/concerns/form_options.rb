@@ -21,6 +21,18 @@ module FormOptions
               id: f.id,
               name: f.name
           }
+        },
+        colors: Color.all.map { |f|
+          {
+              id: f.id,
+              name: f.name
+          }
+        },
+        materials: Material.all.map { |f|
+          {
+              id: f.id,
+              name: f.name
+          }
         }
       }
     end

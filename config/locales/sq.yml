@@ -29,6 +29,8 @@ sq:
         style_id: Stili
         form_id: Forma
         category_id: Kategoria
+        color_ids: Ngjyrat
+        material_ids: Materialet
       post: 
         title: Titulli
         description: Pershkrimi

@@ -18,23 +18,35 @@ const Textarea = 'textarea';
 const IngredientForm = ({ingredient, onChange, newMode = false}) => {
   const {form_options} = usePage();
 
-  function handleChange(e) {
+  function handleChange(e, multiselect) {
     const {name, value} = e.currentTarget;
+    
+    if(!multiselect) {
+      onChange({...ingredient, [name]: value})
+    } else {
+      const arr = ingredient[name]
+      const arrValue = parseInt(value)
+      if (!arr.includes(arrValue)) {        
+        arr.push(arrValue);              
+      } else  {
+        arr.splice(arr.indexOf(arrValue), 1); 
+      }
 
-    onChange({...ingredient, [name]: value})
+      onChange({...ingredient, [name]: arr})
+    }
   }
 
   const errors = useErrors('ingredient');
 
-  function displayDropdownField(field, placeholder, options) {  
+  function displayDropdownField(field, placeholder, options, multiselect = false) {  
 
     return (
       <CFormGroup tag={CustomInput}
                   label={tp(field)}
                   error={errors && errors[field]}
-                  {...{type: "select", id: field}}
+                  {...{type: "select", id: field, multiple: multiselect}}
                   value={ingredient && ingredient[field] || ''}
-                  onChange={handleChange}>
+                  onChange={(e) => handleChange(e, multiselect)}>
           <option value="">{placeholder}</option>
           {
             options.map((option, i) => (
@@ -81,6 +93,14 @@ const IngredientForm = ({ingredient, onChange, newMode = false}) => {
         </Col>
         <Col md={4}>
           {displayDropdownField('category_id', 'Zgjidhni kategorine', form_options.categories)}
+        </Col>
+      </Row>
+      <Row form>
+        <Col md={4}>
+          {displayDropdownField('color_ids', 'Zgjidhni stilin', form_options.colors, true)}
+        </Col>
+        <Col md={4}>
+          {displayDropdownField('material_ids', 'Zgjidhni formen', form_options.materials, true)}
         </Col>
       </Row>
     </div>

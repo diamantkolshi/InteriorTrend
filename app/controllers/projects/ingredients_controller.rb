@@ -13,7 +13,7 @@ class Projects::IngredientsController < Projects::BaseController
       posts: @posts.as_json(only: [:id, :title, :description, :image, :created_at]),
       post: @post.as_json(only: [:id, :title, :description, :image_url, :created_at]),
       ingredients: @ingredients.as_json,
-      ingredient: @ingredient.as_json(include: [:colors, :materials]),
+      ingredient: @ingredient.as_json(methods: [:color_ids, :material_ids]),
       type: 'create'
     })
   end
@@ -21,6 +21,9 @@ class Projects::IngredientsController < Projects::BaseController
   def create 
     ingredient = @post.ingredients.new
     ingredient.assign_attributes(ingredient_params)
+    
+    binding.pry
+    
 
     if ingredient.save
       flash[:message] = t('controllers.ingredient.created_successfully')
@@ -41,7 +44,7 @@ class Projects::IngredientsController < Projects::BaseController
       posts: @posts.as_json(only: [:id, :title, :description, :image, :created_at]),
       post: @post.as_json(only: [:id, :title, :description, :image_url, :created_at]),
       ingredients: @ingredients.as_json,
-      ingredient: @ingredient.as_json(include: [:colors, :materials]),
+      ingredient: @ingredient.as_json(methods: [:color_ids, :material_ids]),
       type: 'edit'
     })
   end
@@ -49,7 +52,9 @@ class Projects::IngredientsController < Projects::BaseController
   def update 
     @ingredient = @post.ingredients.find(params[:id])
     @ingredient.assign_attributes(ingredient_params)
-        
+    
+    binding.pry
+
     if @ingredient.save
       flash[:message] = t('controllers.ingredient.update_successfully')
       redirect_to edit_project_post_path(@ingredient, @post)
@@ -66,7 +71,8 @@ class Projects::IngredientsController < Projects::BaseController
   end
 
   def ingredient_params 
-    params.require(:ingredient).permit(:name, :price, :style_id, :form_id, :category_id, :position_x, :position_y, :width, :height)
+    params.require(:ingredient).permit( :name, :price, :style_id, :form_id, :category_id, :position_x, :position_y, :width, :height, 
+                                        :color_ids => [], :material_ids => [])
   end
 
   def find_post
