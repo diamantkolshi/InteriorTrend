@@ -37,7 +37,7 @@ class Projects::PostsController < Projects::BaseController
       project: @project.as_json,
       posts: @posts.as_json(only: [:id, :title, :description, :image, :created_at]),
       post: @post.as_json(only: [:id, :title, :description, :image_url, :created_at]),
-      ingredients: @ingredients.as_json,
+      ingredients: @ingredients.map(&method(:ingredient_as_json)),
       ingredient: nil
     })
   end
@@ -49,6 +49,32 @@ class Projects::PostsController < Projects::BaseController
   end
 
   private
+
+  def ingredient_as_json(ingredient)
+    {
+        id: ingredient.id,
+        name: ingredient.name,
+        price: ingredient.price,
+        position_x: ingredient.position_x,
+        position_y: ingredient.position_y,
+        width: ingredient.width,
+        height: ingredient.height,
+        style: ingredient.style&.name,
+        form: ingredient.form&.name,
+        category: ingredient.category&.name,
+        colors: ingredient.colors.map do |color|
+          {
+            name: color.name,
+            hex: color.hex
+          }
+        end,
+        materials: ingredient.materials.map do |material|
+          {
+            name: material.name,
+          }
+        end
+    }
+  end
 
   def post_permit_params 
     params.require(:post).permit(:title, :description, :image)

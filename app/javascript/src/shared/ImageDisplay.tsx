@@ -47,6 +47,26 @@ const ImageDislay = ({imageUrl, ingredients, openModal, openEditModal}) => {
     setDisplayInfoId(null)
   }
 
+  function display_colors(colors) {
+    return(
+      colors.map((color) => {
+        return (
+          <p style={{width: 14, height: 14, borderRadius: 7, marginLeft: 5, backgroundColor: color.hex}}></p>
+        )
+      })
+    )
+  }
+
+  function display_materials(materials) {
+    return(
+      materials.map((material, i) => {
+        return (
+          <span style={{marginLeft: 5, marginTop: 1}}>{material.name}</span>
+        )
+      })
+    )
+  }
+
   function displayPointIcon(isShow, x, y, ingredient=null) {
     var info = 'none'
     var id = null
@@ -85,8 +105,17 @@ const ImageDislay = ({imageUrl, ingredients, openModal, openEditModal}) => {
           lineHeight: 0.6
         }}>
           <div style={{position: 'absolute', width: 12, height: 12, backgroundColor: '#fff', top: -6, left: 15,  transform: 'rotate(45deg)'}}></div>
-          <p style={{fontSize: 14}}>Name: <span style={{fontSize: 12}}>{ingredient.name}</span></p>
-          <p style={{fontSize: 14}}>Price: <span style={{fontSize: 12}}>{ingredient.price} EUR</span></p>
+          <p style={{fontSize: 16}}>Name: <span style={{fontSize: 12}}>{ingredient.name}</span></p>
+          <p style={{fontSize: 16}}>Price: <span style={{fontSize: 12}}>{ingredient.price} EUR</span></p>
+          <p style={{fontSize: 16}}>Stili: <span style={{fontSize: 12}}>{ingredient.style}</span></p>
+          <p style={{fontSize: 16}}>Forma: <span style={{fontSize: 12}}>{ingredient.form}</span></p>
+          <p style={{fontSize: 16}}>Kategoria: <span style={{fontSize: 12}}>{ingredient.category}</span></p>
+          <p style={{fontSize: 16, display: 'flex', height: 12}}>
+            Ngjyra: <span style={{fontSize: 12, display: 'flex'}}>{display_colors(ingredient.colors)}</span>
+          </p>
+          <p style={{fontSize: 16, display: 'flex', height: 12}}>
+            Materiali: <span style={{fontSize: 12, display: 'flex'}}>{display_materials(ingredient.materials)}</span>
+          </p>
         </div>
       </>
     )

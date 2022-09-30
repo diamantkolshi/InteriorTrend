@@ -47,7 +47,7 @@ const IngredientForm = ({ingredient, onChange, newMode = false}) => {
                   {...{type: "select", id: field, multiple: multiselect}}
                   value={ingredient && ingredient[field] || ''}
                   onChange={(e) => handleChange(e, multiselect)}>
-          <option value="">{placeholder}</option>
+          {!multiselect && <option value="">{placeholder}</option>}
           {
             options.map((option, i) => (
                 <option key={option.id} value={option.id}>{option.name}</option>
