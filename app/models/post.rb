@@ -2,7 +2,7 @@ class Post < ApplicationRecord
   include InertiaErrors
   include PgSearch::Model
   belongs_to :project
-  has_many :ingredients
+  has_many :ingredients, dependent: :destroy
 
   has_one_attached :image
 
