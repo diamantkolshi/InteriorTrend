@@ -1,0 +1,76 @@
+# Ruby CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-ruby/ for more details
+#
+version: 2.1
+jobs:
+  build:
+    parallelism: 1
+    shell: /bin/bash --login
+    environment:
+      CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
+      CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
+      RAILS_ENV: test
+      RACK_ENV: test
+    docker:
+      # specify the version you desire here
+      - image: circleci/ruby:2.6.6-node-browsers
+        environment:
+          PGHOST: localhost
+          PGUSER: diamantk
+          RAILS_ENV: test
+          RACK_ENV: test
+      - image: circleci/postgres:12-alpine-ram
+        environment:
+          POSTGRES_USER: diamantk
+          POSTGRES_DB: interior_trend_test
+          POSTGRES_PASSWORD:
+
+    working_directory: ~/interior_trend
+
+    steps:
+      - checkout
+      - run:
+          name: Force Bundler Version
+          command: |
+            echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
+            source $BASH_ENV
+            gem install bundler
+      - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
+      - run: mkdir -p $CIRCLE_TEST_REPORTS/cucumber
+      - run: mkdir -p $CIRCLE_ARTIFACTS/I18n/TRME
+      - run: echo "deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
+      - run: sudo wget http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc
+      - run: sudo apt-key add ACCC4CF8.asc
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - interior_trend-{{ checksum "Gemfile.lock" }}
+          # fallback to using the latest cache if no exact match is found
+          - interior_trend-
+
+      - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
+      - run: bundle clean --force
+
+      - run:
+          name: install dependencies
+          command: |
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: interior_trend-{{ checksum "Gemfile.lock" }}
+
+      # - run: cp config/database.yml.circle config/database.yml
+      - run: dockerize -wait tcp://localhost:5432 -timeout 2m
+
+      # Database setup
+      - run: bundle exec rake db:migrate # --trace
+      # - run: bundle exec rake assets:precompile
+
+      # run tests!
+      # Change to rspec if you are using rspec
+      - run:
+          name: run tests
+          command: bundle exec rspec

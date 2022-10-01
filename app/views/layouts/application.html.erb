@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>InteriorTrend</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>InertiaTodo</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= javascript_pack_tag 'application' %>
+    <%= stylesheet_pack_tag 'index', "data-turbo-track": "reload" %>
+    <%= javascript_pack_tag 'index', "data-turbo-track": "reload" %>
   </head>
 
   <body>
+    <script>
+      window.i18n = <%= raw(@i18n.to_json) %>;
+    </script>
     <%= yield %>
   </body>
 </html>
