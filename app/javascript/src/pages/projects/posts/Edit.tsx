@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Inertia } from "@inertiajs/inertia";
 import {
   Col,
@@ -17,15 +17,22 @@ import Ingredient from "./Ingredient"
 const ttable = withScope('helpers', 'project', 'index', 'table');
 
 const Edit = ({project, posts, post, ingredients, ingredient, type}) => {
+  const [ postValue, setPostValue ] = useState(post) 
+
+  useEffect(() => {
+    setPostValue(post)
+  }, [post])
+
   const closeIngredientModal = () => {
-    Inertia.visit(`/projects/${project.id}/posts/${post.id}/edit`, {preserveScroll: true})
+    Inertia.visit(`/projects/${project.id}/posts/${post.id}/edit`, {preserveScroll: true, preserveState: true})
   }
 
   const openIngredientModal = ({pointX, pointY, width, height}) => {
     Inertia.visit(`/projects/${project.id}/posts/${post.id}/ingredients/new`, 
       { 
         data: { position_x: pointX, position_y: pointY, width, height }, 
-        preserveScroll: true
+        preserveScroll: true,
+        preserveState: true
       }
     );
   }
@@ -38,6 +45,7 @@ const Edit = ({project, posts, post, ingredients, ingredient, type}) => {
   }
 
   function handleChange(update) {
+    setPostValue(update)
   }
 
   return (
@@ -46,7 +54,7 @@ const Edit = ({project, posts, post, ingredients, ingredient, type}) => {
         <Col xl={12}>
           <CardForm onSubmit={handleSubmit} title={"Edito postimin"} errors={useErrors('project')}>
             <PostForm
-              post={post}
+              post={postValue}
               ingredients={ingredients}
               onChange={handleChange}
               openModal={openIngredientModal}

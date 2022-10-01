@@ -1,4 +1,5 @@
 class Projects::IngredientsController < Projects::BaseController
+  include StorageMethods
   before_action :find_post
 
   def new
@@ -11,7 +12,7 @@ class Projects::IngredientsController < Projects::BaseController
     inertia('projects/posts/Edit', {
       project: @project.as_json,
       posts: @posts.as_json(only: [:id, :title, :description, :image, :created_at]),
-      post: @post.as_json(only: [:id, :title, :description, :image_url, :created_at]),
+      post: @post.as_json(only: [:id, :title, :description, :image_url, :created_at]).merge!(post_image_path(@post)),
       ingredients: @ingredients.map(&method(:ingredient_as_json)),
       ingredient: @ingredient.as_json(methods: [:color_ids, :material_ids]),
       type: 'create'
@@ -39,7 +40,7 @@ class Projects::IngredientsController < Projects::BaseController
     inertia('projects/posts/Edit', {
       project: @project.as_json,
       posts: @posts.as_json(only: [:id, :title, :description, :image, :created_at]),
-      post: @post.as_json(only: [:id, :title, :description, :image_url, :created_at]),
+      post: @post.as_json(only: [:id, :title, :description, :image_url, :created_at]).merge!(post_image_path(@post)),
       ingredients: @ingredients.map(&method(:ingredient_as_json)),
       ingredient: @ingredient.as_json(methods: [:color_ids, :material_ids]),
       type: 'edit'

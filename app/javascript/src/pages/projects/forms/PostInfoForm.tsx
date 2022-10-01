@@ -4,6 +4,7 @@ import {
     Input,
     Row
 } from 'reactstrap';
+
 import CFormGroup from "../../../shared/CFormGroup";
 import useErrors from "../../../shared/useErrors";
 import { withScope } from "../../../shared/i18n";
@@ -11,7 +12,7 @@ import { withScope } from "../../../shared/i18n";
 const tp = withScope('activerecord', 'attributes', 'post');
 const Textarea = 'textarea';
 
-const PostForm = ({post, onChange, newMode = false}) => {
+const PostForm = ({post, onChange, data, setData, newMode = false}) => {
   function handleChange(e) {
     const {name, value} = e.currentTarget;
 
@@ -37,7 +38,8 @@ const PostForm = ({post, onChange, newMode = false}) => {
                           error={errors.title}
                           placeholder=""
                           {...{type: "input", id: 'title'}}
-                          onChange={handleChange}
+                          value={data.title}
+                          onChange={e => setData('title', e.target.value)}
                           />
             </Col>
           </Row>
@@ -47,8 +49,9 @@ const PostForm = ({post, onChange, newMode = false}) => {
                           label={tp('description')}
                           error={errors.description}
                           placeholder=""
+                          value={data.description}
                           {...{type: "input", id: 'description'}}
-                          onChange={handleChange}
+                          onChange={e => setData('description', e.target.value)}
                           />
             </Col>
           </Row>
@@ -59,7 +62,7 @@ const PostForm = ({post, onChange, newMode = false}) => {
                           error={errors.image}
                           placeholder=""
                           {...{type: "file", id: 'image'}}
-                          onChange={onImageChange}
+                          onChange={e => setData('avatar', e.target.files[0])}
                           />
             </Col>
           </Row>

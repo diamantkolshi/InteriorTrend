@@ -7,6 +7,7 @@ import {
   Row
 } from 'reactstrap';
 
+import { useForm } from '@inertiajs/inertia-react'
 import useErrors from "../../../shared/useErrors";
 import { withScope } from "../../../shared/i18n";
 import ProjectLayout from "../Layout";
@@ -15,12 +16,19 @@ import PostInfoForm from "../forms/PostInfoForm";
 import CardFormModal from "../../../shared/CardFormModal";
 const ttable = withScope('helpers', 'project', 'index', 'table');
 
+
 const New = ({project, posts, post}) => {
   const [postValues, setPostValues] = useState(post);
 
+  const { data, setData } = useForm({
+    title: post.title,
+    description: post.description,
+    avatar: null
+  })
+
   function handleSubmit() {
     Inertia.post(`/projects/${project.id}/posts`, {
-      post: postValues
+      post: data
     }, {preserveScroll: true, preserveState: true});
   }
 
@@ -39,6 +47,8 @@ const New = ({project, posts, post}) => {
           <PostInfoForm
             post={postValues}
             onChange={handleChange}
+            data={data}
+            setData={setData}
           />
         </CardFormModal>
       </Modal>

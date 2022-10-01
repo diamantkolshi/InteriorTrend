@@ -15,8 +15,9 @@ const tp = withScope('activerecord', 'attributes', 'project');
 const Textarea = 'textarea';
 
 const PostForm = ({post, ingredients, onChange, openModal, openEditModal, newMode = false}) => {
-  function handleChange(e, multiselect) {
+  function handleChange(e) {
     const {name, value} = e.currentTarget;
+
     onChange({...post, [name]: value})
   }
 
@@ -35,7 +36,8 @@ const PostForm = ({post, ingredients, onChange, openModal, openEditModal, newMod
                           label={tp('title')}
                           error={errors.title}
                           placeholder=""
-                          {...{type: "input", id: 'name'}}
+                          value={post.title}
+                          {...{type: "input", id: 'title'}}
                           onChange={handleChange}
                           />
             </Col>
@@ -45,6 +47,7 @@ const PostForm = ({post, ingredients, onChange, openModal, openEditModal, newMod
               <CFormGroup tag={Textarea}
                           label={tp('description')}
                           error={errors.description}
+                          value={post.description}
                           {...{type: "input", id: 'description'}}
                           onChange={handleChange}
                           />
@@ -59,7 +62,7 @@ const PostForm = ({post, ingredients, onChange, openModal, openEditModal, newMod
         </Col>
         <Col md={9} xl={8} style={{padding: 0, position: 'relative'}}>
           <ImageDisplay 
-            imageUrl={post.image_url} 
+            imageUrl={post.image_path || post.image_url} 
             ingredients={ingredients}
             openModal={openModal}
             openEditModal={openEditModal}
