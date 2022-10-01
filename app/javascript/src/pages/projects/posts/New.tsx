@@ -1,17 +1,10 @@
 import React, { useState } from 'react';
 import { Inertia } from "@inertiajs/inertia";
-import {
-  Col,
-  CustomInput,
-  Input,
-  Row
-} from 'reactstrap';
-
 import { useForm } from '@inertiajs/inertia-react'
+import { Modal } from "reactstrap";
 import useErrors from "../../../shared/useErrors";
 import { withScope } from "../../../shared/i18n";
 import ProjectLayout from "../Layout";
-import { Modal, Button, Form, ModalBody, ModalFooter, ModalHeader, } from "reactstrap";
 import PostInfoForm from "../forms/PostInfoForm";
 import CardFormModal from "../../../shared/CardFormModal";
 const ttable = withScope('helpers', 'project', 'index', 'table');

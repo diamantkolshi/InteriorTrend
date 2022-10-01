@@ -58,6 +58,10 @@ class Projects::PostsController < Projects::BaseController
   end
 
   def destroy
+    @post = @project.posts.find(params[:id])
+    @post.destroy
+    flash[:message] = t('controllers.post.deleted_successfully')
+    redirect_to project_posts_path(@project)
   end
 
   private

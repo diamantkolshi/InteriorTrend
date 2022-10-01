@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Inertia } from "@inertiajs/inertia";
-import { withScope } from "../../shared/i18n";
-import New from "./New"
 import {
-    Button, FormGroup, Input, Label
+  Button, FormGroup, Input, Label, NavLink
 } from 'reactstrap';
+import { InertiaLink } from "@inertiajs/inertia-react";
 import * as moment from 'moment'
 import DatePicker from "react-datepicker";
+import { withScope } from "../../shared/i18n";
 import "react-datepicker/dist/react-datepicker.css";
 import Filters from "../../shared/Filters";
 import ProjectLayout from "./Layout";
+
 
 const ttable = withScope('helpers', 'post', 'index', 'table');
 const trows = withScope('helpers', 'post', 'index', 'rows');
@@ -34,8 +35,8 @@ const Posts = ({project, posts, params, firstCreatedAt}) => {
     }
   }
 
-  const editProject = (project) => {
-    Inertia.visit(`posts/${project.id}/edit`, {preserveScroll: true})
+  const editPost = (post) => {
+    Inertia.visit(`posts/${post.id}/edit`, {preserveScroll: true})
   }
 
   const createQueryParams = params =>
@@ -94,7 +95,9 @@ const Posts = ({project, posts, params, firstCreatedAt}) => {
                       posts.map((post, i) => (
                         <tr key={i}>
                           <td>
-                            {post.title}
+                            <NavLink tag={InertiaLink} className="nav-link" href={`/projects/${project.id}/posts/${post.id}/edit`} >
+                              {post.title}
+                            </NavLink>
                           </td>
                           <td>
                             {truncate(post.description, 40)}
@@ -105,8 +108,13 @@ const Posts = ({project, posts, params, firstCreatedAt}) => {
                           <td>
                             {moment(post.created_at).format('DD/MM/YYYY')}
                           </td>
-                          <td>
-                            #
+                          <td className="text-left">
+                            <Button color="info" onClick={() => editPost(post)} className="mr-2 btn-sm">
+                                <i className="fas fa-edit fa-sm" />
+                            </Button>
+                            <Button color="danger" onClick={() => handleToDelete(post)} className="btn-sm">
+                                <i className="fas fa-trash fa-sm" />
+                            </Button>
                           </td>
                         </tr>
                       ))
