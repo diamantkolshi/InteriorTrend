@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Inertia } from "@inertiajs/inertia";
 import { Badge, Button, Col, ListGroup, ListGroupItem, Row } from "reactstrap";
 import { InertiaLink } from "@inertiajs/inertia-react";
 import Layout from "../layouts/Layout";
@@ -22,14 +23,16 @@ const ProjectLayout: React.FC<{ project: any; posts: any;}> = ({project, posts, 
     const isNew = !project.id;
     const currentPath = window.location.pathname;
     const [currentModal, setCurrentModal] = useState(null);
-    const toggleModal = (modal) => {
-        setCurrentModal(modal === currentModal ? null : modal);
-    };
+
+    const toggleNewPost = () => { 
+      Inertia.visit(`/projects/${project.id}/posts/new`, {preserveScroll: true})
+    }
+
     return (
         <Layout
           title={`${project.title}`} breadcrumps={breadcrumps}
           actions={<div>
-            <Button color="secondary" type="button" onClick={() => toggleModal('message')}>
+            <Button color="secondary" type="button" onClick={() => toggleNewPost()}>
               <i className="fas fa-plus fa-sm" />{' '}
               {t('helpers', 'post', 'new_post')}
             </Button>{' '}
