@@ -1,8 +1,13 @@
 class Post < ApplicationRecord
+  include InertiaErrors
+  include PgSearch::Model
   belongs_to :project
-  has_many :ingredients
+  has_many :ingredients, dependent: :destroy
 
-  validates_presence_of :title
+  has_one_attached :image
+
+  validates_presence_of :title, :description, :image
+  validate :image_type, if: -> { image.present? } 
 
   scope :distinct_posts, -> (params = nil) {
     select("DISTINCT ON (id) #{self.table_name}.*")
@@ -33,8 +38,20 @@ class Post < ApplicationRecord
       .where(materials: { id: materials_ids })
   }
 
+  pg_search_scope :search, using: { tsearch: { prefix: true } }, against: %i(title description)
+
+  scope :filter_from_created, -> (created_at) { where(created_at: created_at...DateTime.now) }
+  
   def distinct_categories
     categories = self.ingredients.map { |c| c.category }
     categories.uniq
   end
+
+  private
+
+  def image_type
+    if !image.content_type.in?(%('image/jpeg image/png'))
+      errors.add(:image, "needs to be a jpeg or png!")
+    end
+ end
 end

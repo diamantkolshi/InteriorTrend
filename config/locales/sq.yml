@@ -1,0 +1,98 @@
+---
+sq:
+  login: Kyqu
+  email: Email adresa
+  passowrd: Fjalëkalimi
+  remember_me: Me kujto mua
+  sign_up: Regjistrohuni
+  forgot_password: Keni harruar fjalëkalimin?
+  header:
+    search_for: Kerko per ...
+    projects: Projektet
+    profile: Profili
+    settings: Konfigurimet
+    sign_out: Dalje
+  activerecord:
+    models:
+    attributes:
+      project:
+        title: Titulli
+        description: Pershkrimi
+        city: Qyteti
+        select_city: Zgjedh qytetin
+        location: Lokacioni
+        street: Rruga
+        project_info: Informatat gjenerale
+      ingredient: 
+        name: Emri
+        price: Çmimi
+        style_id: Stili
+        form_id: Forma
+        category_id: Kategoria
+        color_ids: Ngjyrat
+        material_ids: Materialet
+      post: 
+        title: Titulli
+        description: Pershkrimi
+        image: Imazhi
+  errors:
+    format: "%{attribute} %{message}"
+  messages:
+      accepted: muss akzeptiert werden
+      blank: s’mund të jetë i zbrazët
+      confirmation: stimmt nicht mit %{attribute} überein
+      empty: muss ausgefüllt werden
+      equal_to: muss genau %{count} sein
+  helpers:
+    project:
+      index:
+        table:
+          projects: Projektet
+          new_project: Shto projekt
+          edit_project: Modofiko projektin
+        rows:
+          title: Titulli
+          description: Pershkrimi
+          city: Qyteti
+          location: Lokacioni
+          street: Rruga
+          views: Shikimet
+          created_at: Data e krijimit
+      new:
+        table:
+          new_project: Projekt i ri
+    post:
+      new_post: Postim i ri
+      index:
+        table:
+          posts: Postimet
+          new_post: Shto postim
+          edit_post: Modofiko postim
+        rows:
+          title: Titulli
+          description: Pershkrimi
+          image: Imazhi
+          created_at: Data e krijimit
+    list_group:
+      general_information: Informata gjenerale
+      posts: Postimet
+    filters:
+      filters: Filterat
+      search: Kerkimi
+      search_placeholder: Kerko me titull ...
+      from_created_at: Nga data e krijimit
+      city: Qyeteti
+      all: Te gjitha
+      clear_filters: Pastro Filterat
+  controllers:
+    project:
+      created_successfully: Projekti eshte krijuar me sukses.
+      deleted_successfully: Projekti eshte fshire me sukses.
+    ingredient:
+      created_successfully: Detajet jane krijuar me sukses.
+      update_successfully: Detajet jane perditesuar me sukses.
+      deleted_successfully: Detajet jane fshire me sukses.
+    post: 
+      created_successfully: Postimi eshte krijuar me sukses.
+      deleted_successfully: Postimi eshte fshire me sukses.
+

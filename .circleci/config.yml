@@ -14,7 +14,7 @@ jobs:
       RACK_ENV: test
     docker:
       # specify the version you desire here
-      - image: circleci/ruby:2.6.5-node-browsers
+      - image: circleci/ruby:2.6.6-node-browsers
         environment:
           PGHOST: localhost
           PGUSER: diamantk
@@ -30,6 +30,12 @@ jobs:
 
     steps:
       - checkout
+      - run:
+          name: Force Bundler Version
+          command: |
+            echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
+            source $BASH_ENV
+            gem install bundler
       - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
       - run: mkdir -p $CIRCLE_TEST_REPORTS/cucumber
       - run: mkdir -p $CIRCLE_ARTIFACTS/I18n/TRME
@@ -61,7 +67,7 @@ jobs:
 
       # Database setup
       - run: bundle exec rake db:migrate # --trace
-      - run: bundle exec rake assets:precompile
+      # - run: bundle exec rake assets:precompile
 
       # run tests!
       # Change to rspec if you are using rspec

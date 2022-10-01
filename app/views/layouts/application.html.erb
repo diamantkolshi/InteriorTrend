@@ -4,13 +4,15 @@
     <title>InertiaTodo</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    
-    <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= javascript_pack_tag 'application' %>
-    <%= javascript_pack_tag 'index' %>
+
+    <%= stylesheet_pack_tag 'index', "data-turbo-track": "reload" %>
+    <%= javascript_pack_tag 'index', "data-turbo-track": "reload" %>
   </head>
 
   <body>
+    <script>
+      window.i18n = <%= raw(@i18n.to_json) %>;
+    </script>
     <%= yield %>
   </body>
 </html>
