@@ -91,6 +91,7 @@ sq:
     ingredient:
       created_successfully: Detajet jane krijuar me sukses.
       update_successfully: Detajet jane perditesuar me sukses.
+      deleted_successfully: Detajet jane fshire me sukses.
     post: 
       created_successfully: Postimi eshte krijuar me sukses.
       deleted_successfully: Postimi eshte fshire me sukses.

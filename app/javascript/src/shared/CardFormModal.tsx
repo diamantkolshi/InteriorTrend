@@ -17,6 +17,7 @@ interface CardFormModalProps {
     onSubmit: (e:FormEvent<HTMLFormElement>) => void;
     toggleModal: (e:FormEvent<HTMLFormElement>) => void;
     onBack?: (e:React.MouseEvent<any, MouseEvent>) => void;
+    onDelete?: (e:React.MouseEvent<any, MouseEvent>) => void;
     title: ReactNode | string;
     errors?: {
         [key:string]: any;
@@ -59,7 +60,7 @@ export const WithCustomButtonConfig:React.FC<{idle?: BtnConfig }> = ({idle, chil
 )
 }
 
-const CardFormModal:React.FC<CardFormModalProps> = ({onSubmit, toggleModal, onBack, title, errors, children, nonHeader = false, ...other}) => {
+const CardFormModal:React.FC<CardFormModalProps> = ({onSubmit, toggleModal, onBack, onDelete, title, errors, children, nonHeader = false, ...other}) => {
     const [formState, setFormState] = useState<string>('IDLE');
     const btnConfig = useContext(CardFormModalButtonConfig);
     useEffect(() => {
@@ -87,9 +88,12 @@ const CardFormModal:React.FC<CardFormModalProps> = ({onSubmit, toggleModal, onBa
     <Form onSubmit={handleSubmit} {...other}>
       <ModalHeader toggle={toggleModal}>{title}</ModalHeader>
       <ModalBody>{children}</ModalBody>
-      <ModalFooter className="justify-content-between d-flex">
+      <ModalFooter className="d-flex">
         {onBack ? <Button color="secondary" onClick={onBack}>
           Zurück
+        </Button> : <span />}
+        {onDelete ?  <Button color="danger" onClick={onDelete}>
+            <i className="fas fa-trash fa-sm" />
         </Button> : <span />}
         <Button type="submit" color={currentBtnConfig.color} disabled={formState === 'SAVING'}>
           {currentBtnConfig.label}

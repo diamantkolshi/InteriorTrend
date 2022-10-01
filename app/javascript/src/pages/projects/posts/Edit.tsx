@@ -38,7 +38,7 @@ const Edit = ({project, posts, post, ingredients, ingredient, type}) => {
   }
 
   const openEditIngredientModal = (ingredientId) => {
-    Inertia.visit(`/projects/${project.id}/posts/${post.id}/ingredients/${ingredientId}/edit`, {preserveScroll: true})
+    Inertia.visit(`/projects/${project.id}/posts/${post.id}/ingredients/${ingredientId}/edit`, {preserveScroll: true, preserveState: true})
   }
 
   function handleSubmit() {

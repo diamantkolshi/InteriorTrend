@@ -53,7 +53,8 @@ const ImageDislay = ({imageUrl, ingredients, openModal, openEditModal}) => {
     return(
       colors.map((color) => {
         return (
-          <p style={{width: 14, height: 14, borderRadius: 7, marginLeft: 5, backgroundColor: color.hex}}></p>
+          // eslint-disable-next-line react/jsx-key
+          <p style={{width: 14, height: 14, borderRadius: 7, marginLeft: 5, backgroundColor: color.hex}} />
         )
       })
     )
@@ -63,6 +64,7 @@ const ImageDislay = ({imageUrl, ingredients, openModal, openEditModal}) => {
     return(
       materials.map((material, i) => {
         return (
+          // eslint-disable-next-line react/jsx-key
           <span style={{marginLeft: 5, marginTop: 1}}>{material.name}</span>
         )
       })
@@ -105,7 +107,8 @@ const ImageDislay = ({imageUrl, ingredients, openModal, openEditModal}) => {
           backgroundColor: '#fff',
           padding: 15,
           borderRadius: 5,
-          lineHeight: 0.6
+          lineHeight: 0.6,
+          zIndex: 3
         }}>
           <div style={{position: 'absolute', width: 12, height: 12, backgroundColor: '#fff', top: -6, left: 15,  transform: 'rotate(45deg)'}} />
           <p style={{fontSize: 16}}>Name: <span style={{fontSize: 12}}>{ingredient.name}</span></p>

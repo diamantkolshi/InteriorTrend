@@ -60,6 +60,13 @@ class Projects::IngredientsController < Projects::BaseController
     end   
   end
 
+  def destroy
+    @ingredient = @post.ingredients.find(params[:id])
+    @ingredient.destroy
+    flash[:message] = t('controllers.ingredient.deleted_successfully')
+    redirect_to edit_project_post_path(@project, @post)
+  end
+
   private
 
   def ingredient_as_json(ingredient)
