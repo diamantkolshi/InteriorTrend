@@ -15,22 +15,12 @@ const tp = withScope('activerecord', 'attributes', 'project');
 const Textarea = 'textarea';
 
 const PostForm = ({post, ingredients, onChange, openModal, openEditModal, newMode = false}) => {
-  const [formConfig, {text, select, date, number}] = useFormState({
-    ...post
-  }, {
-    withIds: true, // enable automatic creation of id and htmlFor props
-    onChange: (e, stateValues, nextStateValues) => {
-      onChange(nextStateValues);
-    }
-  });
+  function handleChange(e, multiselect) {
+    const {name, value} = e.currentTarget;
+    onChange({...post, [name]: value})
+  }
 
   const errors = useErrors('project');
-
-  useEffect(() => {
-    Object.keys(post).forEach((key) => {
-        formConfig.setField(key, post[key]);
-    });
-  }, [post])
 
   return (
     <div>
@@ -45,7 +35,8 @@ const PostForm = ({post, ingredients, onChange, openModal, openEditModal, newMod
                           label={tp('title')}
                           error={errors.title}
                           placeholder=""
-                          {...text('title')}
+                          {...{type: "input", id: 'name'}}
+                          onChange={handleChange}
                           />
             </Col>
           </Row>
@@ -54,8 +45,8 @@ const PostForm = ({post, ingredients, onChange, openModal, openEditModal, newMod
               <CFormGroup tag={Textarea}
                           label={tp('description')}
                           error={errors.description}
-                          placeholder=""
-                          {...text('description')}
+                          {...{type: "input", id: 'description'}}
+                          onChange={handleChange}
                           />
             </Col>
           </Row>

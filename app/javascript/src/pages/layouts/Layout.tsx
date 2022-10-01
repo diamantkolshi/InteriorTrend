@@ -30,7 +30,7 @@ const Layout: React.FC<{
     if(message) {
       toast.success(message)
     }
-  }, message)
+  }, [message])
 
   const { user }: any = usePage().props
 

@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
     Col,
-    CustomInput,
     Input,
     Row
 } from 'reactstrap';
-import { useFormState } from 'react-use-form-state';
 import CFormGroup from "../../../shared/CFormGroup";
-import ImageDisplay from "../../../shared/ImageDisplay";
 import useErrors from "../../../shared/useErrors";
 import { withScope } from "../../../shared/i18n";
 

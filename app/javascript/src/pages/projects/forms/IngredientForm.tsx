@@ -6,9 +6,7 @@ import {
     Row
 } from 'reactstrap';
 import { usePage } from "@inertiajs/inertia-react";
-import { useFormState } from 'react-use-form-state';
 import CFormGroup from "../../../shared/CFormGroup";
-import ImageDisplay from "../../../shared/ImageDisplay";
 import useErrors from "../../../shared/useErrors";
 import { withScope } from "../../../shared/i18n";
 

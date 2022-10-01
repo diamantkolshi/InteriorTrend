@@ -24,7 +24,7 @@ class Projects::IngredientsController < Projects::BaseController
 
     if ingredient.save
       flash[:message] = t('controllers.ingredient.created_successfully')
-      redirect_to edit_project_post_path(@project, @post)
+      redirect_to edit_project_post_path(@project, @post)   
     else      
       set_errors(:ingredient, ingredient.inertia_errors)
       redirect_to new_project_post_ingredient_path(@project, @post)
@@ -49,12 +49,10 @@ class Projects::IngredientsController < Projects::BaseController
   def update 
     @ingredient = @post.ingredients.find(params[:id])
     @ingredient.assign_attributes(ingredient_params)
-    
-    binding.pry
 
     if @ingredient.save
       flash[:message] = t('controllers.ingredient.update_successfully')
-      redirect_to edit_project_post_path(@ingredient, @post)
+      redirect_to edit_project_post_path(@project, @post)
     else
       set_errors(:project, @ingredient.inertia_errors)
       redirect_to new_project_post_ingredient_path(@ingredient, @post)
