@@ -21,9 +21,6 @@ class Projects::IngredientsController < Projects::BaseController
   def create 
     ingredient = @post.ingredients.new
     ingredient.assign_attributes(ingredient_params)
-    
-    binding.pry
-    
 
     if ingredient.save
       flash[:message] = t('controllers.ingredient.created_successfully')

@@ -30,7 +30,7 @@ const Posts = ({project, posts, params, firstCreatedAt}) => {
   const handleToDelete = (row) => {
     const r = window.confirm("Are you sure?");
     if (r === true) {
-        Inertia.delete(`posts/${row.id}`, {}, {preserveScroll: true});
+        Inertia.delete(`posts/${row.id}`, {preserveScroll: true});
     }
   }
 

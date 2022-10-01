@@ -3,7 +3,7 @@ class InertiaController < ApplicationController
   before_action :authenticate_user!
 
   inertia_share do
-    ret = {}
+    ret = {message: ''}
     if flash[:errors]
       ret['errors'] = flash[:errors]
     end
@@ -15,7 +15,7 @@ class InertiaController < ApplicationController
     end
 
     ret['form_options'] = form_options
-
+       
     ret
   end
 

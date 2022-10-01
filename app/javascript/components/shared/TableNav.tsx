@@ -13,7 +13,7 @@ const TableNav = ({title, rows, action}) => {
   const handleToDelete = (row) => {
     const r = window.confirm("Are you sure?");
     if (r === true) {
-        Inertia.delete(`/projects/${row.id}`, {}, {preserveScroll: true});
+        Inertia.delete(`/projects/${row.id}`, {preserveScroll: true});
     }
   }
 

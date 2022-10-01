@@ -16,14 +16,14 @@ const tp = withScope('activerecord', 'attributes', 'ingredient');
 const Textarea = 'textarea';
 
 const IngredientForm = ({ingredient, onChange, newMode = false}) => {
-  const {form_options} = usePage();
+  const { form_options }: any = usePage().props
 
   function handleChange(e, multiselect) {
     const {name, value} = e.currentTarget;
     
     if(!multiselect) {
       onChange({...ingredient, [name]: value})
-    } else {
+  } else {
       const arr = ingredient[name]
       const arrValue = parseInt(value)
       if (!arr.includes(arrValue)) {        

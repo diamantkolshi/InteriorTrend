@@ -85,7 +85,7 @@ const ImageDislay = ({imageUrl, ingredients, openModal, openEditModal}) => {
             position: 'absolute', 
             top: `${y}%`,
             left: `${x}%`,
-            color: 'red',
+            color: '#66ee66',
             fontSize: 22,
             animation: 'orgin 5s linear infinite',
             cursor: 'pointer'

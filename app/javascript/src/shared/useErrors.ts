@@ -1,7 +1,7 @@
 import { usePage } from "@inertiajs/inertia-react";
 
 const useErrors = (key) => {
-    const {errors} = usePage();
+    const { errors }: any = usePage().props
     if(errors) {
         return errors[key] || {};
     }
