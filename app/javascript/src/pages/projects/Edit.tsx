@@ -2,11 +2,8 @@ import React, { useState } from 'react';
 import { Inertia } from "@inertiajs/inertia";
 import {
     Col,
-    CustomInput,
-    Input,
     Row
 } from 'reactstrap';
-import CardFormModal from "../../shared/CardFormModal";
 import useErrors from "../../shared/useErrors";
 import CardForm from "../../shared/CardForm";
 import ProjectForm from "./forms/ProjectForm";

@@ -52,7 +52,7 @@ const Edit = ({project, posts, post, ingredients, ingredient, type}) => {
     <ProjectLayout project={project} posts={posts}> 
       <Row>
         <Col xl={12}>
-          <CardForm onSubmit={handleSubmit} title={"Edito postimin"} errors={useErrors('project')}>
+          <CardForm onSubmit={handleSubmit} title="Edito postimin" errors={useErrors('project')}>
             <PostForm
               post={postValue}
               ingredients={ingredients}

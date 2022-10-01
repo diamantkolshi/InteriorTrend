@@ -45,14 +45,14 @@ const Posts = ({project, posts, params, firstCreatedAt}) => {
             .join('&');
 
   const filterSelectChange = (e, type) => {
-    if(type == "select") {
-      let name = e.target.name
-      let value = e.target.value
+    if(type === "select") {
+      const {name} = e.target
+      const {value} = e.target
       pathParams[name] = value
     } else if (type == "date") {
-      let date = moment(e).format('DD/MM/YYYY')
+      const date = moment(e).format('DD/MM/YYYY')
       setStartDate(e)
-      pathParams['date'] = date
+      pathParams.date = date
     }
 
     const queryParams = createQueryParams(pathParams)

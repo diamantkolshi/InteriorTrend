@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Inertia } from "@inertiajs/inertia";
-import { Modal, Button, Form, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
+import { Modal } from "reactstrap";
 import CardFormModal from "../../shared/CardFormModal";
 import useErrors from "../../shared/useErrors";
 import ProjectForm from "./forms/ProjectForm";

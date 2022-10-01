@@ -63,7 +63,7 @@ const IngredientForm = ({ingredient, onChange, newMode = false}) => {
                       label={tp('name')}
                       error={errors.name}
                       {...{type: "input", id: 'name'}}
-                      value={ingredient && ingredient['name']}
+                      value={ingredient && ingredient.name}
                       placeholder=""
                       onChange={handleChange}
                       />
@@ -73,7 +73,7 @@ const IngredientForm = ({ingredient, onChange, newMode = false}) => {
                       label={tp('price')}
                       error={errors.price}
                       {...{type: "number", id: 'price'}}
-                      value={ingredient && ingredient['price']}
+                      value={ingredient && ingredient.price}
                       placeholder=""
                       onChange={handleChange}
                       />

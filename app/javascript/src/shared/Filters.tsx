@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { withScope } from "./i18n";
+import React from 'react';
 import {
-    Button, FormGroup, Input, Label
+  FormGroup
 } from 'reactstrap';
+import { withScope } from "./i18n";
 
 const tfilter = withScope('helpers', 'filters');
 

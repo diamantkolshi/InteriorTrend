@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Inertia } from "@inertiajs/inertia";
-import { Modal, Button, Form, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
+import { Modal } from "reactstrap";
 import CardFormModal from "../../../shared/CardFormModal";
 import useErrors from "../../../shared/useErrors";
 import { withScope } from "../../../shared/i18n";
@@ -33,8 +33,8 @@ const Ingredient = ({ingredient, isOpen, toggleModal, projectId, postId, type}) 
 
   return ( 
     <div>
-      <Modal isOpen={isOpen} size="lg" toggle={() => toggleModal()} backdrop={'static'}>
-        <CardFormModal onSubmit={handleSubmit} title={type == 'create' ? "Shto perberes te ri" : "Edito perberesin"}  errors={useErrors('ingredient')} toggleModal={toggleModal}>
+      <Modal isOpen={isOpen} size="lg" toggle={() => toggleModal()} backdrop="static">
+        <CardFormModal onSubmit={handleSubmit} title={type === 'create' ? "Shto perberes te ri" : "Edito perberesin"}  errors={useErrors('ingredient')} toggleModal={toggleModal}>
           <IngredientForm
             ingredient={ingredientValues}
             onChange={handleChange}

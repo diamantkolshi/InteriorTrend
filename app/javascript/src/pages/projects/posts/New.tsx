@@ -7,6 +7,7 @@ import { withScope } from "../../../shared/i18n";
 import ProjectLayout from "../Layout";
 import PostInfoForm from "../forms/PostInfoForm";
 import CardFormModal from "../../../shared/CardFormModal";
+
 const ttable = withScope('helpers', 'project', 'index', 'table');
 
 
@@ -36,7 +37,7 @@ const New = ({project, posts, post}) => {
   return (
     <ProjectLayout project={project} posts={posts}> 
       <Modal isOpen={!!post} size="lg" toggle={() => toggleModal()} backdrop={'static'}>
-        <CardFormModal onSubmit={handleSubmit} title={"Shto Postim te ri"}  errors={useErrors('ingredient')} toggleModal={toggleModal}>
+        <CardFormModal onSubmit={handleSubmit} title="Shto Postim te ri"  errors={useErrors('ingredient')} toggleModal={toggleModal}>
           <PostInfoForm
             post={postValues}
             onChange={handleChange}

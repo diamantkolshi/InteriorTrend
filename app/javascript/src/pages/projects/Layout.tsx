@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Inertia } from "@inertiajs/inertia";
-import { Badge, Button, Col, ListGroup, ListGroupItem, Row } from "reactstrap";
+import { Button, Col, ListGroup, ListGroupItem, Row } from "reactstrap";
 import { InertiaLink } from "@inertiajs/inertia-react";
 import Layout from "../layouts/Layout";
 import { t, withScope } from "../../shared/i18n";

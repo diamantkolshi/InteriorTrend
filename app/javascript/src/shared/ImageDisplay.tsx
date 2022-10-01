@@ -1,5 +1,7 @@
-import { func } from 'prop-types';
-import React, { useEffect, useState } from 'react';
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import React, { useState } from 'react';
 
 const ImageDislay = ({imageUrl, ingredients, openModal, openEditModal}) => {
   const [displayPoint, setDisplayPoint] = useState('none');
@@ -68,8 +70,8 @@ const ImageDislay = ({imageUrl, ingredients, openModal, openEditModal}) => {
   }
 
   function displayPointIcon(isShow, x, y, ingredient=null) {
-    var info = 'none'
-    var id = null
+    let info = 'none'
+    let id = null
     if(ingredient !== null) {
       info = displayInfoId == ingredient.id && ingredient.id != null ? 'block' : 'none';
       id = ingredient.id
@@ -77,6 +79,7 @@ const ImageDislay = ({imageUrl, ingredients, openModal, openEditModal}) => {
       return
     }
     
+    // eslint-disable-next-line consistent-return
     return (
       <>
         <i className="fas fa-tag" 
@@ -93,7 +96,7 @@ const ImageDislay = ({imageUrl, ingredients, openModal, openEditModal}) => {
           onClick={() => openIngredientModal(id)}
           onMouseEnter={() => displayTooltipInfo(id)}
           onMouseLeave={() => removeTooltipInfo()}
-        />
+          />
         <div style={{
           display: `${info}`,
           position: 'absolute',
@@ -104,7 +107,7 @@ const ImageDislay = ({imageUrl, ingredients, openModal, openEditModal}) => {
           borderRadius: 5,
           lineHeight: 0.6
         }}>
-          <div style={{position: 'absolute', width: 12, height: 12, backgroundColor: '#fff', top: -6, left: 15,  transform: 'rotate(45deg)'}}></div>
+          <div style={{position: 'absolute', width: 12, height: 12, backgroundColor: '#fff', top: -6, left: 15,  transform: 'rotate(45deg)'}} />
           <p style={{fontSize: 16}}>Name: <span style={{fontSize: 12}}>{ingredient.name}</span></p>
           <p style={{fontSize: 16}}>Price: <span style={{fontSize: 12}}>{ingredient.price} EUR</span></p>
           <p style={{fontSize: 16}}>Stili: <span style={{fontSize: 12}}>{ingredient.style}</span></p>

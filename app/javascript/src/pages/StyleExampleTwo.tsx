@@ -1,5 +1,4 @@
 import React from 'react';
-import { Inertia } from "@inertiajs/inertia";
 import HeaderNav from '../../components/shared/HeaderNav'
 import ManuNav from '../../components/shared/ManuNav'
 import FormNav from '../../components/shared/FormNav'
