@@ -5,6 +5,7 @@ RSpec.describe Api::V1::PostsController, type: :controller do
     Project.delete_all
     Post.delete_all
     Ingredient.delete_all
+    Style.delete_all
   end
 
   let!(:role) { FactoryBot.create(:role, name: "client") }
@@ -78,7 +79,21 @@ RSpec.describe Api::V1::PostsController, type: :controller do
     end
 
     context "returns postes with style filter" do
+      it "return correct posts with style filter" do 
+        get :index, params: { style_ids: [style_ingredient_1.id] }
+        @json_result = json_response_body
+        
+        expect(@json_result[:count]).to eq(1)
+        expect(@json_result[:results].as_json).to eq([post1.as_json])
+      end
 
+      it "return correct posts with more then one style filter" do 
+        get :index, params: { style_ids: [style_ingredient_1.id, style_ingredient_2.id] }
+        @json_result = json_response_body
+        
+        expect(@json_result[:count]).to eq(2)
+        expect(@json_result[:results].as_json).to eq([post1.as_json, post2.as_json])
+      end
     end
   end
 end
