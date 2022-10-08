@@ -82,14 +82,8 @@ RSpec.describe Api::V1::PostsController, type: :controller do
         @json_result = json_response_body
       end
 
-      it "has correct keys" do         
-        expect(@json_result).to have_key(:results)
-        expect(@json_result).to have_key(:count)
-      end
-
-      it "has correct length" do 
-        expect(@json_result[:results].length).to eq(Post.all.length)
-        expect(@json_result[:results].length).to eq(@json_result[:count])
+      it "has correct length" do         
+        expect(@json_result.length).to eq(Post.all.length)
       end
     end
 
@@ -98,16 +92,16 @@ RSpec.describe Api::V1::PostsController, type: :controller do
         get :index, params: { style_ids: [style_ingredient_1.id] }
         @json_result = json_response_body
         
-        expect(@json_result[:count]).to eq(1)
-        expect(@json_result[:results].as_json).to eq([post1.as_json])
+        expect(@json_result.length).to eq(1)
+        expect(@json_result).to eq([post_json(post1)])
       end
 
       it "return correct posts with more then one style filter" do 
         get :index, params: { style_ids: [style_ingredient_1.id, style_ingredient_2.id] }
         @json_result = json_response_body
         
-        expect(@json_result[:count]).to eq(2)
-        expect(@json_result[:results].as_json).to eq([post1.as_json, post2.as_json])
+        expect(@json_result.length).to eq(2)
+        expect(@json_result).to eq([post_json(post1), post_json(post2)])
       end
     end
 
@@ -116,16 +110,16 @@ RSpec.describe Api::V1::PostsController, type: :controller do
         get :index, params: { form_ids: [form_ingredient_1.id] }
         @json_result = json_response_body
         
-        expect(@json_result[:count]).to eq(1)
-        expect(@json_result[:results].as_json).to eq([post1.as_json])
+        expect(@json_result.length).to eq(1)
+        expect(@json_result).to eq([post_json(post1)])
       end
 
       it "return correct posts with more then one form filter" do 
         get :index, params: { form_ids: [form_ingredient_1.id, form_ingredient_2.id] }
         @json_result = json_response_body
         
-        expect(@json_result[:count]).to eq(2)
-        expect(@json_result[:results].as_json).to eq([post1.as_json, post2.as_json])
+        expect(@json_result.length).to eq(2)
+        expect(@json_result).to eq([post_json(post1), post_json(post2)])
       end
     end
 
@@ -134,16 +128,16 @@ RSpec.describe Api::V1::PostsController, type: :controller do
         get :index, params: { category_ids: [category_ingredient_1.id] }
         @json_result = json_response_body
         
-        expect(@json_result[:count]).to eq(1)
-        expect(@json_result[:results].as_json).to eq([post1.as_json])
+        expect(@json_result.length).to eq(1)
+        expect(@json_result).to eq([post_json(post1)])
       end
 
       it "return correct posts with more then one category filter" do 
         get :index, params: { category_ids: [category_ingredient_1.id, category_ingredient_2.id] }
         @json_result = json_response_body
         
-        expect(@json_result[:count]).to eq(2)
-        expect(@json_result[:results].as_json).to eq([post1.as_json, post2.as_json])
+        expect(@json_result.length).to eq(2)
+        expect(@json_result).to eq([post_json(post1), post_json(post2)])
       end
     end
 
@@ -152,16 +146,16 @@ RSpec.describe Api::V1::PostsController, type: :controller do
         get :index, params: { color_ids: [color1.id] }
         @json_result = json_response_body
 
-        expect(@json_result[:count]).to eq(1)
-        expect(@json_result[:results].as_json).to eq([post1.as_json])
+        expect(@json_result.length).to eq(1)
+        expect(@json_result).to eq([post_json(post1)])
       end
 
       it "return correct posts with more then one color filter" do 
         get :index, params: { color_ids: [color1.id, color2.id] }
         @json_result = json_response_body
         
-        expect(@json_result[:count]).to eq(2)
-        expect(@json_result[:results].as_json).to eq([post1.as_json, post2.as_json])
+        expect(@json_result.length).to eq(2)
+        expect(@json_result).to eq([post_json(post1), post_json(post2)])
       end
     end
 
@@ -170,17 +164,25 @@ RSpec.describe Api::V1::PostsController, type: :controller do
         get :index, params: { material_ids: [material1.id] }
         @json_result = json_response_body
 
-        expect(@json_result[:count]).to eq(1)
-        expect(@json_result[:results].as_json).to eq([post1.as_json])
+        expect(@json_result.length).to eq(1)
+        expect(@json_result).to eq([post_json(post1)])
       end
 
       it "return correct posts with more then one material filter" do 
         get :index, params: { material_ids: [material1.id, material2.id] }
         @json_result = json_response_body
         
-        expect(@json_result[:count]).to eq(2)
-        expect(@json_result[:results].as_json).to eq([post1.as_json, post2.as_json])
+        expect(@json_result.length).to eq(2)
+        expect(@json_result).to eq([post_json(post1), post_json(post2)])
       end
     end
+  end
+
+  def post_json(post)
+    {
+      id: post.id,
+      title: post.title,
+      description: post.description,
+    }
   end
 end
