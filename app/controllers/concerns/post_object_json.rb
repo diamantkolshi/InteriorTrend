@@ -1,5 +1,5 @@
 module PostObjectJson 
-  def posts_to_json(post)
+  def index_json_posts(post)
     {
       id: post.id,
       title: post.title,
@@ -10,8 +10,8 @@ module PostObjectJson
     }
   end
 
-  def post_to_json(post)
-    posts_to_json(post).merge(
+  def show_json_post(post)
+    index_json_posts(post).merge(
       {
         ingredients: post.ingredients.map do |ingredient|
           {

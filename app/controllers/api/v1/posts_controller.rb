@@ -12,13 +12,13 @@ class Api::V1::PostsController < Api::V1::BaseController
     
     render json: {
       total: @posts.length,
-      results: @posts.map(&method(:posts_to_json))
+      results: @posts.map(&method(:index_json_posts))
     }, status: :ok
   end
   
   def show
     @post = Post.find(params[:id])
 
-    render json: post_to_json(@post), status: :ok
+    render json: show_json_post(@post), status: :ok
   end
 end
