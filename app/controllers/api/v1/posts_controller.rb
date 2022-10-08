@@ -7,6 +7,9 @@ class Api::V1::PostsController < Api::V1::BaseController
     @posts = @posts.filter_by_colors(params[:color_ids]) if params[:color_ids].present?
     @posts = @posts.filter_by_materials(params[:material_ids]) if params[:material_ids].present?
     
-    render json: @posts
+    render json: {
+      results: @posts.as_json,
+      count: @posts.length
+    }
   end
 end
