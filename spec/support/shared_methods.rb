@@ -5,7 +5,7 @@ def post_to_json(post)
     description: post.description,
     image_path: post_image_path(post),
     created_at: post.created_at.strftime("%FT%T"),
-    ingredients: post.ingredients&.count
+    ingredients_count: post.ingredients&.count
   }
 end
 
