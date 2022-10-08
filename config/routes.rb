@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       mount_devise_token_auth_for 'User', at: 'auth', defaults: {format: 'json'}
       
-      resources :posts, controller: 'posts', only: [:index]
+      resources :posts, controller: 'posts', only: [:index, :show]
     end
   end
 end

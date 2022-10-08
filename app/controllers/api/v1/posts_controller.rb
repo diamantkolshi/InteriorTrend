@@ -1,4 +1,7 @@
 class Api::V1::PostsController < Api::V1::BaseController
+  include StorageMethods
+  include PostObjectJson
+
   def index
     @posts = Post.all.includes(:ingredients => [:colors, :materials])
     @posts = @posts.filter_by_styles(params[:style_ids]) if params[:style_ids].present?
@@ -8,8 +11,14 @@ class Api::V1::PostsController < Api::V1::BaseController
     @posts = @posts.filter_by_materials(params[:material_ids]) if params[:material_ids].present?
     
     render json: {
-      results: @posts.as_json,
-      count: @posts.length
-    }
+      total: @posts.length,
+      results: @posts.map(&method(:posts_to_json))
+    }, status: :ok
+  end
+  
+  def show
+    @post = Post.find(params[:id])
+
+    render json: post_to_json(@post), status: :ok
   end
 end
