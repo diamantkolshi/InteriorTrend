@@ -42,7 +42,7 @@ const Ingredient = ({ingredient, isOpen, toggleModal, projectId, postId, type}) 
   return ( 
     <div>
       <Modal isOpen={isOpen} size="lg" toggle={() => toggleModal()} backdrop="static">
-        <CardFormModal onSubmit={handleSubmit} onDelete={handleDelete} title={type === 'create' ? "Shto perberes te ri" : "Edito perberesin"}  errors={useErrors('ingredient')} toggleModal={toggleModal}>
+        <CardFormModal onSubmit={handleSubmit} onDelete={type === 'create' ? null : handleDelete} title={type === 'create' ? "Shto perberes te ri" : "Edito perberesin"}  errors={useErrors('ingredient')} toggleModal={toggleModal}>
           <IngredientForm
             ingredient={ingredientValues}
             onChange={handleChange}
