@@ -39,7 +39,6 @@
     "ts-loader": "^6.2.1",
     "typescript": "^3.8.3"
   },
-  "version": "0.1.0",
   "devDependencies": {
     "@types/react-datepicker": "^2.11.0",
     "@types/reactstrap": "^8.4.2",
