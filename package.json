@@ -4,8 +4,7 @@
   "version": "0.0.1",
   "engines": {
     "node": "12.22.10",
-    "npm": "7.24.2",
-    "yarn": "1.22.18"
+    "npm": "7.24.2"
   },
   "private": true,
   "dependencies": {
