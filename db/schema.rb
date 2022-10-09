@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_03_113112) do
+ActiveRecord::Schema.define(version: 2022_10_02_113211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -194,6 +194,9 @@ ActiveRecord::Schema.define(version: 2022_04_03_113112) do
     t.bigint "role_id"
     t.bigint "nationality_id"
     t.bigint "city_id"
+    t.string "provider", default: "email", null: false
+    t.string "uid", default: "", null: false
+    t.json "tokens"
     t.index ["city_id"], name: "index_users_on_city_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["json_attributes"], name: "index_users_on_json_attributes", using: :gin
