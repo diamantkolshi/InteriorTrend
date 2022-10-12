@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { InertiaLink } from "@inertiajs/inertia-react";
 import { Inertia } from "@inertiajs/inertia";
+import {
+  Button, FormGroup, Input, Label, NavLink
+} from 'reactstrap';
+import DatePicker from "react-datepicker";
+import * as moment from 'moment'
 import { withScope } from "../../shared/i18n";
 import New from "./New"
-import {
-    Button, FormGroup, Input, Label
-} from 'reactstrap';
 import ProjectLayout from "../layouts/Layout";
-import * as moment from 'moment'
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Filters from "../../shared/Filters";
 
@@ -30,7 +31,7 @@ const Index = ({projects, project, cities, params, firstCreatedAt}) => {
   const handleToDelete = (row) => {
     const r = window.confirm("Are you sure?");
     if (r === true) {
-        Inertia.delete(`/projects/${row.id}`, {}, {preserveScroll: true});
+        Inertia.delete(`/projects/${row.id}`, {preserveScroll: true});
     }
   }
 
@@ -49,14 +50,14 @@ const Index = ({projects, project, cities, params, firstCreatedAt}) => {
             .join('&');
 
   const filterSelectChange = (e, type) => {
-    if(type == "select") {
-      let name = e.target.name
-      let value = e.target.value
+    if(type === "select") {
+      const {name} = e.target
+      const {value} = e.target
       pathParams[name] = value
     } else if (type == "date") {
-      let date = moment(e).format('DD/MM/YYYY')
+      const date = moment(e).format('DD/MM/YYYY')
       setStartDate(e)
-      pathParams['date'] = date
+      pathParams.date = date
     }
 
     const queryParams = createQueryParams(pathParams)
@@ -76,12 +77,10 @@ const Index = ({projects, project, cities, params, firstCreatedAt}) => {
               <div className="d-flex justify-content-between">
                 <div>
                   <span className="mr-1">
-                    {
-                      <Button color="primary" onClick={() => addNew()} className="mr-2">
-                          <i className="fas fa-plus fa-sm" />{' '}
-                          {ttable('new_project')}
-                      </Button>
-                    }
+                    <Button color="primary" onClick={() => addNew()} className="mr-2">
+                        <i className="fas fa-plus fa-sm" />{' '}
+                        {ttable('new_project')}
+                    </Button>
                   </span>
                 </div>
                 <div className="d-flex justify-content-end align-items-center mb-2" />
@@ -120,7 +119,9 @@ const Index = ({projects, project, cities, params, firstCreatedAt}) => {
                       projects.map((project, i) => (
                         <tr key={i}>
                           <td>
-                            {project.title}
+                            <NavLink tag={InertiaLink} className="nav-link" href={`/projects/${project.id}/posts`} data-toggle="dropdown">
+                              {project.title}
+                            </NavLink>
                           </td>
                           <td>
                             {truncate(project.description, 40)}

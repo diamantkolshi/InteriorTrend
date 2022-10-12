@@ -23,16 +23,16 @@ const Layout: React.FC<{
     actions?: ReactElement;
     breadcrumps?: {name: string; href: string}[];
 }> = ({children, title, actions, breadcrumps = []}) => {
-  const { message } = usePage()
+  const {message}: any = usePage().props
   const logo = require('../../../images/logo.png');
 
   useEffect(() => {
     if(message) {
       toast.success(message)
     }
-  }, message)
+  }, [message])
 
-  const {user} = usePage();
+  const { user }: any = usePage().props
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const handleLogout = () => {

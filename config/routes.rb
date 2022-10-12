@@ -8,6 +8,16 @@ Rails.application.routes.draw do
 
   root to: "projects#index"
   resources :projects do
-    resources :posts, controller: 'projects/posts', only: [:index, :new, :create, :edit, :update, :destroy]
+    resources :posts, controller: 'projects/posts', only: [:index, :new, :create, :edit, :update, :destroy] do 
+      resources :ingredients, controller: 'projects/ingredients', only: [:new, :create, :edit, :update, :destroy] 
+    end
+  end
+
+  namespace :api do
+    namespace :v1 do
+      mount_devise_token_auth_for 'User', at: 'auth', defaults: {format: 'json'}
+      
+      resources :posts, controller: 'posts', only: [:index, :show]
+    end
   end
 end

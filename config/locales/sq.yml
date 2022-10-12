@@ -23,6 +23,18 @@ sq:
         location: Lokacioni
         street: Rruga
         project_info: Informatat gjenerale
+      ingredient: 
+        name: Emri
+        price: Çmimi
+        style_id: Stili
+        form_id: Forma
+        category_id: Kategoria
+        color_ids: Ngjyrat
+        material_ids: Materialet
+      post: 
+        title: Titulli
+        description: Pershkrimi
+        image: Imazhi
   errors:
     format: "%{attribute} %{message}"
   messages:
@@ -76,3 +88,11 @@ sq:
     project:
       created_successfully: Projekti eshte krijuar me sukses.
       deleted_successfully: Projekti eshte fshire me sukses.
+    ingredient:
+      created_successfully: Detajet jane krijuar me sukses.
+      update_successfully: Detajet jane perditesuar me sukses.
+      deleted_successfully: Detajet jane fshire me sukses.
+    post: 
+      created_successfully: Postimi eshte krijuar me sukses.
+      deleted_successfully: Postimi eshte fshire me sukses.
+

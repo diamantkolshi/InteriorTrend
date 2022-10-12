@@ -30,7 +30,8 @@ module InteriorTrend
 
     config.autoload_paths += Dir[Rails.root.join("app", "models", "{*/}")]
     config.autoload_paths += %W(#{config.root}/app/lib)
-
+    
+    config.action_controller.default_protect_from_forgery = true
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

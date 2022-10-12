@@ -4,7 +4,7 @@ class Project < ApplicationRecord
 
   belongs_to :user
   belongs_to :city
-  has_many :posts
+  has_many :posts, dependent: :destroy
 
   validates_presence_of :title, :description
 

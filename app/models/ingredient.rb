@@ -1,4 +1,6 @@
 class Ingredient < ApplicationRecord
+  include InertiaErrors
+  
   belongs_to :post
   belongs_to :form
   belongs_to :style
@@ -8,5 +10,5 @@ class Ingredient < ApplicationRecord
   has_many :ingredient_materials
   has_many :materials, through: :ingredient_materials
 
-  validates_presence_of :name, :position_x, :position_y
+  validates_presence_of :name, :price, :form_id, :position_x, :position_y
 end
