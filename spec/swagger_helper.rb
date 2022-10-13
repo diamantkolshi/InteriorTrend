@@ -38,7 +38,7 @@ RSpec.configure do |config|
                 default: ENV['HOSTNAME'] || 'localhost:3000'
             },
             protocol: {
-                default: Rails.env.development? || Rails.env.test? ? 'http' : 'https'
+                default: Rails.env.development? || Rails.env.test? ? 'http' : ENV['PROTOCOL']
             }
           }
         }
