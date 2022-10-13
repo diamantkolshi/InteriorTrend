@@ -1,0 +1,58 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/posts":
+    get:
+      summary: list posts
+      tags:
+      - Posts
+      responses:
+        '200':
+          description: successful
+  "/api/v1/posts/{id}":
+    get:
+      summary: show post
+      tags:
+      - Posts
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/posts"
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+servers:
+- url: "{protocol}://{defaultHost}"
+  variables:
+    defaultHost:
+      default: localhost:3000
+    protocol:
+      default: http
+components:
+  schemas:
+    posts:
+      type: object
+      properties: {}
