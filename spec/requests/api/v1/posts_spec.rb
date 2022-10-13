@@ -28,6 +28,7 @@ RSpec.describe 'api/v1/posts', type: :request do
       parameter name: :id, in: :path, type: :string
 
       response 200, 'successful' do
+        let(:id) { '1' }
         schema type: :object, properties: {
           results: {
             type: :array,
@@ -38,6 +39,7 @@ RSpec.describe 'api/v1/posts', type: :request do
       end
 
       response '404', '' do
+        let(:id) { '123' }
         schema type: :object, properties: {
             error: {type: :string}
         }
