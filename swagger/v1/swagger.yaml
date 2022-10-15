@@ -4,6 +4,85 @@ info:
   title: API V1
   version: v1
 paths:
+  "/api/v1/directories":
+    get:
+      summary: list directories
+      tags:
+      - Directories
+      security:
+      - user_id: []
+        access_token: []
+        client: []
+        basic_auth: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: number
+                  results:
+                    "$ref": "#/components/schemas/directories"
+    post:
+      summary: create directory
+      tags:
+      - Directories
+      security:
+      - user_id: []
+        access_token: []
+        client: []
+        basic_auth: []
+      parameters: []
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum:
+                    - ok
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: object
+                    properties:
+                      normal_name:
+                        type: array
+                        items:
+                          type: string
+                      chemical_agent:
+                        type: array
+                        items:
+                          type: string
+                      route:
+                        type: array
+                        items:
+                          type: string
+                      form:
+                        type: array
+                        items:
+                          type: string
+                      dose:
+                        type: array
+                        items:
+                          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/directories"
   "/api/v1/posts":
     get:
       summary: list posts
@@ -52,7 +131,26 @@ servers:
     protocol:
       default: http
 components:
+  securitySchemes:
+    basic_auth:
+      type: http
+      scheme: basic
+    user_id:
+      type: apiKey
+      in: header
+      name: uid
+    access_token:
+      type: apiKey
+      in: header
+      name: access-token
+    client:
+      type: apiKey
+      in: header
+      name: client
   schemas:
     posts:
+      type: object
+      properties: {}
+    directories:
       type: object
       properties: {}

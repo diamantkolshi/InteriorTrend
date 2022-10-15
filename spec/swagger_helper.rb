@@ -44,11 +44,37 @@ RSpec.configure do |config|
         }
       ],
       components: {
+        securitySchemes: {
+          basic_auth: {
+              type: :http,
+              scheme: :basic
+          },
+          user_id: {# arbitrary name for the security scheme
+              type: :apiKey,
+              in: :header,
+              name: "uid"
+          },
+          access_token: {
+              type: :apiKey,
+              in: :header,
+              name: "access-token"
+          },
+          client: {
+              type: :apiKey,
+              in: :header,
+              name: "client"
+          }
+        },
         schemas: {
           posts: {
               type: :object,
               properties: {
               }
+          },
+          directories: {
+            type: :object,
+            properties: {
+            }
           },
         }
       }
