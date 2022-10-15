@@ -15,7 +15,6 @@ RSpec.describe 'api/v1/directories', type: :request do
                 "$ref": '#/components/schemas/directories'
             }
         }
-        run_test!
       end
     end
 
@@ -31,16 +30,14 @@ RSpec.describe 'api/v1/directories', type: :request do
 
       response '201', '' do
         schema type: :object, properties: {
-            status: {type: :string, enum: ['ok']}
+            id: {type: :string, enum: ['ok']}
         }
-        run_test!
       end
 
       response '400', '' do
         schema type: :object, properties: {
             errors: generate_errors_schema(:normal_name, :chemical_agent, :route, :form, :dose)
         }
-        run_test!
       end
     end
   end
