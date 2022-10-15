@@ -8,8 +8,8 @@ class User < ApplicationRecord
 
   belongs_to :role
   belongs_to :nationality, optional: true
-  belongs_to :city      
+  belongs_to :city            
   
-  has_one :directory
   has_many :projects
+  has_many :directories
 end

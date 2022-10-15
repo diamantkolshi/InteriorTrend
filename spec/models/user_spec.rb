@@ -5,8 +5,8 @@ RSpec.describe User, type: :model do
     it { should belong_to(:role) }
     it { should belong_to(:nationality).optional }
     it { should belong_to(:city) }
-    it { should have_one(:directory) }
     it { should have_many(:projects) }
+    it { should have_many(:directories) }
   end
 
   describe "Validations" do
