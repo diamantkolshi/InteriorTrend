@@ -4,7 +4,7 @@ class Api::V1::FavoritesController < Api::V1::BaseController
   before_action :find_favorite!, only: [:destroy]
 
   def index    
-    @favorites = @directories.favorites
+    @favorites = @directory.favorites
 
     render json: {
       total: @favorites.length,
@@ -13,8 +13,7 @@ class Api::V1::FavoritesController < Api::V1::BaseController
   end
   
   def create 
-    @favorite = @directory.favorites.new
-    @favorite.assign_attributes(favorite_params)
+    @favorite = @directory.favorites.find_or_initialize_by(favorite_params)
 
     if @favorite.save
       render json: @favorite.as_json(as_json_config), status: :created
@@ -23,8 +22,8 @@ class Api::V1::FavoritesController < Api::V1::BaseController
     end
   end
   
-  def destory 
-    if @directory.destroy
+  def destroy 
+    if @favorite.destroy
       render json: {status: :ok}
     else
       render json: { errors: { base: "Something went wrong" } }, status: :bad_request
@@ -37,11 +36,11 @@ class Api::V1::FavoritesController < Api::V1::BaseController
     params.require(:favorite).permit(:directory_id, :ingredient_id)
   end
 
-  def find_directory!
-    @directory = Directory.find(params[:directory_id])
+  def find_directory!    
+    @directory = Directory.find(favorite_params[:directory_id])
   end
 
-  def find_favorite!
+  def find_favorite!    
     @favorite = Favorite.find(params[:id])
   end
 
