@@ -42,12 +42,12 @@ class Api::V1::DirectoriesController < Api::V1::BaseController
 
   private 
 
-  def directory_params 
-    params.require(:directory).permit(:name, :price_limit)
+  def ingredient_params 
+    params.require(:directory).permit(:name, :limit_price)
   end
 
   def find_directory
-    @directory = current_user.directories.find()
+    @directory = current_user.directories.find(params[:id])
   end
 
   def as_json_config

@@ -21,7 +21,8 @@ Rails.application.routes.draw do
       mount_devise_token_auth_for 'User', at: 'auth', defaults: {format: 'json'}
       
       resources :posts, controller: 'posts', only: [:index, :show]
-      resources :directories, controller: 'directories', only: [:index, :create, :update]
+      resources :directories, controller: 'directories', only: [:index, :create, :update, :destroy]
+      resources :favorites, controller: 'favorites', only: [:index, :create, :destroy]
     end
   end
 end
