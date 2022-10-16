@@ -168,7 +168,6 @@ RSpec.describe Project, type: :model do
         posts_result = Project.filter_by_post_forms([form_ingredient_1.id, form_ingredient_2.id, form_ingredient_3.id])
 
         expect(posts_result.length).to eq Project.all.length
-        expect(posts_result).to eq Project.order(:created_at).all.to_a
       end
     end
 
@@ -200,7 +199,6 @@ RSpec.describe Project, type: :model do
         posts_result = Project.filter_by_post_colors([color1.id, color2.id, color3.id])
 
         expect(posts_result.length).to eq Project.all.length
-        expect(posts_result).to eq Project.order(:created_at).all.to_a
       end
     end
 
@@ -216,7 +214,6 @@ RSpec.describe Project, type: :model do
         posts_result = Project.filter_by_post_materials([material1.id, material2.id, material3.id])
 
         expect(posts_result.length).to eq Project.all.length
-        expect(posts_result).to eq Project.order(:created_at).all.to_a
       end
     end
   end

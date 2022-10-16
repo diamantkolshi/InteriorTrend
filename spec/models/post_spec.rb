@@ -113,7 +113,6 @@ RSpec.describe Post, type: :model do
         posts_result = Post.filter_by_categories([category_ingredient_1.id, category_ingredient_2.id, category_ingredient_3.id])
 
         expect(posts_result.length).to eq Post.all.length
-        expect(posts_result).to eq Post.order(:created_at).all.to_a
       end
     end
   end
@@ -130,7 +129,6 @@ RSpec.describe Post, type: :model do
       posts_result = Post.filter_by_forms([form_ingredient_1, form_ingredient_2, form_ingredient_3])
 
       expect(posts_result.length).to eq Post.all.length
-      expect(posts_result).to eq Post.order(:created_at).all.to_a
     end
   end
 
@@ -161,7 +159,6 @@ RSpec.describe Post, type: :model do
       posts_result = Post.filter_by_colors([color1.id, color2.id, color3.id])
 
       expect(posts_result.length).to eq Post.all.length
-      expect(posts_result).to eq Post.order(:created_at).all.to_a
     end
   end
 
@@ -177,7 +174,6 @@ RSpec.describe Post, type: :model do
       posts_result = Post.filter_by_materials([material1.id, material2.id, material3.id])
 
       expect(posts_result.length).to eq Post.all.length
-      expect(posts_result).to eq Post.order(:created_at).all.to_a
     end
   end
 
