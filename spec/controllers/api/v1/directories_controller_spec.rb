@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::DirectoriesController, type: :controller do
   before do
-    User.all 
     Project.delete_all
     Post.delete_all
     Ingredient.delete_all
@@ -34,11 +33,18 @@ RSpec.describe Api::V1::DirectoriesController, type: :controller do
 
   describe "#GET index" do
     before do 
+      auth_headers_for(user)
       get :index  
       @json_result = json_response_body
     end
 
+    it "has correct length" do 
+      expect(@json_result[:results].length).to eq(1)
+      expect(@json_result[:results].length).to eq(@json_result[:total])
+    end
+
     it "returns all directories of current user" do
+      expect(@json_result[:results]).to eq([directory_to_json(directory)])
     end
   end
 end
