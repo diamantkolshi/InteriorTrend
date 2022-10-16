@@ -152,7 +152,6 @@ RSpec.describe Project, type: :model do
         projects_result = Project.filter_by_post_categories([category_ingredient_1.id, category_ingredient_2.id, category_ingredient_3.id])
 
         expect(projects_result.length).to eq Project.all.length
-        expect(projects_result).to eq Project.order(:created_at).all.to_a
       end
     end
 
@@ -183,7 +182,6 @@ RSpec.describe Project, type: :model do
         posts_result = Project.filter_by_post_styles([form_ingredient_1.id, form_ingredient_2.id, form_ingredient_3.id])
 
         expect(posts_result.length).to eq Project.all.length
-        expect(posts_result).to eq Project.all.order(:created_at).to_a
       end
     end
 
