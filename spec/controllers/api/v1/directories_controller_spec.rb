@@ -1,14 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::DirectoriesController, type: :controller do
-  before do
-    Project.delete_all
-    Post.delete_all
-    Ingredient.delete_all
-    Style.delete_all
-    Directory.delete_all
-  end
-
   let!(:role) { FactoryBot.create(:role, name: "client") }
   let!(:user) { FactoryBot.create(:user, email: "user1@mail.com", password: "password", role: role) }
   let!(:project) { FactoryBot.create(:project, user: user) }

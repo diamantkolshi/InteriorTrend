@@ -5,8 +5,8 @@ FactoryBot.define do
     name { "Name" }
     surname { "Surname" }
     role_id { 1 }
-    nationality_id { 1 }
-    city_id { 1 }
+    nationality_id { }
+    city_id { }
     street { "street 1" }
     phone_number { "+12312415123" }
     website { "www.google.com" }

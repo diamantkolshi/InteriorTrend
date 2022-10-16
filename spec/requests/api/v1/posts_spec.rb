@@ -14,7 +14,6 @@ RSpec.describe 'api/v1/posts', type: :request do
                   items: {'$ref' => '#/components/schemas/posts'}
               }
           }
-          run_test!
         end
       end
     end
@@ -35,7 +34,6 @@ RSpec.describe 'api/v1/posts', type: :request do
             items: {'$ref' => '#/components/schemas/posts'}
           }
         }
-        run_test!
       end
 
       response '404', '' do
@@ -43,7 +41,6 @@ RSpec.describe 'api/v1/posts', type: :request do
         schema type: :object, properties: {
             error: {type: :string}
         }
-        run_test!
       end
     end
   end

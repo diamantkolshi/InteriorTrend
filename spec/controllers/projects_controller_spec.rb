@@ -1,11 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe ProjectsController, type: :controller do
+  let!(:role) { FactoryBot.create(:role, name: "client") }
+  let!(:nationality) { FactoryBot.create(:nationality, name: "Nationality") }
+  let!(:city) { FactoryBot.create(:city, name: "City", nationality: nationality) }
+  let!(:user) { FactoryBot.create(:user, email: "client@mail.com", password: "password", role: role) }
+  let!(:project) { FactoryBot.create(:project, user: user) }
+
   before(:each) do
-    @user = users(:knapp)
-    @user.projects << projects(:project1)
-    sign_in @user
-    @current_user = subject.current_user
+    project
+    sign_in user
+    @current_user = user
   end
 
   describe '#index' do
@@ -52,7 +57,7 @@ RSpec.describe ProjectsController, type: :controller do
 
   describe '#create' do
     it 'create new project item' do
-      params = { project: { title: 'Next project', description: 'Next project desc', street: 'Next project street', city_id: City.second.id}}
+      params = { project: { title: 'Next project', description: 'Next project desc', street: 'Next project street', city_id: city.id}}
 
       expect { post :create, params: params }.to change(Project, :count).by(1)
       expect(Project.last.title).to eq(params[:project][:title])
@@ -70,7 +75,7 @@ RSpec.describe ProjectsController, type: :controller do
   describe '#update' do
     it 'update project item' do
       project = @current_user.projects.last
-      params = { id: project.id, project: { title: 'Edit project', description: project.description, street: project.street, city_id: project.city.id}}
+      params = { id: project.id, project: { title: 'Edit project', description: project.description, street: project.street}}
 
       expect { put :update, params: params }.to change(Project, :count).by(0)
       expect(Project.last.title).to eq(params[:project][:title])

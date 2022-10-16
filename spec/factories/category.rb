@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :category do
     name { "category name" }
-    parent_id { 1 }
+    parent_id { }
   end
 end

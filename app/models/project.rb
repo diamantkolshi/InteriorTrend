@@ -3,7 +3,7 @@ class Project < ApplicationRecord
   include InertiaErrors
 
   belongs_to :user
-  belongs_to :city
+  belongs_to :city, optional: true
   has_many :posts, dependent: :destroy
 
   validates_presence_of :title, :description
