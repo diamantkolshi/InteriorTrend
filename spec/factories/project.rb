@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :project do
     user
-    city
+    city_id {}
     title { "project name" }
     description { "priject description" }
     street { "street" }
