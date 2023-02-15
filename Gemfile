@@ -34,6 +34,8 @@ gem 'pg_search'
 gem 'haml'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'rails-i18n', '~> 6.0.0'
+gem 'rswag-api'
+gem 'rswag-ui'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -45,6 +47,8 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'rubocop'
   gem 'factory_bot_rails'
+  gem 'rspec-rails'
+  gem 'rswag-specs'
 end
 
 group :development do

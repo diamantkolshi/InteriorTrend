@@ -13,13 +13,19 @@ RSpec.describe Category, type: :model do
   end
 
   describe 'actions' do
-    let(:main_category) { categories(:furniture) }
-    let(:main_subcategory1) { categories(:furniture_bed) }
-    let(:main_subcategory2) { categories(:furniture_chair) }
+    let(:main_category) { FactoryBot.create(:category, name: "furniture") }
+    let(:main_subcategory1) { FactoryBot.create(:category, name: "furniture_bed", parent_id: main_category.id) }
+    let(:main_subcategory2) { FactoryBot.create(:category, name: "furniture_chair", parent_id: main_category.id) }
+
+    before do 
+      main_category
+      main_subcategory1
+      main_subcategory2
+    end
 
     describe "#subcategories" do
       it "length should be 2" do
-        expect(main_category.subcategories.count).to eq 4
+        expect(main_category.subcategories.count).to eq 2
       end
 
       it "display subcategories" do
